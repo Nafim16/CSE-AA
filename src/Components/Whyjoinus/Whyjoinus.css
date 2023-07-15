@@ -1,0 +1,14 @@
+/* .reconnect{
+    background-color: antiquewhite;
+    box-shadow: 5px 5px 10px antiquewhite;
+}
+.status{
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+    color: bisque;
+} */
+.shadow:hover{
+    background-color: rgb(151, 151, 151);
+    box-shadow: 5px 5px 10px rgb(151, 151, 151);
+}
