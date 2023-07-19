@@ -1,0 +1,41 @@
+footer {
+    background-color: #18393c;
+    background-image: url('../img/shohidMinar3.jpg');
+    background-repeat: no-repeat;
+    line-height: 15%;
+    background-size: cover;
+    height: 400px;
+    background-blend-mode: multiply;
+    background-position: center;
+}
+
+.foot {
+    color: white;
+    padding-top: 30px;
+
+}
+
+.foot-h1 {
+    color: aliceblue;
+    padding-top: 30px;
+}
+
+.foot-h4 {
+    color: aliceblue;
+}
+.fa-facebook {
+    color: aliceblue;
+    font-size: large;
+}
+
+.fa-whatsapp {
+    padding-left: 20px;
+    color: aliceblue;
+    font-size: large;
+}
+
+.fa-instagram {
+    padding-left: 20px;
+    color: aliceblue;
+    font-size: large;
+}
