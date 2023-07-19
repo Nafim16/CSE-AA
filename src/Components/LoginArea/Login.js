@@ -5,7 +5,7 @@ import './Login.css'
 const Login = () => {
     return (
         <div>
-            <div className='container'>
+            <div className='container box'>
                 <div className='row'>
                     <div className='col-md-6'>
                         <div className='mb-4 text-center mt-3'>
@@ -19,10 +19,10 @@ const Login = () => {
                                         <br />
                                         <input type="text" className="form-control" placeholder="Last name" />
                                         <br />
-                                        <button type="submit" className="btn btn-primary btn-block mb-2">Submit</button>
+                                        <button type="submit" className="btn btn-primary mb-2 bsub">Submit</button>
                                         <div className="text-center">
                                             <p>Not a member? </p>
-                                            <button type="submit" className="btn btn-light">Register</button>
+                                            <button type="submit" className="btn btn-light bsub">Register</button>
                                         </div>
                                     </div>
                                 </div>

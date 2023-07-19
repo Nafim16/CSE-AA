@@ -3,8 +3,6 @@
     border-radius: 10px;
     box-shadow: 5px 5px 10px gray;
     padding: 50px;
-}
-.container{
     background-color: rgb(255, 255, 255);
 }
 
@@ -13,4 +11,12 @@
     border-radius: 10px;
     box-shadow: 5px 5px 10px gray;
     padding: 0px;
+}
+.bsub{
+    width: 100%;
+}
+
+.box{
+    background-color: aliceblue;
+    margin-top: 5%;
 }
