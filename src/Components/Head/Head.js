@@ -1,9 +1,8 @@
 import React from 'react';
-import "./Head.css"
+import './Head.css'
 
-const head = () => {
+const Head = () => {
     return (
-
         <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark nb">
                 <a className="navbar-brand" href="#">CSE-AA-LU</a>
@@ -44,4 +43,4 @@ const head = () => {
     );
 };
 
-export default head;
+export default Head;

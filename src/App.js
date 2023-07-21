@@ -1,20 +1,23 @@
 
 import './App.css';
-import Footer from './Components/Footer/Footer';
-import Head from './Components/Head/Head';
-import Login from './Components/LoginArea/Login';
-import Whyjoinus from './Components/Whyjoinus/Whyjoinus';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import Home from './Components/Home/Home';
+import LogReg from './Components/LogReg/LogReg';
+import Login from './Components/LogReg/Login';
+
 
 
 function App() {
   return (
     <div className='App'>
-      <Head></Head>
-      <Login></Login>
-      <Whyjoinus></Whyjoinus>
-      <Footer></Footer>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/registration" element={<LogReg />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </BrowserRouter>
     </div>
-    
   );
 }
 

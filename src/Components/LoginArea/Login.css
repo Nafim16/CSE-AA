@@ -7,10 +7,10 @@
 }
 
 .img-area{
-    margin-top: 150px;
+    margin-top: 55px;
     border-radius: 10px;
     box-shadow: 5px 5px 10px gray;
-    padding: 0px;
+    padding: 5px;
 }
 .bsub{
     width: 100%;
@@ -19,4 +19,5 @@
 .box{
     background-color: aliceblue;
     margin-top: 5%;
+    padding: 2%;
 }
