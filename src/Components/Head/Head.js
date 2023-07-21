@@ -1,7 +1,15 @@
 import React from 'react';
 import './Head.css'
+import { Link, useNavigate } from 'react-router-dom';
 
 const Head = () => {
+
+    const navigate = useNavigate();
+
+    const navClick = () => {
+        navigate("/news");
+    };
+
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark nb">
@@ -22,7 +30,7 @@ const Head = () => {
                             <a className="nav-link" href="#">Articles</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">News</a>
+                            <a className="nav-link" href="/news">News</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#">Stories</a>

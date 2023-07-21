@@ -145,7 +145,7 @@
 .button-container {
     display: flex;
     align-items: center;
-    margin: 4% 0;
+    margin: 3% 0;
 
 }
 
@@ -345,6 +345,17 @@ input[type="radio"] {
     padding: 0 3%;
     left: -170px;
     width: 540px;
+    color: #333;
+    top: -33px;
+}
+
+.text-fields.batch:after {
+    content: 'Batch';
+    background-color: #fff;
+    position: relative;
+    padding: 0 3%;
+    left: -250px;
+    width: 220px;
     color: #333;
     top: -33px;
 }

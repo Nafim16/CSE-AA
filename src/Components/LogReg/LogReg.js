@@ -114,6 +114,12 @@ const LogReg = () => {
                                 </select>
                             </div>
                         </div>
+                        <div className="button-container">
+                            <div className="text-fields batch">
+                                <label htmlFor="batch"><i class='bx bx-buildings bx-tada bx-flip-horizontal' ></i></label>
+                                <input type="text" name="batch" id="batch" placeholder='Enter Your ' />
+                            </div>
+                        </div>
                         <div className='text-center'>
                             Your some information will be recorded for Blood donation program.
                         </div>
