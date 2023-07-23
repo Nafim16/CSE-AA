@@ -437,6 +437,12 @@ input[type="radio"] {
 
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
+    .text-fields.blood:after {
+        padding: 0 2%;
+        left: -190px;
+        width: 100px;
+        font-size: 0.8rem;
+    }
     
 }
