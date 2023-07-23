@@ -19,7 +19,7 @@ const Whyjoinus = () => {
                     <h1 className='text-center mb-4'>Here is why you should join us</h1>
                     <div className='row p-4'>
                         <div className='col-md-4'>
-                            <div className="card text-white bg mb-3 p-3 shadow">
+                            <div className="card text-white h-100 bg mb-3 p-3 shadow">
                                 {/* <img src={job} className="card-img-top" /> */}
                                 <img src={connect} className='card-img-top image1' />
                                 <div className="card-header">Reconnect</div>
@@ -29,7 +29,7 @@ const Whyjoinus = () => {
                             </div>
                         </div>
                         <div className='col-md-4'>
-                            <div className="card text-white bg mb-3 p-3 shadow">
+                            <div className="card text-white h-100 bg mb-3 p-3 shadow">
                                 <img src={event} className='card-img-top image1' />
                                 <div className="card-header">Give Back</div>
                                 <div className="card-body">
@@ -38,7 +38,7 @@ const Whyjoinus = () => {
                             </div>
                         </div>
                         <div className='col-md-4'>
-                            <div className="card text-white bg mb-3 p-3 shadow">
+                            <div className="card text-white h-100 bg mb-3 p-3 shadow">
                                 <img src={job} className='card-img-top image1' />
                                 <div className="card-header">Advance</div>
                                 <div className="card-body">
@@ -59,6 +59,9 @@ const Whyjoinus = () => {
 
                 </div>
             </div>
+
+
+            
 
         </div>
     );
