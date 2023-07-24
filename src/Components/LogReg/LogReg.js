@@ -27,6 +27,7 @@ const LogReg = () => {
             case 1:
                 return (
                     <div className="stage1-content">
+                        {/* Form content for stage 1 */}
                         <div className="button-container">
                             <div className="text-fields name">
                                 <label htmlFor="name"><i className='bx bx-user'></i></label>
@@ -92,6 +93,7 @@ const LogReg = () => {
             case 3:
                 return (
                     <div className="stage3-content">
+                        {/* Form content for stage 3 */}
                         <div className="button-container">
                             <div className="text-fields city">
                                 <label htmlFor="city"><i class='bx bx-buildings bx-tada bx-flip-horizontal' ></i></label>

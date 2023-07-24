@@ -1,7 +1,7 @@
 
 .shadow:hover{
-    background-color: color-mix(in srgb-linear, #141E30 100%, #243B55 100%);
-    box-shadow: 5px 5px 10px color-mix(in srgb-linear, #141E30 100%, #243B55 100%);
+    border-color: #2a7be4!important;
+    border: 2px solid;
 }
 .backCLR{
     background-color: beige;
@@ -10,9 +10,9 @@
     overflow: hidden;
 }
 
-.bg{
-    background-color:cadetblue;
-}
+/* .bg{
+    background-color:#ff9d00;
+} */
 
  .image1 {
     margin-top: 10px;

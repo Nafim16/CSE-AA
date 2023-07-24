@@ -16,33 +16,34 @@ const Whyjoinus = () => {
         <div>
             <div className="backCLR">
                 <div className='container-fluid mt-5'>
+                    <h3 className='text-center text-secondary'>Still thinking over it?</h3>
                     <h1 className='text-center mb-4'>Here is why you should join us</h1>
                     <div className='row p-4'>
-                        <div className='col-md-4'>
+                        <div className='col-md-4 btn-light'>
                             <div className="card text-white h-100 bg mb-3 p-3 shadow">
                                 {/* <img src={job} className="card-img-top" /> */}
                                 <img src={connect} className='card-img-top image1' />
-                                <div className="card-header">Reconnect</div>
+                                <div className="card-header text-primary">Reconnect</div>
                                 <div className="card-body">
-                                    <p className="card-text">Reconnect with the members of CSE Alumni LU in the secured, ad-free online Network</p>
+                                    <p className="card-text text-black">Reconnect with the members of CSE Alumni LU in the secured, ad-free online Network</p>
                                 </div>
                             </div>
                         </div>
-                        <div className='col-md-4'>
+                        <div className='col-md-4 btn-light'>
                             <div className="card text-white h-100 bg mb-3 p-3 shadow">
                                 <img src={event} className='card-img-top image1' />
-                                <div className="card-header">Give Back</div>
+                                <div className="card-header text-primary">Give Back</div>
                                 <div className="card-body">
-                                    <p className="card-text">Give Back to various causes through fundraising events.</p>
+                                    <p className="card-text text-black">Give Back to various causes through fundraising events.</p>
                                 </div>
                             </div>
                         </div>
-                        <div className='col-md-4'>
+                        <div className='col-md-4 btn-light'>
                             <div className="card text-white h-100 bg mb-3 p-3 shadow">
                                 <img src={job} className='card-img-top image1' />
-                                <div className="card-header">Advance</div>
+                                <div className="card-header text-primary">Advance</div>
                                 <div className="card-body">
-                                    <p className="card-text">Advance your career, post job opportunities, and find open positions in your professional network.</p>
+                                    <p className="card-text text-black">Advance your career, post job opportunities, and find open positions in your professional network.</p>
                                 </div>
                             </div>
                         </div>
