@@ -12,6 +12,11 @@ const Registration = () => {
         navigate("/login");
     };
 
+    const handleRegisterClick = () => {
+        navigate("/");
+    };
+
+
     const { user, createUser } = useContext(AuthContext);
 
     // console.log(createUser);
@@ -30,6 +35,8 @@ const Registration = () => {
         const batch = form.batch.value;
         // const blood = form.blood.value;
         console.log("SUBMITTED", name, email, idnum, phone, password, confirmpassword, city, batch);
+
+        handleRegisterClick();
 
         createUser(email, password)
             .then(result => {
@@ -166,7 +173,7 @@ const Registration = () => {
                                     Your some information will be recorded for Blood donation program.
                                 </div>
                                 <div className="pagination-btns">
-                                    <input type="submit" value="Submit" className="nextPage stagebtn3b" />
+                                    <input type="submit" value="Submit" className="nextPage stagebtn3b"/>
                                     {/* <input type="submit" value="Submit" className="nextPage stagebtn3b" onClick={handleLoginClick} /> */}
                                     {/* <button type="submit" value="submit" className="nextPage">submit</button> */}
                                     {/* <button type="submit" className="nextPage stagebtn3b">Submit</button> */}

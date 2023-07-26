@@ -8,9 +8,10 @@ const PrivateRoute = ({ children }) => {
 
     if (loading) {
         return (
-            <div className='p-5 mt-5 my-5'>
-                <div className="progress w-56">
-                    <div className="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            <div className='p-5 mt-5 my-5 mx-5 mx-auto '>
+                <div className="d-flex align-items-center">
+                    <strong>Loading...</strong>
+                    <div className="spinner-border ms-auto" role="status" aria-hidden="true"></div>
                 </div>
             </div>
         );
