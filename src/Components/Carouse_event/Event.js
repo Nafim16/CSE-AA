@@ -6,7 +6,7 @@ const Event = () => {
     return (
         <div>
 
-            <div className='p-5 m-5'>
+            <div className='p-5 m-5 w-75 mx-auto'>
 
 
 

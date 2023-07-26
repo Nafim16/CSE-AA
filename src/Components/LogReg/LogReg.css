@@ -23,7 +23,7 @@
     width: 80%;
     margin: 3% auto;
     display: flex;
-    height: 640px;
+    height: 900px;
     box-shadow: 0 12px 55px #5557;
     border-radius: 10px;
     background: #fff;
@@ -382,7 +382,6 @@ input[type="radio"] {
 
 .custom-select {
     border: none;
-    
 }
 
 
@@ -394,6 +393,7 @@ input[type="radio"] {
     .container {
         flex-direction: column;
         height: auto;
+        margin: 3% auto;
     }
 
     .login-link {

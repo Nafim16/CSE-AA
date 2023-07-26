@@ -19,12 +19,12 @@ const Login = () => {
                             <h3>Join the CSE Alumni Association, Leading University to reconnect with your friends, classmates, seniors & juniors.</h3>
                         </div>
                         <form>
-                            <div class="form-row">
-                                <div class="col">
+                            <div className="form-row">
+                                <div className="col">
                                     <div className='submit-area'>
-                                        <input type="text" className="form-control" placeholder="First name" />
+                                        <input type="email" className="form-control mx-auto" placeholder="Your Email" />
                                         <br />
-                                        <input type="text" className="form-control" placeholder="Last name" />
+                                        <input type="password" className="form-control mx-auto" placeholder="Your Password" />
                                         <br />
                                         <button type="submit" className="btn btn-primary mb-2 bsub">Submit</button>
                                         <div className="text-center">

@@ -18,10 +18,10 @@ const Footer = () => {
 
                     Email: <a href="https://www.lus.ac.bd" >https://www.lus.ac.bd</a></h4>
 
-                <div class="foot">
-                    <a ><i class="fa-brands fa-facebook"></i></a>
-                    <a ><i class="fa-brands fa-whatsapp"></i></a>
-                    <a ><i class="fa-brands fa-instagram"></i></a>
+                <div className="foot">
+                    <a ><i className="fa-brands fa-facebook"></i></a>
+                    <a ><i className="fa-brands fa-whatsapp"></i></a>
+                    <a ><i className="fa-brands fa-instagram"></i></a>
 
                 </div>
 

@@ -1,19 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Head.css'
 import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../Context/UserContext';
 
 const Head = () => {
 
-    const navigate = useNavigate();
 
-    const navClick = () => {
-        navigate("/news");
-    };
+    const { user, logOut } = useContext(AuthContext);
+    // console.log(user);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.error(error))
+    }
 
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark nb">
-                <a className="navbar-brand" href="#">CSE-AA-LU</a>
+                {/* <a className="navbar-brand" href="#">CSE-AA-LU</a> */}
+                <Link to={'/'} className="navbar-brand mx-3">CSE-AA-LU</Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -30,7 +36,8 @@ const Head = () => {
                             <a className="nav-link" href="#">Articles</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/news">News</a>
+                            {/* <a className="nav-link" href="/news">News</a> */}
+                            <Link to={'/news'} className="nav-link">News</Link>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#">Stories</a>
@@ -44,7 +51,18 @@ const Head = () => {
                         <li className="nav-item">
                             <a className="nav-link" href="#">Contact</a>
                         </li>
+                        {user && <li className="nav-item">
+                            <a className="nav-link" href="#">Profile</a>
+                        </li>}
                     </ul>
+
+                    {
+                        user ? <>
+                            <span className="navbar-text mx-5">{user.email}</span>
+                            <button onClick={handleLogOut} className="btn btn-outline-danger" type="submit">Logout</button>
+                        </> : <Link to="/login"><button className="btn btn-outline-success mx-5" type="submit">Login</button></Link>
+                    }
+
                 </div>
             </nav>
         </div>
