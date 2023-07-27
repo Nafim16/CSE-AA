@@ -16,7 +16,7 @@ const Login = () => {
     };
 
 
-    const { signIn } = useContext(AuthContext);
+    const { signIn, signInWithGoogle } = useContext(AuthContext);
 
 
 
@@ -41,6 +41,17 @@ const Login = () => {
             })
     };
 
+    const handleGoogleSignIn = () => {
+        signInWithGoogle()
+        .then(result => {
+            const loggedUser = result.user;
+            console.log(loggedUser);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
+
 
     return (
         <div>
@@ -62,7 +73,7 @@ const Login = () => {
                     <form onSubmit={handleFormSubmitLogin} className="signup-form-container">
                         <p className="big-heading">Login To Your Account</p>
                         <div className="social-media-platform">
-                            <a href="#"><i className='bx bx-sm bxl-facebook'></i></a>
+                            <a href="#" onClick={handleGoogleSignIn}><i className='bx bx-sm bxl-google'></i></a>
                             <a href="#"><i className='bx bx-sm bxl-twitter'></i></a>
                             <a href="#"><i className='bx bx-sm bxl-github'></i></a>
                         </div>

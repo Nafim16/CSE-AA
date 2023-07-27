@@ -105,6 +105,7 @@
     border: 1px solid #e0e3e2;
     margin: 10%;
     padding: 11%;
+    content: "Google SignIn";
 }
 
 .social-media-platform a:hover {
