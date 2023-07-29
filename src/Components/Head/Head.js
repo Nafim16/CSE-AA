@@ -56,12 +56,14 @@ const Head = () => {
                         </li>}
                     </ul>
 
+                    <div className="ms-auto mx-4">
                     {
                         user ? <>
-                            <span className="navbar-text mx-5 ">{user.email}</span>
-                            <button onClick={handleLogOut} className="btn btn-outline-danger" type="submit">Logout</button>
+                            <span className="navbar-text">{user.email}</span>
+                            <button onClick={handleLogOut} className="btn btn-outline-danger mx-2" type="submit">Logout</button>
                         </> : <Link to="/login"><button className="btn btn-outline-success mx-5" type="submit">Login</button></Link>
                     }
+                    </div>
 
                 </div>
             </nav>
