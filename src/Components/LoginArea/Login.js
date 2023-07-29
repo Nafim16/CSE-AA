@@ -39,7 +39,7 @@ const Login = () => {
                     <div className='col-md-8'>
                         <div className='col'>
                             <div className='img-area'>
-                            <img src={loginarea} alt="log" className="img-fluid"/>
+                                <img src={loginarea} alt="log" className="img-fluid" />
                             </div>
                         </div>
                     </div>

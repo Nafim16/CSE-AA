@@ -27,36 +27,44 @@ const Head = () => {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Businesses</a>
+                            {/* <a className="nav-link" href="#">Businesses</a> */}
+                            <Link to={'/businesses'} className="nav-link">Businesses</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Job-Opportunity</a>
+                            {/* <a className="nav-link" href="#">Job-Opportunity</a> */}
+                            <Link to={'/job'} className="nav-link">Job-Opportunity</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Articles</a>
+                            {/* <a className="nav-link" href="#">Articles</a> */}
+                            <Link to={'/articles'} className="nav-link">Articles</Link>
                         </li>
                         <li className="nav-item">
                             {/* <a className="nav-link" href="/news">News</a> */}
                             <Link to={'/news'} className="nav-link">News</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Stories</a>
+                            {/* <a className="nav-link" href="#">Stories</a> */}
+                            <Link to={'/stories'} className="nav-link">Stories</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Committee</a>
+                            {/* <a className="nav-link" href="#">Committee</a> */}
+                            <Link to={'/committee'} className="nav-link">Committee</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">About</a>
+                            {/* <a className="nav-link" href="#">About</a> */}
+                            <Link to={'/about'} className="nav-link">About</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Contact</a>
+                            {/* <a className="nav-link" href="#">Contact</a> */}
+                            <Link to={'/contact'} className="nav-link">Contact</Link>
                         </li>
                         {user && <li className="nav-item">
-                            <a className="nav-link" href="#">Profile</a>
+                            {/* <a className="nav-link" href="#">Profile</a> */}
+                            <Link to={'/profile'} className="nav-link">Profile</Link>
                         </li>}
                     </ul>
 
-                    <div className="ms-auto mx-4">
+                    <div className="ms-auto mx-4 ">
                     {
                         user ? <>
                             <span className="navbar-text">{user.email}</span>
