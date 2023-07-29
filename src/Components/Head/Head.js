@@ -58,7 +58,7 @@ const Head = () => {
 
                     {
                         user ? <>
-                            <span className="navbar-text mx-5">{user.email}</span>
+                            <span className="navbar-text mx-5 ">{user.email}</span>
                             <button onClick={handleLogOut} className="btn btn-outline-danger" type="submit">Logout</button>
                         </> : <Link to="/login"><button className="btn btn-outline-success mx-5" type="submit">Login</button></Link>
                     }

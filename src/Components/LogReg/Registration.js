@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LogReg.css';
 import Head from '../Head/Head';
@@ -20,7 +20,7 @@ const Registration = () => {
     const { user, createUser } = useContext(AuthContext);
 
     // console.log(createUser);
-
+    const [error, setError] = useState('');
 
     const handleFormSubmitReg = (event) => {
         event.preventDefault();
@@ -35,6 +35,14 @@ const Registration = () => {
         const batch = form.batch.value;
         // const blood = form.blood.value;
         console.log("SUBMITTED", name, email, idnum, phone, password, confirmpassword, city, batch);
+
+        if (password !== confirmpassword) {
+            setError('your password did not match')
+            return
+        } else if (password.length < 6) {
+            setError('password must be 6 character or longer')
+            return
+        }
 
         handleRegisterClick();
 
@@ -137,6 +145,7 @@ const Registration = () => {
                                         <input type="password" name="confirmpassword" id="confirmpassword" placeholder='Confirm Password' />
                                     </div>
                                 </div>
+                                <p className='text-danger'>{error}</p>
                             </div>
 
 
@@ -173,7 +182,7 @@ const Registration = () => {
                                     Your some information will be recorded for Blood donation program.
                                 </div>
                                 <div className="pagination-btns">
-                                    <input type="submit" value="Submit" className="nextPage stagebtn3b"/>
+                                    <input type="submit" value="Submit" className="nextPage stagebtn3b" />
                                     {/* <input type="submit" value="Submit" className="nextPage stagebtn3b" onClick={handleLoginClick} /> */}
                                     {/* <button type="submit" value="submit" className="nextPage">submit</button> */}
                                     {/* <button type="submit" className="nextPage stagebtn3b">Submit</button> */}

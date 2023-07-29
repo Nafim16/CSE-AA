@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './LogReg.css';
 import Head from '../Head/Head';
 import { AuthContext } from '../../Context/UserContext';
@@ -11,9 +11,14 @@ const Login = () => {
         navigate("/registration");
     };
 
-    const handleLoginClick = () => {
-        navigate("/");
-    };
+    // const handleLoginClick = () => {
+    //     navigate("/");
+    // };
+
+
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/';
 
 
     const { signIn, signInWithGoogle } = useContext(AuthContext);
@@ -28,13 +33,14 @@ const Login = () => {
         const password = form.password.value;
         console.log("SUBMITTED", email, password);
 
-        handleLoginClick();
+        // handleLoginClick();
 
         signIn(email, password)
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
                 form.reset();
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 console.log(error);
@@ -43,13 +49,14 @@ const Login = () => {
 
     const handleGoogleSignIn = () => {
         signInWithGoogle()
-        .then(result => {
-            const loggedUser = result.user;
-            console.log(loggedUser);
-        })
-        .catch(error => {
-            console.log(error);
-        })
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                navigate(from, { replace: true });
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
 
@@ -86,8 +93,8 @@ const Login = () => {
                                 <label htmlFor="password"><i className='bx bx-lock' ></i></label>
                                 <input type="password" name="password" id="password" placeholder='Enter Your Password' />
                             </div>
-                            <input type="submit" value="login" className="nextPage"/>
-                            
+                            <input type="submit" value="login" className="nextPage" />
+
 
                         </div>
 
