@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './LogReg.css';
 import Head from '../Head/Head';
@@ -21,7 +21,7 @@ const Login = () => {
     const from = location.state?.from?.pathname || '/';
 
 
-    const { signIn, signInWithGoogle, signInWithGithub } = useContext(AuthContext);
+    const { signIn, signInWithGoogle, signInWithGithub, resetEmail } = useContext(AuthContext);
 
 
 
@@ -39,6 +39,9 @@ const Login = () => {
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
+                if(!loggedUser.emailVerified){
+                    alert('Please verify your email address');
+                }
                 form.reset();
                 navigate(from, { replace: true });
             })
@@ -72,6 +75,29 @@ const Login = () => {
     }
 
 
+
+    const emailRef = useRef();
+
+    const handleResetPass = (event) => {
+        
+        const email = emailRef.current.value;
+        // console.log(email);
+        if (!email) {
+            alert('Please provide your email address to reset your password');
+            return;
+        }
+
+        resetEmail(email)
+        .then( () => {
+            alert('Please check your email');
+        })
+        .catch(error => {
+            console.log(error);
+        })
+
+    }
+
+
     return (
         <div>
             <Head></Head>
@@ -99,12 +125,13 @@ const Login = () => {
                         <div className="login-form-contents">
                             <div className="text-fields email">
                                 <label htmlFor="email"><i className='bx bx-envelope'></i></label>
-                                <input type="email" name="email" id="email" placeholder='Enter Your Email ID ' />
+                                <input type="email" name="email" id="email" ref={emailRef} placeholder='Enter Your Email ID ' />
                             </div>
                             <div className="text-fields password">
                                 <label htmlFor="password"><i className='bx bx-lock' ></i></label>
                                 <input type="password" name="password" id="password" placeholder='Enter Your Password' />
                             </div>
+                            <p><small>Forget Password? Please<button className='btn btn-link' onClick={handleResetPass}>Reset Password</button></small></p>
                             <input type="submit" value="login" className="nextPage" />
 
 

@@ -67,7 +67,7 @@ const Head = () => {
                     <div className="ms-auto mx-4 ">
                     {
                         user ? <>
-                            <span className="navbar-text">{user.email}</span>
+                            <span className="navbar-text">{user.displayName}</span>
                             <button onClick={handleLogOut} className="btn btn-outline-danger mx-2" type="submit">Logout</button>
                         </> : <Link to="/login"><button className="btn btn-outline-success mx-5" type="submit">Login</button></Link>
                     }

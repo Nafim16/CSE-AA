@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './LogReg.css';
 import Head from '../Head/Head';
 import { AuthContext } from '../../Context/UserContext';
+import { sendEmailVerification, updateProfile } from 'firebase/auth';
 
 const Registration = () => {
 
@@ -20,7 +21,9 @@ const Registration = () => {
     const { user, createUser } = useContext(AuthContext);
 
     // console.log(createUser);
-    const [error, setError] = useState('');
+    const [passerror, setpassError] = useState('');
+    const [emailerror, setemailError] = useState('');
+
 
     const handleFormSubmitReg = (event) => {
         event.preventDefault();
@@ -37,29 +40,55 @@ const Registration = () => {
         console.log("SUBMITTED", name, email, idnum, phone, password, confirmpassword, city, batch);
 
         if (password !== confirmpassword) {
-            setError('your password did not match')
+            setpassError('your password did not match')
             return
         } else if (password.length < 6) {
-            setError('password must be 6 character or longer')
+            setpassError('password must be 6 character or longer')
             return
         }
 
-        handleRegisterClick();
 
         createUser(email, password)
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
                 form.reset();
+                sendVerificationEmail(loggedUser);
+                updateUserData(loggedUser, name);
+
             })
             .catch(error => {
-                console.log(error)
+                console.log(error);
+                setemailError(error.message);
+
+            })
+
+        handleRegisterClick();
+    };
+
+    const sendVerificationEmail = (user) => {
+        sendEmailVerification(user)
+            .then(result => {
+                console.log(result);
+                alert('Please verify your email address');
+            })
+            .catch(error => {
+                console.log(error);
             })
     };
 
-
-
-
+    const updateUserData = (user, name) => {
+        updateProfile(user, {
+            displayName: name
+        })
+        .then( () => {
+            console.log('username updated'); 
+        })
+        .catch(error => {
+            console.log(error.message);
+        })
+    }
+ 
 
 
     return (
@@ -133,6 +162,7 @@ const Registration = () => {
                                         <label htmlFor="email"><i className='bx bx-envelope'></i></label>
                                         <input type="email" name="email" id="email" placeholder='Enter Your Email ID ' />
                                         {/* <input type="email" name="email" id="email" placeholder='Enter Your Email ID ' /> */}
+                                        <p className='text-danger'><small>{emailerror}</small></p>
                                     </div>
                                 </div>
                                 <div className="button-container">
@@ -145,7 +175,7 @@ const Registration = () => {
                                         <input type="password" name="confirmpassword" id="confirmpassword" placeholder='Confirm Password' />
                                     </div>
                                 </div>
-                                <p className='text-danger'>{error}</p>
+                                <p className='text-danger'>{passerror}</p>
                             </div>
 
 

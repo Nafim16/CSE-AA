@@ -1,6 +1,7 @@
 import React from 'react';
 import error from '../img/error.gif';
 import Head from '../Head/Head';
+import Footer from '../Footer/Footer';
 
 const Stories = () => {
     return (
@@ -11,6 +12,7 @@ const Stories = () => {
                 <h1 className='text-primary'>Coming Soon.................</h1>
                 <h2 className='text-secondary'>Page Under Development</h2>
             </div>
+            <Footer></Footer>
         </div>
     );
 };
