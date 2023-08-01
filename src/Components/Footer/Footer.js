@@ -1,5 +1,6 @@
 import React from 'react';
 import './Footer.css';
+import payWith from '../img/payWith.png';
 
 
 const Footer = () => {
@@ -18,6 +19,10 @@ const Footer = () => {
 
                     Email: <a href="https://www.lus.ac.bd" >https://www.lus.ac.bd</a></h4>
 
+                    <div>
+                         <img src={payWith} className='footImg' alt="" />
+                    </div>
+
                 <div className="foot">
                     <a ><i className="fa-brands fa-facebook"></i></a>
                     <a ><i className="fa-brands fa-whatsapp"></i></a>
@@ -26,6 +31,8 @@ const Footer = () => {
                 </div>
 
             </footer>
+
+            
 
         </div>
     );
