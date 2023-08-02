@@ -2,6 +2,7 @@ import React from 'react';
 import loginarea from '../img/loginarea.png';
 import './Login.css'
 import { useNavigate } from 'react-router-dom';
+import reading from '../img/reading.svg'
 
 const Login = () => {
 
@@ -14,6 +15,9 @@ const Login = () => {
         <div>
             <div className='container-fluid box'>
                 <div className='row'>
+                    <div className="col-md-12">
+                        <img src={reading} alt="" className='img-fluid justify-content-end mt-3 p-3'/>
+                    </div>
                     <div className='col-md-4'>
                         <div className='mb-4 text-center mt-3 p-3'>
                             <h3>Join the CSE Alumni Association, Leading University to reconnect with your friends, classmates, seniors & juniors.</h3>

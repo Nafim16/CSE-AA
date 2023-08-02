@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './LogReg.css';
 import Head from '../Head/Head';
 import { AuthContext } from '../../Context/UserContext';
@@ -18,11 +18,15 @@ const Registration = () => {
     };
 
 
-    const { user, createUser } = useContext(AuthContext);
+    const { user, createUser, signInWithGoogle, signInWithGithub} = useContext(AuthContext);
 
     // console.log(createUser);
     const [passerror, setpassError] = useState('');
     const [emailerror, setemailError] = useState('');
+
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/';
 
 
     const handleFormSubmitReg = (event) => {
@@ -65,6 +69,32 @@ const Registration = () => {
 
         handleRegisterClick();
     };
+
+
+    const handleGoogleSignIn = () => {
+        signInWithGoogle()
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                navigate(from, { replace: true });
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
+    const handleGithubSignIn = () => {
+        signInWithGithub()
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                navigate(from, { replace: true });
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
 
     const sendVerificationEmail = (user) => {
         sendEmailVerification(user)
@@ -112,9 +142,9 @@ const Registration = () => {
                     <form onSubmit={handleFormSubmitReg} className="signup-form-container">
                         <p className="big-heading">Create Account</p>
                         <div className="social-media-platform">
-                            <a href="#"><i className='bx bx-sm bxl-facebook'></i></a>
-                            <a href="#"><i className='bx bx-sm bxl-twitter'></i></a>
-                            <a href="#"><i className='bx bx-sm bxl-github'></i></a>
+                            <a href="#" onClick={handleGoogleSignIn}><i className='bx bx-sm bxl-google'></i></a>
+                            <a href="#" ><i className='bx bx-sm bxl-twitter'></i></a>
+                            <a href="#" onClick={handleGithubSignIn}><i className='bx bx-sm bxl-github'></i></a>
                         </div>
 
 

@@ -10,7 +10,7 @@ const Contact = () => {
         <div>
             <Head></Head>
 
-            <div className="container justify-content-center">
+            <div className="container-fluid justify-content-center mt-5 p-5">
                 <div className="justify-content-center text-center">
 
                     <h3 className="text-center fs-1">
