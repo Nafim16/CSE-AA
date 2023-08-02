@@ -15,14 +15,12 @@ const Login = () => {
         <div>
             <div className='container-fluid box'>
                 <div className='row'>
-                    <div className="col-md-12">
-                        <img src={reading} alt="" className='img-fluid justify-content-end mt-3 p-3'/>
-                    </div>
-                    <div className='col-md-4'>
-                        <div className='mb-4 text-center mt-3 p-3'>
+                    
+                    <div className='col-md-4 justify-content-center'>
+                        <div className='mb-4 text-center mt-5 p-5'>
                             <h3>Join the CSE Alumni Association, Leading University to reconnect with your friends, classmates, seniors & juniors.</h3>
                         </div>
-                        <form>
+                        {/* <form>
                             <div className="form-row">
                                 <div className="col">
                                     <div className='submit-area'>
@@ -38,8 +36,12 @@ const Login = () => {
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        </form> */}
                     </div>
+                    <div className="col-md-8">
+                        <img src={reading} alt="" className='img-fluid justify-content-end mt-3 p-3' />
+                    </div>
+
                     <div className='col-md-8'>
                         <div className='col'>
                             <div className='img-area'>
