@@ -15,6 +15,7 @@ import About from './Components/About/About';
 import Contact from './Components/Contact/Contact';
 import Profile from './Components/Profile/Profile';
 import Articles from './Components/Articles/Articles';
+import Error from './Components/Error/Error';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
     <div className='App'>
       <BrowserRouter>
         <Routes>
+          <Route path="*" element={<Error />} />
           <Route path="/" element={<Home />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/login" element={<Login />} />

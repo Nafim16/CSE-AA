@@ -4,6 +4,8 @@ import './LogReg.css';
 import Head from '../Head/Head';
 import { AuthContext } from '../../Context/UserContext';
 import { sendEmailVerification, updateProfile } from 'firebase/auth';
+import { db } from '../../FIrebase/firebase.config';
+import { collection, doc, setDoc } from 'firebase/firestore';
 // import { collection, doc, getFirestore, setDoc } from 'firebase/firestore';
 
 // import app from '../../FIrebase/firestore.config';
@@ -33,7 +35,7 @@ const Registration = () => {
     const from = location.state?.from?.pathname || '/';
 
     // const db = getFirestore();
-    // const usersCollectionRef = collection(db, 'users');
+    const usersCollectionRef = collection(db, 'users');
 
 
     const handleFormSubmitReg = (event) => {
@@ -41,7 +43,6 @@ const Registration = () => {
         const form = event.target;
         const name = form.name.value;
         const email = form.email.value;
-        const idnum = form.idnum.value;
         const phone = form.phone.value;
         const password = form.password.value;
         const confirmpassword = form.confirmpassword.value;
@@ -50,7 +51,7 @@ const Registration = () => {
         const blood = form.blood.value;
         const gender = form.gender.value;
         const dob = form.dob.value;
-        console.log("SUBMITTED", name, email, idnum, phone, password, confirmpassword, city, batch, blood, gender, dob);
+        console.log("SUBMITTED", name, email,  phone, password, confirmpassword, city, batch, blood, gender, dob);
 
         if (password !== confirmpassword) {
             setpassError('your password did not match')
@@ -72,23 +73,26 @@ const Registration = () => {
 
 
                 // Use the user's ID as the document ID
-                // const userDocRef = doc(usersCollectionRef, loggedUser.uid);
+                const userDocRef = doc(usersCollectionRef, loggedUser.uid);
 
-                // // Set the data in the Firestore document
-                // setDoc(userDocRef, {
-                //     name,
-                //     email,
-                //     idnum,
-                //     phone,
-                //     city,
-                //     batch,
-                // })
-                // .then( () => {
-                //     console.log("document successfully written!!");
-                // })
-                // .catch(error => {
-                //     console.error("error writing document", error);
-                // })
+                // Set the data in the Firestore document
+                setDoc(userDocRef, {
+                    name,
+                    email,
+                    phone,
+                    city,
+                    batch,
+                    blood, 
+                    gender,
+                    dob,
+                    role: "notAdmin",
+                })
+                .then( () => {
+                    console.log("document successfully written!!");
+                })
+                .catch(error => {
+                    console.error("error writing document", error);
+                })
 
 
             })

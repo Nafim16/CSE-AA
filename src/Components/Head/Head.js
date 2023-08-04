@@ -72,7 +72,7 @@ const Head = () => {
                         {
                             user ? <>
                                 <button className="btn btn-outline-secondary mx-5" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img src={profile} alt=""/>
+                                    <img src={profile} alt="" />
                                 </button>
                                 <div className='mx-auto'>
                                     <div className="dropdown-menu" >
@@ -80,8 +80,12 @@ const Head = () => {
                                         <div role="separator" className="dropdown-divider"></div>
                                         <Link to={'/profile'} className="dropdown-item">Profile</Link>
                                         <div role="separator" className="dropdown-divider"></div>
-                                        <Link to={'/profile'} className="dropdown-item">Admin Dashboard</Link>
-                                        <div role="separator" className="dropdown-divider"></div>
+                                        {
+                                            user.uid === 'VpecidIgQHdNcnSnEADFjha2BF83' && <>
+                                                <Link to={'/profile'} className="dropdown-item">Admin Dashboard</Link>
+                                                <div role="separator" className="dropdown-divider"></div>
+                                            </>
+                                        }
                                         <button onClick={handleLogOut} className="btn btn-outline-danger mx-2" type="submit">Logout</button>
                                     </div>
                                 </div>
