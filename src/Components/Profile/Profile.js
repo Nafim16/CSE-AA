@@ -1,16 +1,25 @@
 import React from 'react';
 import error from '../img/error.gif';
 import Head from '../Head/Head';
+import './Profile.css';
+
 
 
 const Profile = () => {
     return (
         <div>
             <Head></Head>
-            <div className='bg-black vh-100'>
-                <img src={error} className='img-fluid' alt="" />
-                <h1 className='text-primary'>Coming Soon.................</h1>
-                <h2 className='text-secondary'>Page Under Development</h2>
+            <div className="p-5 m-5 mx-auto">
+                <form className="form-group">
+                    <div className="form-floating mb-3">
+                        <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" />
+                        <label htmlFor="floatingInput">Email address</label>
+                    </div>
+                    <div className="form-floating">
+                        <input type="password" className="form-control" id="floatingPassword" placeholder="Password" />
+                        <label htmlFor="floatingPassword">Password</label>
+                    </div>
+                </form>
             </div>
         </div>
     );

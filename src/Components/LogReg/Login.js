@@ -15,7 +15,6 @@ const Login = () => {
     //     navigate("/");
     // };
 
-
     const location = useLocation();
 
     const from = location.state?.from?.pathname || '/';
@@ -54,7 +53,8 @@ const Login = () => {
         signInWithGoogle()
             .then(result => {
                 const loggedUser = result.user;
-                console.log(loggedUser);
+                console.log(loggedUser.email);
+                // window.location.href = from;
                 navigate(from, { replace: true });
             })
             .catch(error => {

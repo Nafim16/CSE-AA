@@ -4,6 +4,10 @@ import './LogReg.css';
 import Head from '../Head/Head';
 import { AuthContext } from '../../Context/UserContext';
 import { sendEmailVerification, updateProfile } from 'firebase/auth';
+// import { collection, doc, getFirestore, setDoc } from 'firebase/firestore';
+
+// import app from '../../FIrebase/firestore.config';
+
 
 const Registration = () => {
 
@@ -18,7 +22,7 @@ const Registration = () => {
     };
 
 
-    const { user, createUser, signInWithGoogle, signInWithGithub} = useContext(AuthContext);
+    const { user, createUser, signInWithGoogle, signInWithGithub } = useContext(AuthContext);
 
     // console.log(createUser);
     const [passerror, setpassError] = useState('');
@@ -27,6 +31,9 @@ const Registration = () => {
     const location = useLocation();
 
     const from = location.state?.from?.pathname || '/';
+
+    // const db = getFirestore();
+    // const usersCollectionRef = collection(db, 'users');
 
 
     const handleFormSubmitReg = (event) => {
@@ -40,8 +47,10 @@ const Registration = () => {
         const confirmpassword = form.confirmpassword.value;
         const city = form.city.value;
         const batch = form.batch.value;
-        // const blood = form.blood.value;
-        console.log("SUBMITTED", name, email, idnum, phone, password, confirmpassword, city, batch);
+        const blood = form.blood.value;
+        const gender = form.gender.value;
+        const dob = form.dob.value;
+        console.log("SUBMITTED", name, email, idnum, phone, password, confirmpassword, city, batch, blood, gender, dob);
 
         if (password !== confirmpassword) {
             setpassError('your password did not match')
@@ -59,41 +68,69 @@ const Registration = () => {
                 form.reset();
                 sendVerificationEmail(loggedUser);
                 updateUserData(loggedUser, name);
+                navigate(from, { replace: true });
+
+
+                // Use the user's ID as the document ID
+                // const userDocRef = doc(usersCollectionRef, loggedUser.uid);
+
+                // // Set the data in the Firestore document
+                // setDoc(userDocRef, {
+                //     name,
+                //     email,
+                //     idnum,
+                //     phone,
+                //     city,
+                //     batch,
+                // })
+                // .then( () => {
+                //     console.log("document successfully written!!");
+                // })
+                // .catch(error => {
+                //     console.error("error writing document", error);
+                // })
+
 
             })
             .catch(error => {
                 console.log(error);
-                setemailError(error.message);
-
-            })
+                if (error.code === "auth/email-already-in-use") {
+                  setemailError('Email is already in use. Please use a different email.');
+                } else {
+                  setemailError('An error occurred while creating the account. Please try again later.');
+                }
+              })
 
         handleRegisterClick();
     };
 
 
-    const handleGoogleSignIn = () => {
-        signInWithGoogle()
-            .then(result => {
-                const loggedUser = result.user;
-                console.log(loggedUser);
-                navigate(from, { replace: true });
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }
+    // const handleGoogleSignIn = () => {
+    //     signInWithGoogle()
+    //         .then(result => {
+    //             const loggedUser = result.user;
+    //             console.log(loggedUser);
+                
+                
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         })
+    // }
 
-    const handleGithubSignIn = () => {
-        signInWithGithub()
-            .then(result => {
-                const loggedUser = result.user;
-                console.log(loggedUser);
-                navigate(from, { replace: true });
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }
+    // const handleGithubSignIn = () => {
+    //     signInWithGithub()
+    //         .then(result => {
+    //             const loggedUser = result.user;
+    //             console.log(loggedUser);
+    //             sendVerificationEmail(loggedUser);
+    //             window.location.href = from;
+    //             navigate(from, { replace: true });
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         })
+    // }
 
 
     const sendVerificationEmail = (user) => {
@@ -142,9 +179,9 @@ const Registration = () => {
                     <form onSubmit={handleFormSubmitReg} className="signup-form-container">
                         <p className="big-heading">Create Account</p>
                         <div className="social-media-platform">
-                            <a href="#" onClick={handleGoogleSignIn}><i className='bx bx-sm bxl-google'></i></a>
+                            <a href="#" ><i className='bx bx-sm bxl-google'></i></a>
                             <a href="#" ><i className='bx bx-sm bxl-twitter'></i></a>
-                            <a href="#" onClick={handleGithubSignIn}><i className='bx bx-sm bxl-github'></i></a>
+                            <a href="#" ><i className='bx bx-sm bxl-github'></i></a>
                         </div>
 
 
@@ -157,9 +194,9 @@ const Registration = () => {
                                         <label htmlFor="name"><i className='bx bx-user'></i></label>
                                         <input type="text" name="name" id="name" placeholder='Enter Your Name' />
                                     </div>
-                                    <div className="text-fields ID">
-                                        <label htmlFor="ID"><i className='bx bx-user'></i></label>
-                                        <input type="text" name="idnum" id="idnum" placeholder='Enter Your Student ID' />
+                                    <div className="text-fields batch">
+                                        <label htmlFor="batch"><i className='bx bx-buildings bx-tada bx-flip-horizontal' ></i></label>
+                                        <input type="text" name="batch" id="batch" placeholder='Enter Your Batch' />
                                     </div>
                                 </div>
 
@@ -170,10 +207,10 @@ const Registration = () => {
                                     <div className="gender-selection">
                                         <p className="field-heading">Gender : </p>
                                         <label htmlFor="male">
-                                            <input type="radio" name="gender" id="male" />Male
+                                            <input type="radio" name="gender" id="male" value="Male" />Male
                                         </label>
                                         <label htmlFor="female">
-                                            <input type="radio" name="gender" id="female" />Female
+                                            <input type="radio" name="gender" id="female" value="Female" />Female
                                         </label>
                                     </div>
                                 </div>
@@ -219,7 +256,7 @@ const Registration = () => {
                                     <div className="text-fields blood">
                                         <label htmlFor="blood"><i className='bx bxs-donate-blood bx-tada bx-flip-horizontal' ></i></label>
                                         {/* <input type="text" name="blood" id="blood" placeholder='Enter Blood Group' /> */}
-                                        <select className="custom-select" defaultValue="Your Blood Group">
+                                        <select className="custom-select" defaultValue="Your Blood Group" name="blood">
                                             <option value="Your Blood Group">Your Blood Group</option>
                                             <option value="A+">A+</option>
                                             <option value="A-">A-</option>
@@ -230,12 +267,6 @@ const Registration = () => {
                                             <option value="O+">O+</option>
                                             <option value="O-">O-</option>
                                         </select>
-                                    </div>
-                                </div>
-                                <div className="button-container">
-                                    <div className="text-fields batch">
-                                        <label htmlFor="batch"><i className='bx bx-buildings bx-tada bx-flip-horizontal' ></i></label>
-                                        <input type="text" name="batch" id="batch" placeholder='Enter Your ' />
                                     </div>
                                 </div>
                                 <div className='text-center'>

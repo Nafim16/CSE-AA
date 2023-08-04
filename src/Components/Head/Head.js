@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import './Head.css'
+import profile from '../img/profile.svg'
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/UserContext';
 
@@ -19,7 +20,7 @@ const Head = () => {
         <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark nb">
                 {/* <a className="navbar-brand" href="#">CSE-AA-LU</a> */}
-                <Link to={'/'} className="navbar-brand mx-3">CSE-AA-LU</Link>
+                <Link to={'/'} className="navbar-brand mx-3 fs-5">LUCAA</Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -58,21 +59,35 @@ const Head = () => {
                             {/* <a className="nav-link" href="#">Contact</a> */}
                             <Link to={'/contact'} className="nav-link">Contact</Link>
                         </li>
-                        {user && <li className="nav-item">
-                            {/* <a className="nav-link" href="#">Profile</a> */}
+                        {/* {user && <li className="nav-item">
+                           
                             <Link to={'/profile'} className="nav-link">Profile</Link>
-                        </li>}
+                        </li>} */}
+
+
                     </ul>
 
-                    <div className="ms-auto mx-4 ">
-                    {
-                        user ? <>
-                            <span className="navbar-text">{user.displayName}</span>
-                            <button onClick={handleLogOut} className="btn btn-outline-danger mx-2" type="submit">Logout</button>
-                        </> : <Link to="/login"><button className="btn btn-outline-success mx-5" type="submit">Login</button></Link>
-                    }
-                    </div>
+                    <div className="ms-auto my-2 my-lg-0">
 
+                        {
+                            user ? <>
+                                <button className="btn btn-outline-secondary mx-5" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img src={profile} alt=""/>
+                                </button>
+                                <div className='mx-auto'>
+                                    <div className="dropdown-menu" >
+                                        <span className="dropdown-item">{user.displayName}</span>
+                                        <div role="separator" className="dropdown-divider"></div>
+                                        <Link to={'/profile'} className="dropdown-item">Profile</Link>
+                                        <div role="separator" className="dropdown-divider"></div>
+                                        <Link to={'/profile'} className="dropdown-item">Admin Dashboard</Link>
+                                        <div role="separator" className="dropdown-divider"></div>
+                                        <button onClick={handleLogOut} className="btn btn-outline-danger mx-2" type="submit">Logout</button>
+                                    </div>
+                                </div>
+                            </> : <Link to="/login"><button className="btn btn-outline-success mx-5" type="submit">Login</button></Link>
+                        }
+                    </div>
                 </div>
             </nav>
         </div>
