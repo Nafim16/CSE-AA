@@ -30,21 +30,21 @@ const Profile = () => {
 
                 const uid = user.uid;
 
-                try{
+                try {
                     const userDocRef = doc(db, 'users', uid);
 
                     const docSnap = await getDoc(userDocRef);
 
-                    if(docSnap.exists()){
+                    if (docSnap.exists()) {
                         setUserData(docSnap.data());
 
                     }
-                    else{
+                    else {
                         console.log('doc not found');
                     }
                 }
-                catch(error){
-                    console.log('error fetching data',error);
+                catch (error) {
+                    console.log('error fetching data', error);
                 }
 
             }
@@ -85,11 +85,11 @@ const Profile = () => {
                             <h3 className='text-center'>User Information</h3>
                             <form>
                                 <div className="form-floating mb-3">
-                                    <input type="email" className="form-control" id="floatingInput" name='Email' defaultValue={userData?.email || user?.email || 'update email'} />
+                                    <input type="email" className="form-control" id="floatingInput" name='Email' defaultValue={userData?.email || user?.email || ''} />
                                     <label htmlFor="floatingInput">Email address</label>
                                 </div>
                                 <div className="form-floating mb-3">
-                                    <input type="text" className="form-control" id="floatingPassword" name='name' defaultValue={userData?.name || user?.displayName ||'please update'} />
+                                    <input type="text" className="form-control" id="floatingPassword" name='name' defaultValue={userData?.name || user?.displayName || ''} />
                                     <label htmlFor="floatingPassword">Name</label>
                                 </div>
                                 <div className="form-floating mb-3">

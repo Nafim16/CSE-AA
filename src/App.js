@@ -16,6 +16,7 @@ import Contact from './Components/Contact/Contact';
 import Profile from './Components/Profile/Profile';
 import Articles from './Components/Articles/Articles';
 import Error from './Components/Error/Error';
+import SuperAdmin from './Components/Admins/SuperAdmin/SuperAdmin';
 
 
 function App() {
@@ -36,7 +37,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/articles" element={<Articles />} />
           <Route path="/profile" element={<PrivateRoute> <Profile></Profile> </PrivateRoute>} />
-
+          <Route path="/superadmin" element={<PrivateRoute> <SuperAdmin></SuperAdmin> </PrivateRoute>} />
         </Routes>
       </BrowserRouter>
     </div>

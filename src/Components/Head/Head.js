@@ -129,7 +129,7 @@ const Head = () => {
                                         {
                                             // user.uid === 'VpecidIgQHdNcnSnEADFjha2BF83' 
                                             userData && userData.role === 'superAdmin' && <>
-                                                <Link to={'/profile'} className="dropdown-item">Admin Dashboard</Link>
+                                                <Link to={'/superadmin'} className="dropdown-item">Admin Dashboard</Link>
                                                 <div role="separator" className="dropdown-divider"></div>
                                             </>
                                         }
