@@ -1,8 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Head.css'
 import profile from '../img/profile.svg'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/UserContext';
+import { db } from '../../FIrebase/firebase.config';
+import { doc, getDoc } from 'firebase/firestore';
 
 const Head = () => {
 
@@ -15,6 +17,50 @@ const Head = () => {
             .then(() => { })
             .catch(error => console.error(error))
     }
+
+
+    const [userData, setUserData] = useState(null);
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            if (user) {
+
+                const uid = user.uid;
+
+                try{
+                    const userDocRef = doc(db, 'users', uid);
+
+                    const docSnap = await getDoc(userDocRef);
+
+                    if(docSnap.exists()){
+                        setUserData(docSnap.data());
+
+                    }
+                    else{
+                        console.log('doc not found');
+                    }
+                }
+                catch(error){
+                    console.log('error fetching data',error);
+                }
+
+            }
+        };
+
+        fetchUserData();
+
+        // Cleanup function when user logs out
+        return () => {
+            setUserData(null);
+        };
+
+    }, [user]);
+
+    if (userData) {
+        console.log('user data:', userData);
+    }
+
+
 
     return (
         <div>
@@ -70,18 +116,19 @@ const Head = () => {
                     <div className="ms-auto my-2 my-lg-0">
 
                         {
-                            user ? <>
+                            (user || userData) ? <>
                                 <button className="btn btn-outline-secondary mx-5" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <img src={profile} alt="" />
                                 </button>
                                 <div className='mx-auto'>
                                     <div className="dropdown-menu" >
-                                        <span className="dropdown-item">{user.displayName}</span>
+                                        <span className="dropdown-item">{user && user.displayName}</span>
                                         <div role="separator" className="dropdown-divider"></div>
                                         <Link to={'/profile'} className="dropdown-item">Profile</Link>
                                         <div role="separator" className="dropdown-divider"></div>
                                         {
-                                            user.uid === 'VpecidIgQHdNcnSnEADFjha2BF83' && <>
+                                            // user.uid === 'VpecidIgQHdNcnSnEADFjha2BF83' 
+                                            userData && userData.role === 'superAdmin' && <>
                                                 <Link to={'/profile'} className="dropdown-item">Admin Dashboard</Link>
                                                 <div role="separator" className="dropdown-divider"></div>
                                             </>
