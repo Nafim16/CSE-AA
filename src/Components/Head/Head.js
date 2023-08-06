@@ -27,21 +27,21 @@ const Head = () => {
 
                 const uid = user.uid;
 
-                try{
+                try {
                     const userDocRef = doc(db, 'users', uid);
 
                     const docSnap = await getDoc(userDocRef);
 
-                    if(docSnap.exists()){
+                    if (docSnap.exists()) {
                         setUserData(docSnap.data());
 
                     }
-                    else{
+                    else {
                         console.log('doc not found');
                     }
                 }
-                catch(error){
-                    console.log('error fetching data',error);
+                catch (error) {
+                    console.log('error fetching data', error);
                 }
 
             }
@@ -113,30 +113,33 @@ const Head = () => {
 
                     </ul>
 
-                    <div className="ms-auto my-2 my-lg-0">
+                    <div className="ms-auto my-2 my-lg-0 mx-5">
 
                         {
-                            (user || userData) ? <>
-                                <button className="btn btn-outline-secondary mx-5" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img src={profile} alt="" />
-                                </button>
-                                <div className='mx-auto'>
-                                    <div className="dropdown-menu" >
-                                        <span className="dropdown-item">{user && user.displayName}</span>
-                                        <div role="separator" className="dropdown-divider"></div>
-                                        <Link to={'/profile'} className="dropdown-item">Profile</Link>
-                                        <div role="separator" className="dropdown-divider"></div>
-                                        {
-                                            // user.uid === 'VpecidIgQHdNcnSnEADFjha2BF83' 
-                                            userData && userData.role === 'superAdmin' && <>
-                                                <Link to={'/superadmin'} className="dropdown-item">Admin Dashboard</Link>
+                            (user || userData) ?
+                                <>
+                                    <div className="btn-group dropstart">
+                                        <button className="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <img src={profile} alt="" />
+                                        </button>
+                                        <div className='mx-auto'>
+                                            <div className="dropdown-menu" >
+                                                <span className="dropdown-item">{(user && user.displayName) || (userData && userData.name)}</span>
                                                 <div role="separator" className="dropdown-divider"></div>
-                                            </>
-                                        }
-                                        <button onClick={handleLogOut} className="btn btn-outline-danger mx-2" type="submit">Logout</button>
+                                                <Link to={'/profile'} className="dropdown-item">Profile</Link>
+                                                <div role="separator" className="dropdown-divider"></div>
+                                                {
+                                                    // user.uid === 'VpecidIgQHdNcnSnEADFjha2BF83' 
+                                                    userData && userData.role === 'superAdmin' && <>
+                                                        <Link to={'/superadmin'} className="dropdown-item">Admin Dashboard</Link>
+                                                        <div role="separator" className="dropdown-divider"></div>
+                                                    </>
+                                                }
+                                                <button onClick={handleLogOut} className="btn btn-outline-danger mx-2" type="submit">Logout</button>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </> : <Link to="/login"><button className="btn btn-outline-success mx-5" type="submit">Login</button></Link>
+                                </> : <Link to="/login"><button className="btn btn-outline-success mx-5" type="submit">Login</button></Link>
                         }
                     </div>
                 </div>
