@@ -54,12 +54,18 @@ const Registration = () => {
         const dob = form.dob.value;
         console.log("SUBMITTED", name, email,  phone, password, confirmpassword, city, batch, blood, gender, dob);
 
-        if (password !== confirmpassword) {
+        
+        if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(password)) {
+            setpassError('Minimum eight characters, at least one uppercase letter, one lowercase letter and one number')
+            return;
+        }
+        else if (password !== confirmpassword) {
             setpassError('your password did not match')
-            return
-        } else if (password.length < 6) {
-            setpassError('password must be 6 character or longer')
-            return
+            return;
+        } 
+        if(!/^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.com|hotmail\.com)$/.test(email)){
+            setemailError('please enter valid email')
+            return;
         }
 
 
@@ -71,6 +77,7 @@ const Registration = () => {
                 sendVerificationEmail(loggedUser);
                 updateUserData(loggedUser, name);
                 navigate(from, { replace: true });
+                emailerror('');
 
 
                 // Use the user's ID as the document ID
@@ -98,12 +105,14 @@ const Registration = () => {
 
             })
             .catch(error => {
-                console.log(error);
-                if (error.code === "auth/email-already-in-use") {
-                  setemailError('Email is already in use. Please use a different email.');
-                } else {
-                  setemailError('An error occurred while creating the account. Please try again later.');
-                }
+                console.log(error.code);
+                setemailError(error.code);
+                
+                // if (error.code === "auth/email-already-in-use") {
+                //   setemailError('Email is already in use. Please use a different email.');
+                // } else {
+                //   setemailError('An error occurred while creating the account. Please try again later.');
+                // }
               })
 
         handleRegisterClick();
@@ -233,10 +242,10 @@ const Registration = () => {
                                     <div className="text-fields email">
                                         <label htmlFor="email"><i className='bx bx-envelope'></i></label>
                                         <input type="email" name="email" id="email" placeholder='Enter Your Email ID ' />
-                                        {/* <input type="email" name="email" id="email" placeholder='Enter Your Email ID ' /> */}
-                                        <p className='text-danger'><small>{emailerror}</small></p>
+                                        {/* <input type="email" name="email" id="email" placeholder='Enter Your Email ID ' /> */}                                        
                                     </div>
                                 </div>
+                                <p className='text-danger'><small>{emailerror}</small></p>
                                 <div className="button-container">
                                     <div className="text-fields password">
                                         <label htmlFor="password"><i className='bx bx-lock' ></i></label>
