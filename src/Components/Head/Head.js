@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/UserContext';
 import { db } from '../../FIrebase/firebase.config';
 import { doc, getDoc } from 'firebase/firestore';
+import logo6 from '../img/logo6.svg';
 
 const Head = () => {
 
@@ -66,7 +67,9 @@ const Head = () => {
         <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark nb">
                 {/* <a className="navbar-brand" href="#">CSE-AA-LU</a> */}
-                <Link to={'/'} className="navbar-brand mx-3 fs-5">LUCAA</Link>
+                <Link to={'/'} className="navbar-brand mx-3 fs-5">
+                    <img src={logo6} className='img-fluid' alt=''/>
+                </Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>

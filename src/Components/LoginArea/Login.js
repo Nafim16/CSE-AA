@@ -3,6 +3,7 @@ import loginarea from '../img/loginarea.png';
 import './Login.css'
 import { useNavigate } from 'react-router-dom';
 import reading from '../img/reading.svg'
+import logo3 from '../img/logo3.svg';
 
 const Login = () => {
 
@@ -42,7 +43,7 @@ const Login = () => {
                         <img src={reading} alt="" className='img-fluid justify-content-end mt-3 p-3' />
                     </div>
 
-                    <div className='col-md-8'>
+                    <div className='col-md-12'>
                         <div className='col'>
                             <div className='img-area'>
                                 <img src={loginarea} alt="log" className="img-fluid" />

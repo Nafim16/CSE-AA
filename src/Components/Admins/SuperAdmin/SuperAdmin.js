@@ -71,6 +71,7 @@ const SuperAdmin = () => {
     if (userData) {
         console.log('user data:', userData);
     }
+    
 
 
 
@@ -96,6 +97,8 @@ const SuperAdmin = () => {
                                         <th scope="col">Date of Birth</th>
                                         <th scope="col">Gender</th>
                                         <th scope="col">Blood</th>
+                                        <th scope="col">Role</th>
+                                        <th scope="col">Change Role</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -110,12 +113,14 @@ const SuperAdmin = () => {
                                             <td>{users.dob}</td>
                                             <td>{users.gender}</td>
                                             <td>{users.blood}</td>
+                                            <td>{users.role}</td>
                                             <td className="d-lg-flex align-items-center">
                                                 <select className="form-select form-select-sm me-1 w-50">
+                                                    <option value="member">Select role</option>
                                                     <option value="member">Member</option>
                                                     <option value="admin">Admin</option>
                                                 </select>
-                                                <button className='btn btn-primary btn-sm'>Change Role</button>
+                                                <button className='btn btn-primary btn-sm'>Change</button>
                                             </td>
                                         </tr>
 

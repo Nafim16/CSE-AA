@@ -1,4 +1,4 @@
-footer {
+/* footer {
     background-color: #161727;
     line-height: 15%;
     background-size: cover;
@@ -40,7 +40,163 @@ footer {
     color: aliceblue;
     font-size: large;
 }
-.footImg{
+
+.footer-dis{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px;
+    border-radius: 1px solid rgba(0, 0, 0, 0.05);
+} */
+.footImg {
     height: 50%;
     width: 50%;
+}
+
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* body{
+    width: 100%;
+    color: #000;
+    position: relative;
+    background-color: #000;
+} */
+a {
+    text-decoration: none;
+    transition: .5s;
+    color: #fff;
+}
+
+ul,
+li {
+    list-style-type: none;
+}
+
+footer {
+    background-color: rgb(34, 34, 34);
+    color: #fff;
+}
+
+.footer_info {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    padding: 50px 0;
+
+}
+
+.footer_info .footer_width {
+    padding: 0 15px;
+}
+
+.footer_info h2 {
+    margin-bottom: 20px;
+}
+
+.about,
+.contract {
+    width: 40%;
+}
+
+.link {
+    width: 20%;
+}
+
+.social-media {
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+.social-media ul {
+    display: flex;
+}
+
+.social-media ul li a {
+    display: inline-block;
+    margin-right: 50px;
+    width: 50px;
+    height: 50px;
+    padding-top: 12px;
+    background-color: transparent;
+    border: 1px solid #fff;
+    text-align: center;
+}
+
+.social-media ul li a:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+.link ul li {
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.link ul li a:hover {
+    color: darkgray;
+}
+
+.contact ul li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.contact ul li span {
+    margin-right: 15px;
+}
+
+/* .footer_p {
+    margin-top: 40px;
+} */
+
+.footer_icon1 {
+    margin-top: -40px;
+}
+
+.footer_icon2 {
+    margin-top: -15px;
+}
+
+.footer_icon3 {
+    margin-top: -15px;
+}
+
+
+@media screen and (max-width:992px) {
+
+    .about,
+    .contact {
+        width: 35%;
+    }
+
+    .link {
+        width: 30%;
+    }
+
+}
+
+@media screen and (max-width:767px) {
+
+    .about,
+    .contact,
+    .link {
+
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .footer_info {
+        flex-direction: column;
+    }
+
+
 }

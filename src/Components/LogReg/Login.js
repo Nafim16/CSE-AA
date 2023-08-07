@@ -3,6 +3,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import './LogReg.css';
 import Head from '../Head/Head';
 import { AuthContext } from '../../Context/UserContext';
+import logo6 from '../img/logo6.svg';
+
+
 const Login = () => {
 
     const navigate = useNavigate();
@@ -105,8 +108,8 @@ const Login = () => {
                 <div className="container r">
                     <div className="login-link">
                         <div className="logo">
-                            <i className='bx bx-pencil'></i>
-                            <span className="text">CSE-AA-LU</span>
+                            <img src={logo6} alt="" />
+                            {/* <span className="text">CSE-AA-LU</span> */}
                         </div>
                         <p className="side-big-heading">Create New Account</p>
                         <p className="primary-bg-text">To Keep Track on your dashboard please login with your personal info</p>

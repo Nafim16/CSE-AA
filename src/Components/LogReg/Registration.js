@@ -6,6 +6,7 @@ import { AuthContext } from '../../Context/UserContext';
 import { sendEmailVerification, updateProfile } from 'firebase/auth';
 import { db } from '../../FIrebase/firebase.config';
 import { collection, doc, setDoc } from 'firebase/firestore';
+import logo6 from '../img/logo6.svg';
 // import { collection, doc, getFirestore, setDoc } from 'firebase/firestore';
 
 // import app from '../../FIrebase/firestore.config';
@@ -169,8 +170,8 @@ const Registration = () => {
                 <div className="container">
                     <div className="login-link">
                         <div className="logo">
-                            <i className='bx bx-pencil'></i>
-                            <span className="text">CSE-AA-LU</span>
+                            <img src={logo6} alt="" />
+                            {/* <span className="text">CSE-AA-LU</span> */}
                         </div>
                         <p className="side-big-heading">Already a Member ?</p>
                         <p className="primary-bg-text">To Keep Track on your dashboard please login with your personal info</p>
