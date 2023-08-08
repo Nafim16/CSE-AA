@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './Admin.css';
-import { collection, doc, getDoc, setDoc } from 'firebase/firestore';
+import { Timestamp, addDoc, collection, doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { db } from '../../../FIrebase/firebase.config';
 import { AuthContext } from '../../../Context/UserContext';
 
@@ -11,7 +11,7 @@ const Admin = () => {
     const postCollectionRef = collection(db, 'posts');
 
 
-    const handlePostSubmit = (event) => {
+    const handlePostSubmit = async (event) => {
         event.preventDefault();
         const form = event.target;
         const post = form.post.value;
@@ -19,20 +19,22 @@ const Admin = () => {
         console.log('news created: ', post);
         form.reset();
 
-        const postDocRef = doc(postCollectionRef, user.uid);
+        try {
+            await addDoc(postCollectionRef, {
+                post,
+                author: user.displayName,
+                userId: user.uid,
+                createdAt: serverTimestamp(),
+            });
 
-        setDoc(postDocRef, {
-            post,
-            author: user.displayName,
-        })
-            .then(() => {
-                console.log("Post created");
-            })
-            .catch(error => {
-                console.error("error creating post", error);
-            })
+            console.log("Post created");
+        } catch (error) {
+            console.error("Error creating post", error);
+        }
+    };
 
-    }
+
+
 
     const [userData, setUserData] = useState(null);
 
@@ -58,7 +60,6 @@ const Admin = () => {
                 catch (error) {
                     console.log('error fetching data', error);
                 }
-
             }
         };
 

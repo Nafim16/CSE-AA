@@ -5,6 +5,7 @@ import Admin from '../Admins/Admin/Admin';
 import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
 import { db } from '../../FIrebase/firebase.config';
 import { AuthContext } from '../../Context/UserContext';
+import logo6 from "../img/logo6.svg"
 
 const News = () => {
 
@@ -98,7 +99,7 @@ const News = () => {
                                             <div className="d-flex mb-3">
                                                 <div className="mr-2">
                                                     <a href="#" className="text-dark">
-                                                        <img src="" alt="" className="author-img" />
+                                                        <img src={logo6} alt="" className="author-img" />
                                                     </a>
                                                 </div>
                                                 <div>
@@ -149,7 +150,7 @@ const News = () => {
                                             {/* Comment content */}
                                             <div className="comment-view-box mb-3">
                                                 <div className="d-flex mb-2">
-                                                    <img src="" alt="" className="author-img author-img--small mr-2" />
+                                                    <img src="" alt="" className="author-img author-img-small mr-2" />
                                                     <div>
                                                         <h6 className="mb-1 text-dark xx">User-X</h6>
                                                         <p className="mb-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, omnis.</p>

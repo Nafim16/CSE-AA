@@ -58,7 +58,7 @@ const Job = () => {
             <div className="grid-container">
  
                 {job.map((job) => (
-                    <div key={job.id} className="grid-item">
+                    <div key={job.id} className="grid-item w-100">
                         <img src={job.image} alt={job.title} className="job-image" />
                         <h3 className="job-title">{job.title}</h3>
                         <p className="job-company">{job.company}</p>
