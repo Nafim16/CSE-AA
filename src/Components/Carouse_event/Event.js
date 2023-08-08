@@ -87,7 +87,7 @@ const Event = () => {
                                         <div className="image">
                                             <img src={sohidminar3} className="img1" alt="..." />
                                         </div>
-                                        <div className="content">
+                                        <div className="content transition">
                                             <h3>Event title</h3>
                                             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint, nulla facilis. Similique voluptate delectus voluptatem molestias possimus culpa fuga sint ea, nulla nam debitis eligendi neque quisquam repudiandae aspernatur eum.</p>
                                             <a href="" className='btn'>read more</a>
@@ -99,7 +99,7 @@ const Event = () => {
                                     </div>
 
                                     <div className="box">
-                                        <div className="image">
+                                        <div className="image transition">
                                             <img src={sohidminar3} className="img1" alt="..." />
                                         </div>
                                         <div className="content">
@@ -128,7 +128,7 @@ const Event = () => {
 
                                 <div className="box-container">
                                     <div className="box">
-                                        <div className="image">
+                                        <div className="image transition">
                                             <img src={sohidminar3} className="img1" alt="..." />
                                         </div>
                                         <div className="content">
@@ -143,7 +143,7 @@ const Event = () => {
                                     </div>
 
                                     <div className="box">
-                                        <div className="image">
+                                        <div className="image transition">
                                             <img src={sohidminar3} className="img1" alt="..." />
                                         </div>
                                         <div className="content">
@@ -172,7 +172,7 @@ const Event = () => {
 
                                 <div className="box-container">
                                     <div className="box">
-                                        <div className="image">
+                                        <div className="image transition">
                                             <img src={sohidminar3} className="img1" alt="..." />
                                         </div>
                                         <div className="content">
@@ -187,7 +187,7 @@ const Event = () => {
                                     </div>
 
                                     <div className="box">
-                                        <div className="image">
+                                        <div className="image transition">
                                             <img src={sohidminar3} className="img1" alt="..." />
                                         </div>
                                         <div className="content">

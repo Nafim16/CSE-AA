@@ -31,7 +31,7 @@
     margin-top: 10px;
 }
  
-h2 {
+.top{
     margin-top: 100px;
     text-align: left;
     margin-left: 80px;
@@ -42,8 +42,7 @@ h2 {
  
 }
  
-button {
-    background-color: #007bffa2;
+.readmore {
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -51,13 +50,10 @@ button {
     cursor: pointer;
 }
  
-button:hover {
+.readmore:hover {
     background-color: #0056b3;
 }
  
-button:focus {
-    outline: none;
-}
  
  
 /* For screens smaller than 576px (mobile devices) */

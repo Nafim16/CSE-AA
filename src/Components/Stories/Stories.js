@@ -9,7 +9,7 @@ const Stories = () => {
     return (
         <div>
             <Head></Head>
-            <section className="container">
+            <section className="">
  
                 <div className="container-fluid ">
                     <h1 className="fs-16 fs-md-4 font-weight-medium text-start">Latest Stories</h1>

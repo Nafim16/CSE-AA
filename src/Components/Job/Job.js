@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFire } from '@fortawesome/free-solid-svg-icons';
  
 import './Job.css'
+import Footer from '../Footer/Footer';
  
 const Job = () => {
     const job = [
@@ -52,7 +53,7 @@ const Job = () => {
  
             <Head></Head>
  
-            <h2 className=''>Hot Jobs!  <FontAwesomeIcon icon={faFire} className="fire-icon" /></h2>
+            <h2 className='top'>Hot Jobs!  <FontAwesomeIcon icon={faFire} className="fire-icon" /></h2>
  
  
             <div className="grid-container">
@@ -67,18 +68,19 @@ const Job = () => {
                         {expandedJobs.includes(job.id) ? (
                             <>
                                 <p className="job-description">{job.description}</p>
-                                <button variant="outlined" color="primary">
+                                <button className='btn btn-primary readMore'>
                                     Apply Now
                                 </button>
                             </>
                         ) : (
-                            <button onClick={() => handleReadMoreClick(job.id)} variant="outlined" color="primary">
+                            <button onClick={() => handleReadMoreClick(job.id)} className='btn btn-primary readMore'>
                                 Read More
                             </button>
                         )}
                     </div>
                 ))}
             </div>
+            <Footer></Footer>
         </div>
     );
 };

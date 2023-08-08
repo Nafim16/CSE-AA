@@ -1,5 +1,5 @@
 .container1 {
-    margin-top: 5%;
+    margin-top: 6%;
 }
 
 /* head {
@@ -8,7 +8,7 @@
 
 .wrapper {
     margin-top: 10%;
-    background-color: greenyellow;
+    background-color: aliceblue;
     margin-bottom: 20px;
 }
 
@@ -39,7 +39,7 @@
 
 .team_member:hover{
     border-color: #2a7be4!important;
-    border: 5px solid;
+    border: 2px solid;
     box-shadow: 10px 10px 15px gray;
 }
 

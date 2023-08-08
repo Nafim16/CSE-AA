@@ -10,11 +10,11 @@ const About = () => {
     return (
         <div>
             <Head></Head>
-            <div className='container1'>
+            <div className='mt-5 m-3 pt-5'>
                 <h1>Dedication</h1>
                 <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente distinctio itaque dolor saepe officiis? Odit nisi aperiam exercitationem qui doloribus alias quam, nemo quos! Perferendis sint totam reiciendis quis iste.</h5>
             </div>
-            <div className="container2">
+            <div className="p-5">
                 <h1>About</h1>
                 <h5>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi nostrum minima, optio sequi enim aut! Repellendus provident velit illo nam similique autem quidem enim aliquam consectetur debitis architecto, ut eum.</h5>
             </div>

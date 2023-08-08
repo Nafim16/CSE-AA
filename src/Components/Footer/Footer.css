@@ -1,54 +1,4 @@
-/* footer {
-    background-color: #161727;
-    line-height: 15%;
-    background-size: cover;
-    height: 400px;
-    background-blend-mode: multiply;
-    background-position: center;
-    opacity: 100%;
-}
 
-.foot {
-    color: white;
-    padding-top: 30px;
-
-}
-
-.foot-h1 {
-    color: aliceblue;
-    padding-top: 30px;
-}
-
-
-.foot-h4 {
-    color: aliceblue;
-}
-
-.fa-facebook {
-    color: aliceblue;
-    font-size: large;
-}
-
-.fa-whatsapp {
-    padding-left: 20px;
-    color: aliceblue;
-    font-size: large;
-}
-
-.fa-instagram {
-    padding-left: 20px;
-    color: aliceblue;
-    font-size: large;
-}
-
-.footer-dis{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 40px;
-    border-radius: 1px solid rgba(0, 0, 0, 0.05);
-} */
 .footImg {
     height: 50%;
     width: 50%;
@@ -63,12 +13,7 @@
     box-sizing: border-box;
 }
 
-/* body{
-    width: 100%;
-    color: #000;
-    position: relative;
-    background-color: #000;
-} */
+
 a {
     text-decoration: none;
     transition: .5s;
@@ -154,9 +99,7 @@ footer {
     margin-right: 15px;
 }
 
-/* .footer_p {
-    margin-top: 40px;
-} */
+*/
 
 .footer_icon1 {
     margin-top: -40px;
@@ -168,6 +111,11 @@ footer {
 
 .footer_icon3 {
     margin-top: -15px;
+}
+
+.contact {
+    margin-left: 70PX;
+
 }
 
 

@@ -6,6 +6,7 @@ import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
 import { db } from '../../FIrebase/firebase.config';
 import { AuthContext } from '../../Context/UserContext';
 import logo6 from "../img/logo6.svg"
+import Footer from '../Footer/Footer';
 
 const News = () => {
 
@@ -168,6 +169,7 @@ const News = () => {
                     </div>
                 </div>
             </div>
+            <Footer></Footer>
         </div>
     );
 };
