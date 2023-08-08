@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import './Admin.module.css';
+import './Admin.css';
 import { collection, doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../../../FIrebase/firebase.config';
 import { AuthContext } from '../../../Context/UserContext';
@@ -84,8 +84,8 @@ const Admin = () => {
                                     <div className="form-group">
                                         <textarea className="form-control" name='post' placeholder='Write your news........' rows="5"></textarea>
                                     </div>
-                                    <div className="mt-2">
-                                        <button type="submit" className='btn btn-primary'>create</button>
+                                    <div className="mt-2 d-flex justify-content-end">
+                                        <button type="submit " className='btn btn-primary me-2'>create</button>
                                     </div>
                                 </form>
                             </div>

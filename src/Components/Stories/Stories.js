@@ -1,20 +1,28 @@
 import React from 'react';
-import error from '../img/error.gif';
+ 
 import Head from '../Head/Head';
 import Footer from '../Footer/Footer';
-
+import './Stories.css'
+ 
 const Stories = () => {
+ 
     return (
         <div>
             <Head></Head>
-            <div className='bg-black vh-100'>
-                <img src={error} className='img-fluid' alt="" />
-                <h1 className='text-primary'>Coming Soon.................</h1>
-                <h2 className='text-secondary'>Page Under Development</h2>
-            </div>
+            <section className="container">
+ 
+                <div className="container-fluid ">
+                    <h1 className="fs-16 fs-md-4 font-weight-medium text-start">Latest Stories</h1>
+                    <div className="icon">⚠️
+                    <h1 className="notFound">No Stories Found</h1>
+                    <p>Sorry, there is no stories available at the moment.</p>
+                    </div>
+                </div>
+            </section>
             <Footer></Footer>
         </div>
     );
+ 
 };
-
+ 
 export default Stories;
