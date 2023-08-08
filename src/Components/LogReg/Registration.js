@@ -30,6 +30,7 @@ const Registration = () => {
     // console.log(createUser);
     const [passerror, setpassError] = useState('');
     const [emailerror, setemailError] = useState('');
+    const [phoneError, setPhoneError] = useState('');
 
     const location = useLocation();
 
@@ -65,6 +66,10 @@ const Registration = () => {
         } 
         if(!/^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.com|hotmail\.com)$/.test(email)){
             setemailError('please enter valid email')
+            return;
+        }
+        if(!/^01[3-9]\d{8}$/.test(phone)){
+            setPhoneError('please enter valid number')
             return;
         }
 
@@ -206,25 +211,25 @@ const Registration = () => {
                                 <div className="button-container">
                                     <div className="text-fields name">
                                         <label htmlFor="name"><i className='bx bx-user'></i></label>
-                                        <input type="text" name="name" id="name" placeholder='Enter Your Name' />
+                                        <input type="text" name="name" id="name" placeholder='Enter Your Name' required />
                                     </div>
                                     <div className="text-fields batch">
                                         <label htmlFor="batch"><i className='bx bx-buildings bx-tada bx-flip-horizontal' ></i></label>
-                                        <input type="text" name="batch" id="batch" placeholder='Enter Your Batch' />
+                                        <input type="text" name="batch" id="batch" placeholder='Enter Your Batch' required />
                                     </div>
                                 </div>
 
                                 <div className="button-container">
                                     <div className="text-fields dob">
-                                        <input type="date" name="dob" id="dob" />
+                                        <input type="date" name="dob" id="dob" required/>
                                     </div>
                                     <div className="gender-selection">
                                         <p className="field-heading">Gender : </p>
                                         <label htmlFor="male">
-                                            <input type="radio" name="gender" id="male" value="Male" />Male
+                                            <input type="radio" name="gender" id="male" value="Male" required/>Male
                                         </label>
                                         <label htmlFor="female">
-                                            <input type="radio" name="gender" id="female" value="Female" />Female
+                                            <input type="radio" name="gender" id="female" value="Female" required/>Female
                                         </label>
                                     </div>
                                 </div>
@@ -237,26 +242,29 @@ const Registration = () => {
                                 <div className="button-container">
                                     <div className="text-fields phone">
                                         <label htmlFor="phone"><i className='bx bx-phone'></i></label>
-                                        <input type="number" name="phone" id="phone" placeholder='Enter Your Contact Number' />
+                                        <input type="number" name="phone" id="phone" placeholder='Enter Your Contact Number' required />
                                     </div>
                                     <div className="text-fields email">
                                         <label htmlFor="email"><i className='bx bx-envelope'></i></label>
-                                        <input type="email" name="email" id="email" placeholder='Enter Your Email ID ' />
+                                        <input type="email" name="email" id="email" placeholder='Enter Your Email ID ' required />
                                         {/* <input type="email" name="email" id="email" placeholder='Enter Your Email ID ' /> */}                                        
                                     </div>
                                 </div>
-                                <p className='text-danger'><small>{emailerror}</small></p>
+                                {/* <p className='text-danger'><small>{phoneError}</small></p>
+                                <p className='text-danger'><small>{emailerror}</small></p> */}
                                 <div className="button-container">
                                     <div className="text-fields password">
                                         <label htmlFor="password"><i className='bx bx-lock' ></i></label>
-                                        <input type="password" name="password" id="password" placeholder='Enter Your Password' />
+                                        <input type="password" name="password" id="password" placeholder='Enter Your Password' required/>
                                     </div>
                                     <div className="text-fields confirmpassword">
                                         <label htmlFor="confirmpassword"><i className='bx bx-lock' ></i></label>
-                                        <input type="password" name="confirmpassword" id="confirmpassword" placeholder='Confirm Password' />
+                                        <input type="password" name="confirmpassword" id="confirmpassword" placeholder='Confirm Password' required/>
                                     </div>
                                 </div>
                                 <p className='text-danger'>{passerror}</p>
+                                <p className='text-danger'><small>{phoneError}</small></p>
+                                <p className='text-danger'><small>{emailerror}</small></p>
                             </div>
 
 
@@ -265,12 +273,12 @@ const Registration = () => {
                                 <div className="button-container">
                                     <div className="text-fields city">
                                         <label htmlFor="city"><i className='bx bx-buildings bx-tada bx-flip-horizontal' ></i></label>
-                                        <input type="text" name="city" id="city" placeholder='Enter Your City' />
+                                        <input type="text" name="city" id="city" placeholder='Enter Your City' required/>
                                     </div>
                                     <div className="text-fields blood">
                                         <label htmlFor="blood"><i className='bx bxs-donate-blood bx-tada bx-flip-horizontal' ></i></label>
                                         {/* <input type="text" name="blood" id="blood" placeholder='Enter Blood Group' /> */}
-                                        <select className="custom-select" defaultValue="Your Blood Group" name="blood">
+                                        <select className="custom-select" defaultValue="Your Blood Group" name="blood" required>
                                             <option value="Your Blood Group">Your Blood Group</option>
                                             <option value="A+">A+</option>
                                             <option value="A-">A-</option>
