@@ -120,18 +120,18 @@ const Registration = () => {
     };
 
 
-    // const handleGoogleSignIn = () => {
-    //     signInWithGoogle()
-    //         .then(result => {
-    //             const loggedUser = result.user;
-    //             console.log(loggedUser);
+    const handleGoogleSignIn = () => {
+        signInWithGoogle()
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
                 
                 
-    //         })
-    //         .catch(error => {
-    //             console.log(error);
-    //         })
-    // }
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
 
     // const handleGithubSignIn = () => {
     //     signInWithGithub()
@@ -194,9 +194,9 @@ const Registration = () => {
                     <form onSubmit={handleFormSubmitReg} className="signup-form-container">
                         <p className="big-heading">Create Account</p>
                         <div className="social-media-platform">
-                            <a href="#" ><i className='bx bx-sm bxl-google'></i></a>
-                            <a href="#" ><i className='bx bx-sm bxl-twitter'></i></a>
-                            <a href="#" ><i className='bx bx-sm bxl-github'></i></a>
+                            <a href="#" onClick={handleGoogleSignIn} ><i className='bx bx-lg bxl-google'></i></a>
+                            {/* <a href="#" ><i className='bx bx-sm bxl-twitter'></i></a>
+                            <a href="#" ><i className='bx bx-sm bxl-github'></i></a> */}
                         </div>
 
 
@@ -294,7 +294,7 @@ const Registration = () => {
                                     {/* <button type="submit" className="nextPage stagebtn3b">Submit</button> */}
                                     {/* <button className="nextPage">submit</button> */}
                                 </div>
-                                <p className='text-danger'>{passerror}</p>
+                                <p className='text-danger'><small>{passerror}</small></p>
                                 <p className='text-danger'><small>{emailerror}</small></p>
                                 <p className='text-danger'><small>{phoneError}</small></p>
                             </div>

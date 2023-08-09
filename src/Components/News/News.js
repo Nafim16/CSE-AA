@@ -124,8 +124,8 @@ const News = () => {
                                                 </>
                                             }
                                         </div>
-                                        <div className="post-block-content mb-2">
-                                            <p>
+                                        <div className="post-block-content mb-2 ">
+                                            <p className='p'>
                                                 {posts.post}
                                             </p>
                                             <img src="" alt="" />
