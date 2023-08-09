@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './LogReg.css';
 import Head from '../Head/Head';
@@ -26,7 +26,7 @@ const Login = () => {
     const { signIn, signInWithGoogle, signInWithGithub, resetEmail } = useContext(AuthContext);
 
 
-
+    const [error, setError] = useState('');
 
     const handleFormSubmitLogin = (event) => {
         event.preventDefault();
@@ -49,6 +49,7 @@ const Login = () => {
             })
             .catch(error => {
                 console.log(error);
+                setError(error.code);
             })
     };
 
@@ -139,6 +140,7 @@ const Login = () => {
 
 
                         </div>
+                        <p className='text-danger'><small>{error}</small></p>
 
                     </form>
 

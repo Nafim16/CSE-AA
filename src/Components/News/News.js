@@ -7,6 +7,7 @@ import { db } from '../../FIrebase/firebase.config';
 import { AuthContext } from '../../Context/UserContext';
 import logo6 from "../img/logo6.svg"
 import Footer from '../Footer/Footer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const News = () => {
 
@@ -103,8 +104,8 @@ const News = () => {
                                                         <img src={logo6} alt="" className="author-img" />
                                                     </a>
                                                 </div>
-                                                <div>
-                                                    <h5 className="mb-0"><a href="#" className="text-dark">{posts.author}</a></h5>
+                                                <div className='mm'>
+                                                    <h5 className="mb-0" ><a href="#" className="text-dark">{posts.author}</a></h5>
                                                 </div>
                                             </div>
                                             {userData && ((userData.role === 'superAdmin') || (userData.role === 'Admin')) ?
@@ -112,7 +113,8 @@ const News = () => {
                                                     <div className="post-block-user-options">
                                                         <a href="#!" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
                                                             aria-expanded="false">
-                                                            <i className='bx bx-dots-vertical' aria-hidden="true"></i>
+                                                            <i className='fa-solid fa-ellipsis-vertical dark' aria-hidden="true"></i>
+                                                            {/* <FontAwesomeIcon icon="fa-solid fa-ellipsis-vertical" /> */}
                                                         </a>
                                                         <div className="dropdown-menu dropdown-menu-right" aria-labelledby='triggerId'>
                                                             <a href="#" className="dropdown-item text-danger">Delete

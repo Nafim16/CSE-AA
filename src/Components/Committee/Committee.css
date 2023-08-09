@@ -1,3 +1,5 @@
+
+
 /* code try-2 */
 .committee {
     margin-top: 6%;
@@ -5,8 +7,10 @@
     height: auto;
 }
 
-.committee_img {
-    width: 30%;
+.committee_icon {
+   
+    color: black;
+
 
 }
 
@@ -21,4 +25,7 @@
     box-shadow: 2px;
     border-radius: 5px;
 }
+
+
+
 /* code try-2 */

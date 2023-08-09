@@ -4,6 +4,10 @@ import Head from '../Head/Head';
 import Footer from '../Footer/Footer';
 import abir3 from '../img/abir3.png';
 import nafim3 from '../img/nafim3.png';
+import prbSir from '../img/prbSir.png';
+import julfa from '../img/julfa.png'
+
+
 
 
 const About = () => {
@@ -30,7 +34,10 @@ const About = () => {
                     <div className="row">
                         <div className="col-md-3 col-sm-6">
                             <div className="team_member">
-                                <h3>Prithwiraj Rizu</h3>
+                                <div >
+                                    <img src={prbSir} className='about_img' alt="" />
+                                </div>
+                                <h3>Prithwiraj Bhattacharjee</h3>
                                 <p className='role'>Advisor</p>
                                 <p >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum ut id ipsam error velit sed in voluptatem, pariatur hic autem consectetur laboriosam, quia earum, reprehenderit voluptatum minima vero! Odit, inventore.</p>
                             </div>
@@ -57,6 +64,9 @@ const About = () => {
                         </div>
                         <div className="col-md-3 col-sm-6">
                             <div className="team_member">
+                                <div >
+                                    <img src={julfa} className='about_img' alt="" />
+                                </div>
                                 <h3>Mafruda Julfa</h3>
                                 <p className='role'>Web Developer</p>
                                 <p >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum ut id ipsam error velit sed in voluptatem, pariatur hic autem consectetur laboriosam, quia earum, reprehenderit voluptatum minima vero! Odit, inventore.</p>

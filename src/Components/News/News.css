@@ -54,3 +54,11 @@
 .p{
 	text-align: start;
 }
+
+.mm{
+	margin-left: 10px;
+	margin-top: 10px;
+}
+.dark{
+	color: black;
+}

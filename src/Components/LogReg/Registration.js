@@ -31,6 +31,7 @@ const Registration = () => {
     const [passerror, setpassError] = useState('');
     const [emailerror, setemailError] = useState('');
     const [phoneError, setPhoneError] = useState('');
+    const [fillError, setFillError] = useState('');
 
 
     const location = useLocation();
@@ -70,6 +71,10 @@ const Registration = () => {
         }
         else if(!/^01[3-9]\d{8}$/.test(phone)){
             setPhoneError('please enter valid number')
+            return;
+        }
+        else if((name.length && batch.length && city.length && blood.length && dob.length && gender.length)<0){
+            setFillError('please fillup all the fields please')
             return;
         }
 
@@ -294,9 +299,10 @@ const Registration = () => {
                                     {/* <button type="submit" className="nextPage stagebtn3b">Submit</button> */}
                                     {/* <button className="nextPage">submit</button> */}
                                 </div>
-                                <p className='text-danger'><small>{passerror}</small></p>
                                 <p className='text-danger'><small>{emailerror}</small></p>
                                 <p className='text-danger'><small>{phoneError}</small></p>
+                                <p className='text-danger'><small>{passerror}</small></p>
+                                <p className='text-danger'><small>{fillError}</small></p>
                             </div>
                         </div>
                     </form>
