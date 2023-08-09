@@ -33,6 +33,15 @@ const Job = () => {
             image: 'https://d3mm2s9r15iqcv.cloudfront.net/en/wp-content/uploads/2021/01/difference_between_ux_ui.webp', // Replace with the actual image URL
             description: 'Create stunning and user-friendly UI/UX designs...',
         }
+        ,
+        {
+            id: 3,
+            title: 'UI/UX Designer',
+            company: 'Design Co.',
+            location: 'London, UK',
+            image: 'https://d3mm2s9r15iqcv.cloudfront.net/en/wp-content/uploads/2021/01/difference_between_ux_ui.webp', // Replace with the actual image URL
+            description: 'Create stunning and user-friendly UI/UX designs...',
+        }
     ];
     const [expandedJobs, setExpandedJobs] = useState([]);
  

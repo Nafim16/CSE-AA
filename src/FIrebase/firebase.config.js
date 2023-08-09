@@ -17,6 +17,33 @@
 // const app = initializeApp(firebaseConfig);
 
 
+// // Import the functions you need from the SDKs you need
+// import { initializeApp } from "firebase/app";
+// import {getFirestore} from "firebase/firestore";
+// // TODO: Add SDKs for Firebase products that you want to use
+// // https://firebase.google.com/docs/web/setup#available-libraries
+
+// // Your web app's Firebase configuration
+// const firebaseConfig = {
+//   apiKey: "AIzaSyA-zlJGuh8QrpcA9AdbGS7tOAKFTh3obDc",
+//   authDomain: "lucaa-1b750.firebaseapp.com",
+//   projectId: "lucaa-1b750",
+//   storageBucket: "lucaa-1b750.appspot.com",
+//   messagingSenderId: "778142327651",
+//   appId: "1:778142327651:web:c3d67a9eb13c08c2852956"
+// };
+
+// // Initialize Firebase
+// const app = initializeApp(firebaseConfig);
+// const db  =getFirestore(app);
+
+// // export default app;
+// export {
+//   app,
+//   db,
+// };
+
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import {getFirestore} from "firebase/firestore";
@@ -25,15 +52,17 @@ import {getFirestore} from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyA-zlJGuh8QrpcA9AdbGS7tOAKFTh3obDc",
-  authDomain: "lucaa-1b750.firebaseapp.com",
-  projectId: "lucaa-1b750",
-  storageBucket: "lucaa-1b750.appspot.com",
-  messagingSenderId: "778142327651",
-  appId: "1:778142327651:web:c3d67a9eb13c08c2852956"
+  apiKey: "AIzaSyBtrhFCWla5blQW7VeWHK5TXYKfcK2Uwnk",
+  authDomain: "caa-lu.firebaseapp.com",
+  projectId: "caa-lu",
+  storageBucket: "caa-lu.appspot.com",
+  messagingSenderId: "989246260728",
+  appId: "1:989246260728:web:d260da08b118a9df4cc20d"
 };
 
-// Initialize Firebase
+// // Initialize Firebase
+// const app = initializeApp(firebaseConfig);
+
 const app = initializeApp(firebaseConfig);
 const db  =getFirestore(app);
 

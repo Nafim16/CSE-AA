@@ -46,7 +46,7 @@ const Footer = () => {
                         <h2>Contact</h2>
                         <ul>
                             <li>
-                                <span className='footer_icon1'><i class="fa-solid fa-location-dot"></i></span>
+                                <span className='footer_icon1'><i className="fa-solid fa-location-dot"></i></span>
                                 <p className=''>
                                     Leading University
                                     Ragibnagar, South Surma, <br /> Sylhet-3112
@@ -54,14 +54,14 @@ const Footer = () => {
 
                             </li>
                             <li>
-                                <span className='footer_icon2'><i class="fa-solid fa-envelope"></i></span>
+                                <span className='footer_icon2'><i className="fa-solid fa-envelope"></i></span>
                                 <p className=''>
                                     Email: <a href="info@lus.ac.bd">info@lus.ac.bd</a>
                                 </p>
 
                             </li>
                             <li>
-                                <span className='footer_icon3'><i class="fa-solid fa-phone-volume"></i></span>
+                                <span className='footer_icon3'><i className="fa-solid fa-phone-volume"></i></span>
                                 <p className='X'>
                                     Phone: 01313084499.
                                 </p>

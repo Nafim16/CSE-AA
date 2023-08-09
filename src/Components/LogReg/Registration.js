@@ -32,6 +32,7 @@ const Registration = () => {
     const [emailerror, setemailError] = useState('');
     const [phoneError, setPhoneError] = useState('');
 
+
     const location = useLocation();
 
     const from = location.state?.from?.pathname || '/';
@@ -55,7 +56,6 @@ const Registration = () => {
         const dob = form.dob.value;
         console.log("SUBMITTED", name, email,  phone, password, confirmpassword, city, batch, blood, gender, dob);
 
-        
         if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(password)) {
             setpassError('Minimum eight characters, at least one uppercase letter, one lowercase letter and one number')
             return;
@@ -64,15 +64,14 @@ const Registration = () => {
             setpassError('your password did not match')
             return;
         } 
-        if(!/^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.com|hotmail\.com)$/.test(email)){
+        else if(!/^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.com|hotmail\.com)$/.test(email)){
             setemailError('please enter valid email')
             return;
         }
-        if(!/^01[3-9]\d{8}$/.test(phone)){
+        else if(!/^01[3-9]\d{8}$/.test(phone)){
             setPhoneError('please enter valid number')
             return;
         }
-
 
         createUser(email, password)
             .then(result => {
@@ -82,7 +81,6 @@ const Registration = () => {
                 sendVerificationEmail(loggedUser);
                 updateUserData(loggedUser, name);
                 navigate(from, { replace: true });
-                emailerror('');
 
 
                 // Use the user's ID as the document ID
@@ -110,14 +108,12 @@ const Registration = () => {
 
             })
             .catch(error => {
-                console.log(error.code);
-                setemailError('email in use');
-                
-                // if (error.code === "auth/email-already-in-use") {
-                //   setemailError('Email is already in use. Please use a different email.');
-                // } else {
-                //   setemailError('An error occurred while creating the account. Please try again later.');
-                // }
+                console.log(error);
+                if (error.code === "auth/email-already-in-use") {
+                  setemailError('Email is already in use. Please use a different email.');
+                } else {
+                  setemailError('An error occurred while creating the account. Please try again later.');
+                }
               })
 
         handleRegisterClick();
@@ -211,25 +207,25 @@ const Registration = () => {
                                 <div className="button-container">
                                     <div className="text-fields name">
                                         <label htmlFor="name"><i className='bx bx-user'></i></label>
-                                        <input type="text" name="name" id="name" placeholder='Enter Your Name' required />
+                                        <input type="text" name="name" id="name" placeholder='Enter Your Name' />
                                     </div>
                                     <div className="text-fields batch">
                                         <label htmlFor="batch"><i className='bx bx-buildings bx-tada bx-flip-horizontal' ></i></label>
-                                        <input type="text" name="batch" id="batch" placeholder='Enter Your Batch' required />
+                                        <input type="text" name="batch" id="batch" placeholder='Enter Your Batch' />
                                     </div>
                                 </div>
 
                                 <div className="button-container">
                                     <div className="text-fields dob">
-                                        <input type="date" name="dob" id="dob" required/>
+                                        <input type="date" name="dob" id="dob" />
                                     </div>
                                     <div className="gender-selection">
                                         <p className="field-heading">Gender : </p>
                                         <label htmlFor="male">
-                                            <input type="radio" name="gender" id="male" value="Male" required/>Male
+                                            <input type="radio" name="gender" id="male" value="Male" />Male
                                         </label>
                                         <label htmlFor="female">
-                                            <input type="radio" name="gender" id="female" value="Female" required/>Female
+                                            <input type="radio" name="gender" id="female" value="Female" />Female
                                         </label>
                                     </div>
                                 </div>
@@ -242,29 +238,26 @@ const Registration = () => {
                                 <div className="button-container">
                                     <div className="text-fields phone">
                                         <label htmlFor="phone"><i className='bx bx-phone'></i></label>
-                                        <input type="number" name="phone" id="phone" placeholder='Enter Your Contact Number' required />
+                                        <input type="number" name="phone" id="phone" placeholder='Enter Your Contact Number' />
                                     </div>
                                     <div className="text-fields email">
                                         <label htmlFor="email"><i className='bx bx-envelope'></i></label>
-                                        <input type="email" name="email" id="email" placeholder='Enter Your Email ID ' required />
+                                        <input type="email" name="email" id="email" placeholder='Enter Your Email ID ' />
                                         {/* <input type="email" name="email" id="email" placeholder='Enter Your Email ID ' /> */}                                        
                                     </div>
                                 </div>
-                                {/* <p className='text-danger'><small>{phoneError}</small></p>
-                                <p className='text-danger'><small>{emailerror}</small></p> */}
+                                
                                 <div className="button-container">
                                     <div className="text-fields password">
                                         <label htmlFor="password"><i className='bx bx-lock' ></i></label>
-                                        <input type="password" name="password" id="password" placeholder='Enter Your Password' required/>
+                                        <input type="password" name="password" id="password" placeholder='Enter Your Password' />
                                     </div>
                                     <div className="text-fields confirmpassword">
                                         <label htmlFor="confirmpassword"><i className='bx bx-lock' ></i></label>
-                                        <input type="password" name="confirmpassword" id="confirmpassword" placeholder='Confirm Password' required/>
+                                        <input type="password" name="confirmpassword" id="confirmpassword" placeholder='Confirm Password' />
                                     </div>
                                 </div>
-                                <p className='text-danger'>{passerror}</p>
-                                <p className='text-danger'><small>{phoneError}</small></p>
-                                <p className='text-danger'><small>{emailerror}</small></p>
+                                
                             </div>
 
 
@@ -273,12 +266,12 @@ const Registration = () => {
                                 <div className="button-container">
                                     <div className="text-fields city">
                                         <label htmlFor="city"><i className='bx bx-buildings bx-tada bx-flip-horizontal' ></i></label>
-                                        <input type="text" name="city" id="city" placeholder='Enter Your City' required/>
+                                        <input type="text" name="city" id="city" placeholder='Enter Your City' />
                                     </div>
                                     <div className="text-fields blood">
                                         <label htmlFor="blood"><i className='bx bxs-donate-blood bx-tada bx-flip-horizontal' ></i></label>
                                         {/* <input type="text" name="blood" id="blood" placeholder='Enter Blood Group' /> */}
-                                        <select className="custom-select" defaultValue="Your Blood Group" name="blood" required>
+                                        <select className="custom-select" defaultValue="Your Blood Group" name="blood">
                                             <option value="Your Blood Group">Your Blood Group</option>
                                             <option value="A+">A+</option>
                                             <option value="A-">A-</option>
@@ -300,13 +293,11 @@ const Registration = () => {
                                     {/* <button type="submit" value="submit" className="nextPage">submit</button> */}
                                     {/* <button type="submit" className="nextPage stagebtn3b">Submit</button> */}
                                     {/* <button className="nextPage">submit</button> */}
-
                                 </div>
+                                <p className='text-danger'>{passerror}</p>
+                                <p className='text-danger'><small>{emailerror}</small></p>
+                                <p className='text-danger'><small>{phoneError}</small></p>
                             </div>
-
-
-
-
                         </div>
                     </form>
                 </div>
