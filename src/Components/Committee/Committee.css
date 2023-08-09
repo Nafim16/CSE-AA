@@ -1,68 +1,24 @@
-/* .committee {
-    margin-top: 5%;
-}
-
-.container {
+/* code try-2 */
+.committee {
+    margin-top: 6%;
     width: auto;
     height: auto;
-
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    outline: none;
-    border: none;
-    text-decoration: none;
-    transition: all .2s linear;
-    text-transform: capitalize;
-}
-
-body {
-    background-color: #eee;
-
-}
-
-.title {
-    font-size: 3.5rem;
-    color: #444;
-    margin-bottom: 3rem;
-    text-transform: capitalize;
-    text-align: center;
-}
-
-.container .post-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 50px;
 }
 
 .committee_img {
-    width: 50%;
+    width: 30%;
 
 }
 
-.post {
-    margin-top: 50%;
-    margin-left: -70px;
+.president {
+    justify-content: center;
+    margin-top: 30px;
 }
 
-@media screen and (max-width:1200px) {
-
-    .post {
-        margin-top: 50%;
-    }
-
-
+.record {
+    background-color: aliceblue;
+    margin: 40px;
+    box-shadow: 2px;
+    border-radius: 5px;
 }
-
-@media screen and (max-width:560px) {
-
-    .post {
-        margin-top: 0;
-        margin-left: 0;
-    }
-
-
-} */
+/* code try-2 */

@@ -111,7 +111,7 @@ const Registration = () => {
             })
             .catch(error => {
                 console.log(error.code);
-                setemailError(error.code);
+                setemailError('email in use');
                 
                 // if (error.code === "auth/email-already-in-use") {
                 //   setemailError('Email is already in use. Please use a different email.');
