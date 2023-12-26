@@ -14,7 +14,7 @@ const JobCreate = () => {
                     <div className='formfield'>
                         <form action="">
                             <div className="form-floating mb-3">
-                                <input type="email" className="form-control" placeholder='abc' id="floatingInputDisabled" />
+                                <input type="email" className="form-control" placeholder='abc' id="floatingInputDisabled"  />
                                 <label htmlFor="floatingInputDisabled">Company</label>
                             </div>
                             <div className="form-floating mb-3">

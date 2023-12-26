@@ -60,15 +60,14 @@ import React from 'react';
 import './Event.css';
 import loginarea from '../img/loginarea.png'
 import sohidminar3 from '../img/shohidMinar3.jpg'
+import cevent from '../img/cevent.svg'
+import { Link } from 'react-router-dom';
 
 const Event = () => {
     return (
         <div className='event'>
 
             <div className='p-5 m-5 w-100 mx-auto'>
-
-
-
                 <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="carousel">
                     <div className="carousel-indicators">
                         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
@@ -222,6 +221,14 @@ const Event = () => {
                         <span className="carousel-control-next-icon" aria-hidden="true"></span>
                         <span className="visually-hidden">Next</span>
                     </button>
+                </div>
+
+
+
+                <div className='d-flex'>
+                    <div className='ms-auto'>
+                        <div className='x'><Link to={'/createEvent'}><img src={cevent} alt="" /></Link></div>
+                    </div>
                 </div>
             </div>
         </div>
