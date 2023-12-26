@@ -27,6 +27,10 @@ const JobCreate = () => {
                             </div>
                             <div className="form-floating mb-3">
                                 <input className="form-control" id="floatingTextarea2Disabled" />
+                                <label htmlFor="floatingTextarea2Disabled">Job Location</label>
+                            </div>
+                            <div className="form-floating mb-3">
+                                <input className="form-control" id="floatingTextarea2Disabled" />
                                 <label htmlFor="floatingTextarea2Disabled">Job Description</label>
                             </div>
                             <button class="btn btn-primary " type="submit">Post Job</button>
