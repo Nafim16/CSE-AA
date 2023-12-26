@@ -6,6 +6,7 @@ import { faFire } from '@fortawesome/free-solid-svg-icons';
  
 import './Job.css'
 import Footer from '../Footer/Footer';
+import JobCreate from './JobCreate';
  
 const Job = () => {
     const job = [
@@ -55,9 +56,10 @@ const Job = () => {
             <Head></Head>
  
             <h2 className='top'>Hot Jobs!  <FontAwesomeIcon icon={faFire} className="fire-icon" /></h2>
- 
+            <JobCreate></JobCreate>
  
             <div className="grid-container">
+                
  
                 {job.map((job) => (
                     <div key={job.id} className="grid-item w-100">

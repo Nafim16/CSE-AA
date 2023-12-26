@@ -63,7 +63,8 @@ const Whyjoinus = () => {
 
                             </> : <>
                                 <button className='btn btn-primary' onClick={registerClicked}>Join Now</button>
-                            </>}
+                            </>
+                        }
                     </div>
 
                 </div>
@@ -75,5 +76,5 @@ const Whyjoinus = () => {
         </div>
     );
 };
-    
+
 export default Whyjoinus;
