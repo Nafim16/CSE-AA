@@ -6,7 +6,7 @@ const JobCreate = () => {
     return (
         <div>
             <div className='row'>
-                <div className='col-md-6'><img src={jobs} alt="" /></div>
+                <div className='col-md-6'><img src={jobs} alt="" className='img-fluid' /></div>
                 <div className='col-md-6'>
                     <div>
                         <h4>Job Post Create</h4>
