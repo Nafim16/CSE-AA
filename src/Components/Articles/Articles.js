@@ -4,12 +4,15 @@ import error from '../img/error.gif';
 import Head from '../Head/Head';
 import Footer from '../Footer/Footer';
 import news from '../img/loginarea.png';
+import ArticleCreate from './ArticleCreate';
 
 
 const Articles = () => {
     return (
         <div>
             <Head></Head>
+
+            <ArticleCreate></ArticleCreate>
 
             <section className="blog">
 
