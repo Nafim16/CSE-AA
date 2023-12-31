@@ -131,6 +131,7 @@ const Head = () => {
                                                 <div role="separator" className="dropdown-divider"></div>
                                                 <Link to={'/profile'} className="dropdown-item">Profile</Link>
                                                 <div role="separator" className="dropdown-divider"></div>
+                                                
                                                 {
                                                     // user.uid === 'VpecidIgQHdNcnSnEADFjha2BF83' 
                                                     userData && userData.role === 'superAdmin' && <>
@@ -138,6 +139,7 @@ const Head = () => {
                                                         <div role="separator" className="dropdown-divider"></div>
                                                     </>
                                                 }
+
                                                 <button onClick={handleLogOut} className="btn btn-outline-danger mx-2" type="submit">Logout</button>
                                             </div>
                                         </div>
