@@ -1,6 +1,6 @@
 
 import './App.css';
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { Routes, Route, BrowserRouter, createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './Components/Home/Home';
 import LogReg from './Components/LogReg/LogReg';
 import Login from './Components/LogReg/Login';
@@ -20,30 +20,107 @@ import SuperAdmin from './Components/Admins/SuperAdmin/SuperAdmin';
 import CreateEvent from './Components/Carouse_event/CreateEvent';
 
 
+
 function App() {
+
+  const router = createBrowserRouter([
+    { 
+      path: "*", 
+      element: <Error /> 
+    },
+    { 
+      path: "/", 
+      element: <Home /> 
+    },
+    { 
+      path: "/registration", 
+      element: <Registration /> 
+    },
+    { 
+      path: "/login", 
+      element: <Login /> 
+    },
+    { 
+      path: "/news", 
+      element: <PrivateRoute> <News /> </PrivateRoute> 
+    },
+    { 
+      path: "/stories", 
+      element: <Stories /> 
+    },
+    { 
+      path: "/businesses", 
+      element: <Businesses /> 
+    },
+    { 
+      path: "/job", 
+      element: <Job /> 
+    },
+    { 
+      path: "/committee", 
+      element: <Committee /> 
+    },
+    { 
+      path: "/about", 
+      element: <About /> 
+    },
+    { 
+      path: "/contact", 
+      element: <Contact /> 
+    },
+    { 
+      path: "/articles", 
+      element: <Articles /> 
+    },
+    { 
+      path: "/profile", 
+      element: <PrivateRoute> <Profile /> </PrivateRoute> 
+    },
+    { 
+      path: "/superadmin", 
+      element: <PrivateRoute> <SuperAdmin /> </PrivateRoute> 
+    },
+    { 
+      path: "/createEvent", 
+      element: <CreateEvent /> 
+    },
+  ])
+
+
+
   return (
     <div className='App'>
-      <BrowserRouter>
-        <Routes>
-          <Route path="*" element={<Error />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/registration" element={<Registration />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/news" element={<PrivateRoute> <News></News> </PrivateRoute>} />
-          <Route path="/stories" element={<Stories />} />
-          <Route path="/businesses" element={<Businesses />} />
-          <Route path="/job" element={<Job />} />
-          <Route path="/committee" element={<Committee />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/articles" element={<Articles />} />
-          <Route path="/profile" element={<PrivateRoute> <Profile></Profile> </PrivateRoute>} />
-          <Route path="/superadmin" element={<PrivateRoute> <SuperAdmin></SuperAdmin> </PrivateRoute>} />
-          <Route path="/createEvent" element={<CreateEvent/>}/>
-        </Routes>
-      </BrowserRouter>
+      <RouterProvider router={router}></RouterProvider>
     </div>
-  );
+  )
 }
+
+
+// old routing
+// function App() {
+//   return (
+//     <div className='App'>
+//       <BrowserRouter>
+//         <Routes>
+//           <Route path="*" element={<Error />} />
+//           <Route path="/" element={<Home />} />
+//           <Route path="/registration" element={<Registration />} />
+//           <Route path="/login" element={<Login />} />
+//           <Route path="/news" element={<PrivateRoute> <News></News> </PrivateRoute>} />
+//           <Route path="/stories" element={<Stories />} />
+//           <Route path="/businesses" element={<Businesses />} />
+//           <Route path="/job" element={<Job />} />
+//           <Route path="/committee" element={<Committee />} />
+//           <Route path="/about" element={<About />} />
+//           <Route path="/contact" element={<Contact />} />
+//           <Route path="/articles" element={<Articles />} />
+//           <Route path="/profile" element={<PrivateRoute> <Profile></Profile> </PrivateRoute>} />
+//           <Route path="/superadmin" element={<PrivateRoute> <SuperAdmin></SuperAdmin> </PrivateRoute>} />
+//           <Route path="/createEvent" element={<CreateEvent/>}/>
+//         </Routes>
+//       </BrowserRouter>
+//     </div>
+//   );
+// }
 
 export default App;

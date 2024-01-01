@@ -3,10 +3,11 @@ import './Admin.css';
 import { Timestamp, addDoc, collection, doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { db } from '../../../FIrebase/firebase.config';
 import { AuthContext } from '../../../Context/UserContext';
+import Swal from 'sweetalert2';
 
 const Admin = () => {
 
-    const { user } = useContext(AuthContext)
+    const { user } = useContext(AuthContext);
 
     const postCollectionRef = collection(db, 'posts');
 
@@ -16,12 +17,17 @@ const Admin = () => {
         const form = event.target;
         const post = form.post.value;
 
-        console.log('news created: ', post);
+        // console.log('news created: ', post);
+        const time = serverTimestamp();
+        const name = 'Test name';
+
+        const newspost = { post, name, time };
+        console.log('news created: ', newspost);
         form.reset();
 
         try {
             await addDoc(postCollectionRef, {
-                post,
+                newspost,
                 author: user.displayName,
                 userId: user.uid,
                 createdAt: serverTimestamp(),
@@ -31,6 +37,27 @@ const Admin = () => {
         } catch (error) {
             console.error("Error creating post", error);
         }
+
+        fetch('http://localhost:5000/news', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newspost)
+        })
+            .then(res => res.json()
+                .then(data => {
+                    console.log(data);
+                    if(data.insertedId){
+                        Swal.fire({
+                            title: 'Success!',
+                            text: 'Post created  Successfully',
+                            icon: 'success',
+                            confirmButtonText: 'Cool'
+                          })
+                    }
+                }))
+
     };
 
 
