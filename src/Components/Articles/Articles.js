@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Articles.css';
 import error from '../img/error.gif';
 import Head from '../Head/Head';
@@ -13,6 +13,8 @@ const Articles = () => {
 
 
     const article = useLoaderData();
+
+    const [articles, setArticles] = useState(article);
 
     const handleReadMode = _id => { console.log(_id) }
 
@@ -44,7 +46,9 @@ const Articles = () => {
                                 title: "Deleted!",
                                 text: "Your Article has been deleted.",
                                 icon: "success"
-                            });
+                            })
+                            const remaining = articles.filter(art => art._id !== _id);
+                            setArticles(remaining);
                         }
                     })
 
@@ -71,7 +75,7 @@ const Articles = () => {
                 {/* blog-container */}
                 <div className="blog-container">
                     {/* box-1 */}
-                    {article.map(article =>
+                    {articles.map(article =>
 
                         <div key={article._id}>
                             <div className="blog-box">
