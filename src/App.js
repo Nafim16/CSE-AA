@@ -1,8 +1,7 @@
 
 import './App.css';
-import { Routes, Route, BrowserRouter, createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './Components/Home/Home';
-import LogReg from './Components/LogReg/LogReg';
 import Login from './Components/LogReg/Login';
 import News from './Components/News/News';
 import Registration from './Components/LogReg/Registration';
@@ -18,71 +17,79 @@ import Articles from './Components/Articles/Articles';
 import Error from './Components/Error/Error';
 import SuperAdmin from './Components/Admins/SuperAdmin/SuperAdmin';
 import CreateEvent from './Components/Carouse_event/CreateEvent';
+import ArticleUpdate from './Components/Articles/ArticleUpdate';
+
 
 
 
 function App() {
 
   const router = createBrowserRouter([
-    { 
-      path: "*", 
-      element: <Error /> 
+    {
+      path: "*",
+      element: <Error />
     },
-    { 
-      path: "/", 
-      element: <Home /> 
+    {
+      path: "/",
+      element: <Home />
     },
-    { 
-      path: "/registration", 
-      element: <Registration /> 
+    {
+      path: "/registration",
+      element: <Registration />
     },
-    { 
-      path: "/login", 
-      element: <Login /> 
+    {
+      path: "/login",
+      element: <Login />
     },
-    { 
-      path: "/news", 
-      element: <PrivateRoute> <News /> </PrivateRoute> 
+    {
+      path: "/news",
+      element: <PrivateRoute> <News /> </PrivateRoute>
     },
-    { 
-      path: "/stories", 
-      element: <Stories /> 
+    {
+      path: "/stories",
+      element: <Stories />
     },
-    { 
-      path: "/businesses", 
-      element: <Businesses /> 
+    {
+      path: "/businesses",
+      element: <Businesses />
     },
-    { 
-      path: "/job", 
-      element: <Job /> 
+    {
+      path: "/job",
+      element: <Job />
     },
-    { 
-      path: "/committee", 
-      element: <Committee /> 
+    {
+      path: "/committee",
+      element: <Committee />
     },
-    { 
-      path: "/about", 
-      element: <About /> 
+    {
+      path: "/about",
+      element: <About />
     },
-    { 
-      path: "/contact", 
-      element: <Contact /> 
+    {
+      path: "/contact",
+      element: <Contact />
     },
-    { 
-      path: "/articles", 
-      element: <Articles /> 
+    {
+      path: "/articles",
+      element: <Articles />,
+      loader: () => fetch('http://localhost:5000/article')
     },
-    { 
-      path: "/profile", 
-      element: <PrivateRoute> <Profile /> </PrivateRoute> 
+    {
+      path: 'ArticleUpdate/:id',
+      element: <ArticleUpdate />,
+      loader: ({ params }) => fetch(`http://localhost:5000/article/${params.id}`)
     },
-    { 
-      path: "/superadmin", 
-      element: <PrivateRoute> <SuperAdmin /> </PrivateRoute> 
+    {
+      path: "/profile",
+      element: <PrivateRoute> <Profile /> </PrivateRoute>
     },
-    { 
-      path: "/createEvent", 
-      element: <CreateEvent /> 
+    {
+      path: "/superadmin",
+      element: <PrivateRoute> <SuperAdmin /> </PrivateRoute>
+    },
+    {
+      path: "/createEvent",
+      element: <CreateEvent />
     },
   ])
 
