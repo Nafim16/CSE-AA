@@ -8,13 +8,55 @@ import { AuthContext } from '../../Context/UserContext';
 import logo6 from "../img/logo6.svg"
 import Footer from '../Footer/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const News = () => {
 
     const { user } = useContext(AuthContext);
 
-    const news = useLoaderData();
+    const newsData = useLoaderData();
+
+    const [news, setNews] = useState(newsData);
+
+    const handleDelete = _id => {
+        console.log(_id);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                //   Swal.fire({
+                //     title: "Deleted!",
+                //     text: "Your Article has been deleted.",
+                //     icon: "success"
+                //   });
+                fetch(`http://localhost:5000/news/${_id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        if (data.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your News has been deleted.",
+                                icon: "success"
+                            })
+                            const remaining = newsData.filter(NewNews => NewNews._id !== _id);
+                            setNews(remaining);
+                        }
+                    })
+
+            }
+        });
+
+    }
 
 
 
@@ -31,7 +73,7 @@ const News = () => {
 
 
 
-                                {news.map(news=>
+                                {news.map(news =>
 
 
                                     <div className="post-block mt-5" key={news._id}>
@@ -47,6 +89,7 @@ const News = () => {
                                                 </div>
                                             </div>
                                             {
+                                                (user.uid === news.uid) ? <>
                                                     <div className="post-block-user-options">
                                                         <a href="#!" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
                                                             aria-expanded="false">
@@ -54,12 +97,18 @@ const News = () => {
                                                             {/* <FontAwesomeIcon icon="fa-solid fa-ellipsis-vertical" /> */}
                                                         </a>
                                                         <div className="dropdown-menu dropdown-menu-right" aria-labelledby='triggerId'>
-                                                            <a href="#" className="dropdown-item text-danger">Delete
+                                                            <Link to={`/NewsUpdate/${news._id}`}>
+                                                                <button className="dropdown-item text-danger">Update
+                                                                    <i className='bx bx-edit'></i>
+                                                                </button>
+                                                            </Link>
+                                                            <button onClick={() => handleDelete(news._id)} href="#" className="dropdown-item text-danger">Delete
                                                                 <i className='bx bxs-trash'></i>
-                                                            </a>
+                                                            </button>
                                                         </div>
                                                     </div>
-                                                
+                                                </> : <></>
+
                                             }
                                         </div>
                                         <div className="post-block-content mb-2 ">

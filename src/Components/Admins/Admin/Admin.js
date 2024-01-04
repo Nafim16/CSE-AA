@@ -9,7 +9,6 @@ const Admin = () => {
 
     const { user } = useContext(AuthContext);
 
-    const postCollectionRef = collection(db, 'posts');
 
 
     const handlePostSubmit = async (event) => {

@@ -6,7 +6,7 @@ const ArticleUpdate = () => {
 
     const article = useLoaderData();
 
-    
+
     const handleUpdateArticle = event => {
         event.preventDefault();
         const form = event.target;

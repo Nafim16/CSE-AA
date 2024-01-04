@@ -18,6 +18,7 @@ import Error from './Components/Error/Error';
 import SuperAdmin from './Components/Admins/SuperAdmin/SuperAdmin';
 import CreateEvent from './Components/Carouse_event/CreateEvent';
 import ArticleUpdate from './Components/Articles/ArticleUpdate';
+import NewsUpdate from './Components/News/NewsUpdate';
 
 
 
@@ -46,6 +47,12 @@ function App() {
       element: <PrivateRoute> <News /> </PrivateRoute>,
       loader: () => fetch('http://localhost:5000/news')
     },
+    {
+      path: "/NewsUpdate/:id",
+      element: <PrivateRoute> <NewsUpdate /> </PrivateRoute>,
+      loader: ({params}) => fetch(`http://localhost:5000/news/${params.id}`)
+    },
+
     {
       path: "/stories",
       element: <Stories />

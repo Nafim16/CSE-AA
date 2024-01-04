@@ -98,7 +98,6 @@ const Articles = () => {
                                         </Link>
                                         <button onClick={() => handleDelete(article._id)} className="dropdown-item text-danger">Delete
                                             <i className='bx bxs-trash'></i>
-
                                         </button>
                                     </div>
                                 </div>
