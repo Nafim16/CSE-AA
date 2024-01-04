@@ -121,6 +121,26 @@ const Registration = () => {
                 // .catch(error => {
                 //     console.error("error writing document", error);
                 // })
+
+                const userDataWithUID = {
+                    ...userData,
+                    uid: loggedUser.uid,
+                };
+        
+                fetch('http://localhost:5000/user', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json',
+                    },
+                    body: JSON.stringify(userDataWithUID),
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                });
+
+
+
             })
             .catch(error => {
                 console.log(error);
@@ -133,17 +153,17 @@ const Registration = () => {
 
         handleRegisterClick();
 
-        fetch('http://localhost:5000/user', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(userData)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-            })
+        // fetch('http://localhost:5000/user', {
+        //     method: 'POST',
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     body: JSON.stringify(userData)
+        // })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         console.log(data);
+        //     })
 
     };
 

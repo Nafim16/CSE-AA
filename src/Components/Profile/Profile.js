@@ -24,41 +24,6 @@ const Profile = () => {
 
     const [userData, setUserData] = useState(null);
 
-    useEffect(() => {
-        const fetchUserData = async () => {
-            if (user) {
-
-                const uid = user.uid;
-
-                try {
-                    const userDocRef = doc(db, 'users', uid);
-
-                    const docSnap = await getDoc(userDocRef);
-
-                    if (docSnap.exists()) {
-                        setUserData(docSnap.data());
-
-                    }
-                    else {
-                        console.log('doc not found');
-                    }
-                }
-                catch (error) {
-                    console.log('error fetching data', error);
-                }
-
-            }
-        };
-
-        fetchUserData();
-
-    }, [user]);
-
-
-    if (userData) {
-        console.log('user data:', userData);
-    }
-
 
     // const handleUpdateData = (event) => {
     //     event.preventDefault();
