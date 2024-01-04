@@ -8,75 +8,13 @@ import { AuthContext } from '../../Context/UserContext';
 import logo6 from "../img/logo6.svg"
 import Footer from '../Footer/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useLoaderData } from 'react-router-dom';
 
 const News = () => {
 
     const { user } = useContext(AuthContext);
-    const [allUserPost, setAllUserPost] = useState([]);
 
-    useEffect(() => {
-        const fetchAllUsersData = async () => {
-            try {
-                const postCollectionRef = collection(db, 'posts');
-                const querySnapshot = await getDocs(postCollectionRef);
-
-                const postDataArray = [];
-                querySnapshot.forEach((doc) => {
-                    postDataArray.push(doc.data());
-                });
-
-                setAllUserPost(postDataArray);
-            }
-            catch (error) {
-                console.log('error fetching data', error);
-            }
-        }
-        fetchAllUsersData();
-    }, []);
-
-
-    const [userData, setUserData] = useState(null);
-
-    useEffect(() => {
-        const fetchUserData = async () => {
-            if (user) {
-
-                const uid = user.uid;
-
-                try {
-                    const userDocRef = doc(db, 'users', uid);
-
-                    const docSnap = await getDoc(userDocRef);
-
-                    if (docSnap.exists()) {
-                        setUserData(docSnap.data());
-
-                    }
-                    else {
-                        console.log('doc not found');
-                    }
-                }
-                catch (error) {
-                    console.log('error fetching data', error);
-                }
-
-            }
-        };
-
-        fetchUserData();
-
-    }, [user]);
-
-
-    if (userData) {
-        console.log('user data:', userData);
-    }
-
-
-
-    
-
-
+    const news = useLoaderData();
 
 
 
@@ -93,10 +31,10 @@ const News = () => {
 
 
 
-                                {allUserPost.map((posts, _id) => (
+                                {news.map(news=>
 
 
-                                    <div className="post-block mt-5" key={_id}>
+                                    <div className="post-block mt-5" key={news._id}>
                                         <div className="d-flex justify-content-between">
                                             <div className="d-flex mb-3">
                                                 <div className="mr-2">
@@ -105,11 +43,10 @@ const News = () => {
                                                     </a>
                                                 </div>
                                                 <div className='mm'>
-                                                    <h5 className="mb-0" ><a href="#" className="text-dark">{posts.author}</a></h5>
+                                                    <h5 className="mb-0" ><a href="#" className="text-dark">{news.name}</a></h5>
                                                 </div>
                                             </div>
-                                            {userData && ((userData.role === 'superAdmin') || (userData.role === 'Admin')) ?
-                                                <>
+                                            {
                                                     <div className="post-block-user-options">
                                                         <a href="#!" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
                                                             aria-expanded="false">
@@ -122,13 +59,12 @@ const News = () => {
                                                             </a>
                                                         </div>
                                                     </div>
-                                                </> : <>
-                                                </>
+                                                
                                             }
                                         </div>
                                         <div className="post-block-content mb-2 ">
                                             <p className='p'>
-                                                {posts.post}
+                                                {news.post}
                                             </p>
                                             <img src="" alt="" />
                                         </div>
@@ -162,7 +98,7 @@ const News = () => {
                                             </div>
                                         </div>
                                     </div>
-                                ))}
+                                )}
 
 
 

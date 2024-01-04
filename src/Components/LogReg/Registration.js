@@ -55,7 +55,19 @@ const Registration = () => {
         const blood = form.blood.value;
         const gender = form.gender.value;
         const dob = form.dob.value;
-        console.log("SUBMITTED", name, email,  phone, password, confirmpassword, city, batch, blood, gender, dob);
+        console.log("SUBMITTED", name, email, phone, password, confirmpassword, city, batch, blood, gender, dob);
+
+        const userData = {
+            name,
+            email,
+            phone,
+            city,
+            batch,
+            blood,
+            gender,
+            dob,
+            role: 'member',
+        }
 
         if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(password)) {
             setpassError('Minimum eight characters, at least one uppercase letter, one lowercase letter and one number')
@@ -64,16 +76,16 @@ const Registration = () => {
         else if (password !== confirmpassword) {
             setpassError('your password did not match')
             return;
-        } 
-        else if(!/^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.com|hotmail\.com)$/.test(email)){
+        }
+        else if (!/^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.com|hotmail\.com)$/.test(email)) {
             setemailError('please enter valid email')
             return;
         }
-        else if(!/^01[3-9]\d{8}$/.test(phone)){
+        else if (!/^01[3-9]\d{8}$/.test(phone)) {
             setPhoneError('please enter valid number')
             return;
         }
-        else if((name.length && batch.length && city.length && blood.length && dob.length && gender.length)<0){
+        else if ((name.length && batch.length && city.length && blood.length && dob.length && gender.length) < 0) {
             setFillError('please fillup all the fields please')
             return;
         }
@@ -92,36 +104,47 @@ const Registration = () => {
                 const userDocRef = doc(usersCollectionRef, loggedUser.uid);
 
                 // Set the data in the Firestore document
-                setDoc(userDocRef, {
-                    name,
-                    email,
-                    phone,
-                    city,
-                    batch,
-                    blood, 
-                    gender,
-                    dob,
-                    role: "notAdmin",
-                })
-                .then( () => {
-                    console.log("document successfully written!!");
-                })
-                .catch(error => {
-                    console.error("error writing document", error);
-                })
-
-
+                // setDoc(userDocRef, {
+                //     name,
+                //     email,
+                //     phone,
+                //     city,
+                //     batch,
+                //     blood, 
+                //     gender,
+                //     dob,
+                //     role: "notAdmin",
+                // })
+                // .then( () => {
+                //     console.log("document successfully written!!");
+                // })
+                // .catch(error => {
+                //     console.error("error writing document", error);
+                // })
             })
             .catch(error => {
                 console.log(error);
                 if (error.code === "auth/email-already-in-use") {
-                  setemailError('Email is already in use. Please use a different email.');
+                    setemailError('Email is already in use. Please use a different email.');
                 } else {
-                  setemailError('An error occurred while creating the account. Please try again later.');
+                    setemailError('An error occurred while creating the account. Please try again later.');
                 }
-              })
+            })
 
         handleRegisterClick();
+
+        fetch('http://localhost:5000/user', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(userData)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
+
     };
 
 
@@ -130,8 +153,8 @@ const Registration = () => {
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
-                
-                
+
+
             })
             .catch(error => {
                 console.log(error);
@@ -168,14 +191,14 @@ const Registration = () => {
         updateProfile(user, {
             displayName: name
         })
-        .then( () => {
-            console.log('username updated'); 
-        })
-        .catch(error => {
-            console.log(error.message);
-        })
+            .then(() => {
+                console.log('username updated');
+            })
+            .catch(error => {
+                console.log(error.message);
+            })
     }
- 
+
 
 
     return (
@@ -248,10 +271,10 @@ const Registration = () => {
                                     <div className="text-fields email">
                                         <label htmlFor="email"><i className='bx bx-envelope'></i></label>
                                         <input type="email" name="email" id="email" placeholder='Enter Your Email ID ' />
-                                        {/* <input type="email" name="email" id="email" placeholder='Enter Your Email ID ' /> */}                                        
+                                        {/* <input type="email" name="email" id="email" placeholder='Enter Your Email ID ' /> */}
                                     </div>
                                 </div>
-                                
+
                                 <div className="button-container">
                                     <div className="text-fields password">
                                         <label htmlFor="password"><i className='bx bx-lock' ></i></label>
@@ -262,7 +285,7 @@ const Registration = () => {
                                         <input type="password" name="confirmpassword" id="confirmpassword" placeholder='Confirm Password' />
                                     </div>
                                 </div>
-                                
+
                             </div>
 
 

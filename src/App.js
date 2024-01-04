@@ -43,7 +43,8 @@ function App() {
     },
     {
       path: "/news",
-      element: <PrivateRoute> <News /> </PrivateRoute>
+      element: <PrivateRoute> <News /> </PrivateRoute>,
+      loader: () => fetch('http://localhost:5000/news')
     },
     {
       path: "/stories",
@@ -81,7 +82,8 @@ function App() {
     },
     {
       path: "/profile",
-      element: <PrivateRoute> <Profile /> </PrivateRoute>
+      element: <PrivateRoute> <Profile /> </PrivateRoute>,
+      loader: () => fetch('http://localhost:5000/user')
     },
     {
       path: "/superadmin",

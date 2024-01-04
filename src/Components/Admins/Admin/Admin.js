@@ -18,25 +18,14 @@ const Admin = () => {
         const post = form.post.value;
 
         // console.log('news created: ', post);
-        const time = serverTimestamp();
-        const name = 'Test name';
+       
+        const name = user.displayName;
+        const uid = user.uid;
 
-        const newspost = { post, name, time };
+        const newspost = { post, name, uid};
         console.log('news created: ', newspost);
         form.reset();
 
-        try {
-            await addDoc(postCollectionRef, {
-                newspost,
-                author: user.displayName,
-                userId: user.uid,
-                createdAt: serverTimestamp(),
-            });
-
-            console.log("Post created");
-        } catch (error) {
-            console.error("Error creating post", error);
-        }
 
         fetch('http://localhost:5000/news', {
             method: 'POST',
@@ -63,46 +52,9 @@ const Admin = () => {
 
 
 
-    const [userData, setUserData] = useState(null);
-
-    useEffect(() => {
-        const fetchUserData = async () => {
-            if (user) {
-
-                const uid = user.uid;
-
-                try {
-                    const userDocRef = doc(db, 'users', uid);
-
-                    const docSnap = await getDoc(userDocRef);
-
-                    if (docSnap.exists()) {
-                        setUserData(docSnap.data());
-
-                    }
-                    else {
-                        console.log('doc not found');
-                    }
-                }
-                catch (error) {
-                    console.log('error fetching data', error);
-                }
-            }
-        };
-
-        fetchUserData();
-
-    }, [user]);
-
-
-
-
-
-
-
     return (
         <div>
-            {userData && ((userData.role === 'superAdmin') || (userData.role === 'Admin')) ?
+            {
                 <>
                     <div className='mt-5 pt-5'>
                         <div className="d-flex">
@@ -119,7 +71,7 @@ const Admin = () => {
                             </div>
                         </div>
                     </div>
-                </> : <>
+                
                 </>
             }
         </div>
