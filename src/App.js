@@ -19,6 +19,7 @@ import SuperAdmin from './Components/Admins/SuperAdmin/SuperAdmin';
 import CreateEvent from './Components/Carouse_event/CreateEvent';
 import ArticleUpdate from './Components/Articles/ArticleUpdate';
 import NewsUpdate from './Components/News/NewsUpdate';
+import ChangeRole from './Components/Admins/SuperAdmin/ChangeRole';
 
 
 
@@ -94,7 +95,13 @@ function App() {
     },
     {
       path: "/superadmin",
-      element: <PrivateRoute> <SuperAdmin /> </PrivateRoute>
+      element: <PrivateRoute> <SuperAdmin /> </PrivateRoute>,
+      loader: () => fetch('http://localhost:5000/user')
+    },
+    {
+      path: "/changerole/:id",
+      element: <PrivateRoute> <ChangeRole /> </PrivateRoute>,
+      loader: ({ params }) => fetch(`http://localhost:5000/user/${params.id}`)
     },
     {
       path: "/createEvent",

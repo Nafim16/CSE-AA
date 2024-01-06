@@ -85,7 +85,7 @@ const Registration = () => {
             setPhoneError('please enter valid number')
             return;
         }
-        else if ((name.length && batch.length && city.length && blood.length && dob.length && gender.length) < 0) {
+        else if ((name.length && batch.length && city.length && blood.length && dob.length && gender.length) === 0) {
             setFillError('please fillup all the fields please')
             return;
         }
@@ -126,7 +126,7 @@ const Registration = () => {
                     ...userData,
                     uid: loggedUser.uid,
                 };
-        
+
                 fetch('http://localhost:5000/user', {
                     method: 'POST',
                     headers: {
@@ -134,10 +134,10 @@ const Registration = () => {
                     },
                     body: JSON.stringify(userDataWithUID),
                 })
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data);
-                });
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                    });
 
 
 
@@ -173,8 +173,6 @@ const Registration = () => {
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
-
-
             })
             .catch(error => {
                 console.log(error);

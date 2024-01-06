@@ -19,48 +19,13 @@ const Head = () => {
             .catch(error => console.error(error))
     }
 
-
-    const [userData, setUserData] = useState(null);
-
+    const [userData, setUserData] = useState([]);
     useEffect(() => {
-        const fetchUserData = async () => {
-            if (user) {
+        fetch('http://localhost:5000/user')
+            .then(res => res.json())
+            .then(data => setUserData(data))
 
-                const uid = user.uid;
-
-                try {
-                    const userDocRef = doc(db, 'users', uid);
-
-                    const docSnap = await getDoc(userDocRef);
-
-                    if (docSnap.exists()) {
-                        setUserData(docSnap.data());
-
-                    }
-                    else {
-                        console.log('doc not found');
-                    }
-                }
-                catch (error) {
-                    console.log('error fetching data', error);
-                }
-
-            }
-        };
-
-        fetchUserData();
-
-        // Cleanup function when user logs out
-        return () => {
-            setUserData(null);
-        };
-
-    }, [user]);
-
-    if (userData) {
-        console.log('user data:', userData);
-    }
-
+    }, [])
 
 
     return (
@@ -68,7 +33,7 @@ const Head = () => {
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark nb">
                 {/* <a className="navbar-brand" href="#">CSE-AA-LU</a> */}
                 <Link to={'/'} className="navbar-brand mx-3 fs-5">
-                    <img src={logo6} className='img-fluid' alt=''/>
+                    <img src={logo6} className='img-fluid' alt='' />
                 </Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -119,7 +84,7 @@ const Head = () => {
                     <div className="ms-auto my-2 my-lg-0 mx-5">
 
                         {
-                            (user || userData) ?
+                            (user) ?
                                 <>
                                     <div className="btn-group dropstart">
                                         <button className="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -131,13 +96,32 @@ const Head = () => {
                                                 <div role="separator" className="dropdown-divider"></div>
                                                 <Link to={'/profile'} className="dropdown-item">Profile</Link>
                                                 <div role="separator" className="dropdown-divider"></div>
-                                                
-                                                {
+
+                                                {/* {
                                                     // user.uid === 'VpecidIgQHdNcnSnEADFjha2BF83' 
                                                     userData && userData.role === 'superAdmin' && <>
                                                         <Link to={'/superadmin'} className="dropdown-item">Admin Dashboard</Link>
                                                         <div role="separator" className="dropdown-divider"></div>
                                                     </>
+                                                } */}
+
+                                                {/* {
+                                                    userData.map(userData => 
+                                                        <div key={userData._id}>
+                                                        {userData.role==='superAdmin' ? <>
+                                                            <Link to={'/superadmin'} className="dropdown-item">Admin Dashboard</Link>
+                                                            <div role="separator" className="dropdown-divider"></div>
+                                                        </> : <> </>}
+                                                        </div>
+                                                    )
+                                                } */}
+                                                {
+                                                    userData.find(userDoc => userDoc.uid === user.uid && userDoc.role === 'superAdmin') && (
+                                                        <>
+                                                            <Link to={'/superadmin'} className="dropdown-item">Admin Dashboard</Link>
+                                                            <div role="separator" className="dropdown-divider"></div>
+                                                        </>
+                                                    )
                                                 }
 
                                                 <button onClick={handleLogOut} className="btn btn-outline-danger mx-2" type="submit">Logout</button>
