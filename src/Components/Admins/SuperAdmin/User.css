@@ -1,4 +1,3 @@
-/* CustomActivityCard.css */
 
 .custom-card {
     border: 1px solid #ced4da;
@@ -35,4 +34,13 @@
 
 .custom-btn:hover {
     background-color: #0056b3;
+}
+
+.custom-b-t{
+    color: #495057;
+    border: none;
+}
+.custom-color{
+    color: #007bff;
+    border: none;
 }

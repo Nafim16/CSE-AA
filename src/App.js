@@ -97,7 +97,7 @@ function App() {
     {
       path: '/ProfileUpdate/:id',
       element: <ProfileUpdate />,
-      
+      loader: ({ params }) => fetch(`http://localhost:5000/user/${params.id}`)
     },
     {
       path: "/superadmin",
