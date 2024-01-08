@@ -5,7 +5,7 @@ import { AuthContext } from '../../Context/UserContext';
 import info from '../img/info.svg'
 import { db } from '../../FIrebase/firebase.config';
 import { doc, getDoc } from 'firebase/firestore';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 
 
 const Profile = () => {
@@ -13,6 +13,10 @@ const Profile = () => {
     const { user } = useContext(AuthContext);
 
     const currentUser = useLoaderData();
+
+    const handleUpdate = (_id) => {
+        console.log(_id);
+    }
 
     return (
         <div>
@@ -60,7 +64,11 @@ const Profile = () => {
                                                     <input type="text" className="form-control" id="floatingPassword" name='city' defaultValue={currentUser.city} />
                                                     <label htmlFor="floatingPassword">City</label>
                                                 </div>
-                                                <input type="submit" value="Submit" className="nextPage" />
+                                                {/* <input type="submit" value="Submit" className="nextPage" /> */}
+                                                <Link to={`/ProfileUpdate/${currentUser._id}`}>
+                                                    {/* <button to={`/ProfileUpdate/${currentUser._id}`} type="submit" className="nextPage">Update Profile</button> */}
+                                                    <button onClick={() => handleUpdate(currentUser._id)} type="submit" className="nextPage">Update Profile</button>
+                                                </Link>
                                             </form>
                                         </div>
                                     </> : <></>}

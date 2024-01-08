@@ -20,6 +20,7 @@ import CreateEvent from './Components/Carouse_event/CreateEvent';
 import ArticleUpdate from './Components/Articles/ArticleUpdate';
 import NewsUpdate from './Components/News/NewsUpdate';
 import ChangeRole from './Components/Admins/SuperAdmin/ChangeRole';
+import ProfileUpdate from './Components/Profile/ProfileUpdate';
 
 
 
@@ -92,6 +93,11 @@ function App() {
       path: "/profile",
       element: <PrivateRoute> <Profile /> </PrivateRoute>,
       loader: () => fetch('http://localhost:5000/user')
+    },
+    {
+      path: '/ProfileUpdate/:id',
+      element: <ProfileUpdate />,
+      
     },
     {
       path: "/superadmin",
