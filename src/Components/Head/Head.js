@@ -10,6 +10,7 @@ import logo6 from '../img/logo6.svg';
 const Head = () => {
 
 
+    
     const { user, logOut } = useContext(AuthContext);
     // console.log(user);
 
