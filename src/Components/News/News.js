@@ -99,36 +99,37 @@ const News = () => {
                                                 </div>
 
 
-                                {((user.uid === news.uid) || userData.find(userDoc => userDoc.uid === user.uid && (userDoc.role === 'superAdmin' || userDoc.role === 'admin'))) && (
-                                                        <>
-                                                            
-                                                                <div className="post-block-user-options">
-                                                                    <a href="#!" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
-                                                                        aria-expanded="false">
-                                                                        <i className='fa-solid fa-ellipsis-vertical dark' aria-hidden="true"></i>
-                                                                        {/* <FontAwesomeIcon icon="fa-solid fa-ellipsis-vertical" /> */}
-                                                                    </a>
-                                                                    <div className="dropdown-menu dropdown-menu-right" aria-labelledby='triggerId'>
-                                                                        <Link to={`/NewsUpdate/${news._id}`}>
-                                                                            <button className="dropdown-item text-danger">Update
-                                                                                <i className='bx bx-edit'></i>
-                                                                            </button>
-                                                                        </Link>
-                                                                        <button onClick={() => handleDelete(news._id)} href="#" className="dropdown-item text-danger">Delete
-                                                                            <i className='bx bxs-trash'></i>
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            
-                                                        </>
-                                                    )
-                                                }
+                                                {((user.uid === news.uid) || userData.find(userDoc => userDoc.uid === user.uid && (userDoc.role === 'superAdmin' || userDoc.role === 'admin'))) && (
+                                                    <>
+
+                                                        <div className="post-block-user-options">
+                                                            <a href="#!" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                                                                aria-expanded="false">
+                                                                <i className='fa-solid fa-ellipsis-vertical dark' aria-hidden="true"></i>
+                                                                {/* <FontAwesomeIcon icon="fa-solid fa-ellipsis-vertical" /> */}
+                                                            </a>
+                                                            <div className="dropdown-menu dropdown-menu-right" aria-labelledby='triggerId'>
+                                                                <Link to={`/NewsUpdate/${news._id}`}>
+                                                                    <button className="dropdown-item text-danger">Update
+                                                                        <i className='bx bx-edit'></i>
+                                                                    </button>
+                                                                </Link>
+                                                                <button onClick={() => handleDelete(news._id)} href="#" className="dropdown-item text-danger">Delete
+                                                                    <i className='bx bxs-trash'></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+
+                                                    </>
+                                                )}
 
                                             </div>
                                             <div className="post-block-content mb-2 ">
-                                                <p className='p'>
-                                                    {news.post}
-                                                </p>
+                                                <p className='p'
+
+                                                    dangerouslySetInnerHTML={{ __html: news.post }}
+
+                                                />
                                                 <img src="" alt="" />
                                             </div>
                                             <div className="mb-3">

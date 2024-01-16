@@ -1,20 +1,24 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import './Admin.css';
 import { Timestamp, addDoc, collection, doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { db } from '../../../FIrebase/firebase.config';
 import { AuthContext } from '../../../Context/UserContext';
 import Swal from 'sweetalert2';
+import JoditEditor from 'jodit-react';
 
 const Admin = () => {
 
     const { user } = useContext(AuthContext);
 
+    const editor = useRef(null);
+
+    const [post,setPost] = useState('');
 
 
     const handlePostSubmit = async (event) => {
         event.preventDefault();
         const form = event.target;
-        const post = form.post.value;
+        // const post = form.post.value;
 
         // console.log('news created: ', post);
        
@@ -61,7 +65,12 @@ const Admin = () => {
                                 <h3>Create Post</h3>
                                 <form onSubmit={handlePostSubmit}>
                                     <div className="form-group">
-                                        <textarea className="form-control" name='post' placeholder='Write your news........' rows="5"></textarea>
+                                        <JoditEditor
+                                        ref={editor}
+                                        value={post} 
+                                        onChange={setPost}
+                                        />
+                                        {/* <textarea className="form-control" name='post' placeholder='Write your news........' rows="5"></textarea> */}
                                     </div>
                                     <div className="mt-2 d-flex justify-content-end">
                                         <button type="submit " className='btn btn-primary me-2'>create</button>

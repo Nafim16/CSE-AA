@@ -3,15 +3,15 @@
     margin-top: 10px;
     color: #999999;
 }
- 
+
 /* Style the message */
-p {
+/* p {
     font-size: 16px;
     color: #666666;
     text-align: center;
     margin: 10px;
 }
- 
+  */
 .icon {
     font-size: 48px;
     margin-bottom: 20px;
@@ -20,9 +20,9 @@ p {
     background-color: #c9d0da;
     border-radius: 10px;
     padding: 10px;
- 
+
 }
- 
+
 /* .container-fluid {
     margin-top: 40px;
     margin-bottom: 0%;
@@ -35,11 +35,38 @@ p {
     margin-bottom: 0%;
     height: 600px;
 } */
- 
+
 h1.text-start {
- 
     font-size: 24px;
     margin-top: 20px;
     margin-left: 10px;
     color: #333333;
+}
+
+.s-back {
+    background-color: #EFF0FF;
+    height: auto;
+    width: auto;
+}
+
+.s-p {
+    padding-top: 110px;
+}
+
+.s-label {
+    height: 49px;
+    width: 119px;
+}
+
+.s-label .s-text {
+    color: #000000;
+    font-size: 42px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: normal;
+    opacity: 0.7; 
+}
+
+.s-box {
+    max-width: 75%;
 }
