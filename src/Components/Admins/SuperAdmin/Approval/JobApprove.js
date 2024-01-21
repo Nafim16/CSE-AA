@@ -2,7 +2,12 @@ import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 
 const JobApprove = () => {
+
+
+
+
     const [Job, setJob] = useState([]);
+
     useEffect(() => {
         fetch('http://localhost:5000/job')
             .then(res => res.json())
@@ -43,7 +48,11 @@ const JobApprove = () => {
                                 text: "Approved by Admin",
                                 icon: "success"
                             });
-
+                            const remaining = Job.filter(jobs => jobs._id !== _id);
+                            const updated = Job.find(jobs => jobs._id === _id);
+                            updated.approval = 'approved'
+                            const newJobs = [updated, ...remaining];
+                            setJob(newJobs);
                         }
                     })
             }
@@ -70,24 +79,29 @@ const JobApprove = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {Job.map( job=> (
+                                {Job.map(job => (
 
                                     <React.Fragment key={job._id}>
                                         {job.approval === 'WaitingForApprove' && <>
-                                            <tr>
-                                                <td>
-                                                    <div className="pl-3">
-                                                        <span>{job.title}</span>
-                                                    </div>
-                                                </td>
-                                                <td
-                                                    dangerouslySetInnerHTML={{ __html: job.position }}
-                                                />
-                                                <td>
-                                                    <button onClick={() => handleApprove(job._id)} type="submit" className='btn btn-warning'>Approve⇒</button>
-                                                    <button className='btn btn-warning'>Delete</button>
-                                                </td>
-                                            </tr>
+                                            {
+                                                job.approval === 'approved' ?
+                                                    <></> : <>
+                                                        <tr>
+                                                            <td>
+                                                                <div className="pl-3">
+                                                                    <span>{job.title}</span>
+                                                                </div>
+                                                            </td>
+                                                            <td
+                                                                dangerouslySetInnerHTML={{ __html: job.position }}
+                                                            />
+                                                            <td>
+                                                                <button onClick={() => handleApprove(job._id)} type="submit" className='btn btn-warning'>Approve⇒</button>
+                                                                <button className='btn btn-warning'>Delete</button>
+                                                            </td>
+                                                        </tr>
+                                                    </>
+                                            }
                                         </>}
                                     </React.Fragment>
 

@@ -44,7 +44,11 @@ const NewsApprove = () => {
                                 text: "Approved by Admin",
                                 icon: "success"
                             });
-
+                            const remaining = News.filter(news => news._id !== _id);
+                            const updated = News.find(news => news._id === _id);
+                            updated.approval = 'approved'
+                            const newNews = [updated, ...remaining];
+                            setNews(newNews);
                         }
                     })
             }
@@ -75,20 +79,25 @@ const NewsApprove = () => {
 
                                     <React.Fragment key={news._id}>
                                         {news.approval === 'WaitingForApprove' && <>
-                                            <tr>
-                                                <td>
-                                                    <div className="pl-3">
-                                                        <span>{news.name}</span>
-                                                    </div>
-                                                </td>
-                                                <td
-                                                    dangerouslySetInnerHTML={{ __html: news.post }}
-                                                />
-                                                <td>
-                                                    <button onClick={() => handleApprove(news._id)} type="submit" className='btn btn-warning'>Approve⇒</button>
-                                                    <button className='btn btn-warning'>Delete</button>
-                                                </td>
-                                            </tr>
+                                            {
+                                                news.approval === 'approved' ?
+                                                    <></> : <>
+                                                        <tr>
+                                                            <td>
+                                                                <div className="pl-3">
+                                                                    <span>{news.name}</span>
+                                                                </div>
+                                                            </td>
+                                                            <td
+                                                                dangerouslySetInnerHTML={{ __html: news.post }}
+                                                            />
+                                                            <td>
+                                                                <button onClick={() => handleApprove(news._id)} type="submit" className='btn btn-warning'>Approve⇒</button>
+                                                                <button className='btn btn-warning'>Delete</button>
+                                                            </td>
+                                                        </tr>
+                                                    </>
+                                            }
                                         </>}
                                     </React.Fragment>
 

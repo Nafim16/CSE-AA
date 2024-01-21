@@ -43,7 +43,11 @@ const ArticleApprove = () => {
                                 text: "Approved by Admin",
                                 icon: "success"
                             });
-
+                            const remaining = Article.filter(articles => articles._id !== _id);
+                            const updated = Article.find(articles => articles._id === _id);
+                            updated.approval = 'approved'
+                            const newArticles = [updated, ...remaining];
+                            setArticle(newArticles);
                         }
                     })
             }
@@ -70,24 +74,29 @@ const ArticleApprove = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {Article.map( article=> (
+                                {Article.map(article => (
 
                                     <React.Fragment key={article._id}>
                                         {article.approval === 'WaitingForApprove' && <>
-                                            <tr>
-                                                <td>
-                                                    <div className="pl-3">
-                                                        <span>{article.name}</span>
-                                                    </div>
-                                                </td>
-                                                <td
-                                                    dangerouslySetInnerHTML={{ __html: article.details }}
-                                                />
-                                                <td>
-                                                    <button onClick={() => handleApprove(article._id)} type="submit" className='btn btn-warning'>Approve⇒</button>
-                                                    <button className='btn btn-warning'>Delete</button>
-                                                </td>
-                                            </tr>
+                                            {
+                                                article.approval === 'approved' ?
+                                                    <> </> : <>
+                                                        <tr>
+                                                            <td>
+                                                                <div className="pl-3">
+                                                                    <span>{article.name}</span>
+                                                                </div>
+                                                            </td>
+                                                            <td
+                                                                dangerouslySetInnerHTML={{ __html: article.details }}
+                                                            />
+                                                            <td>
+                                                                <button onClick={() => handleApprove(article._id)} type="submit" className='btn btn-warning'>Approve⇒</button>
+                                                                <button className='btn btn-warning'>Delete</button>
+                                                            </td>
+                                                        </tr>
+                                                    </>
+                                            }
                                         </>}
                                     </React.Fragment>
 
