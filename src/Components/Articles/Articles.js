@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Articles.css';
 import error from '../img/error.gif';
 import Head from '../Head/Head';
@@ -7,16 +7,27 @@ import news from '../img/loginarea.png';
 import ArticleCreate from './ArticleCreate';
 import { Link, useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../Context/UserContext';
 
 
 const Articles = () => {
 
-
+    const { user } = useContext(AuthContext);
     const article = useLoaderData();
 
     const [articles, setArticles] = useState(article);
 
     const handleReadMode = _id => { console.log(_id) }
+
+
+    const [userData, setUserData] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:5000/user')
+            .then(res => res.json())
+            .then(data => setUserData(data))
+
+    }, [])
+
 
     const handleDelete = _id => {
         console.log(_id);
@@ -60,7 +71,9 @@ const Articles = () => {
     return (
         <div>
             <Head></Head>
-            <ArticleCreate></ArticleCreate>
+            {(user) ? <>
+                <ArticleCreate></ArticleCreate>
+            </> : <></>}
 
             <section className="blog">
                 {/* Heading */}
@@ -84,23 +97,31 @@ const Articles = () => {
                                     <img src={news} alt="" />
                                 </div>
                                 {/* menu */}
-                                <div className="d-flex justify-content-end mt-1 ">
-                                    <a href="#!" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                        <i className='fa-solid fa-ellipsis-vertical dark' aria-hidden="true"></i>
-                                        {/* <FontAwesomeIcon icon="fa-solid fa-ellipsis-vertical" /> */}
-                                    </a>
-                                    <div className="dropdown-menu dropdown-menu-right" aria-labelledby='triggerId'>
-                                        <Link to={`/ArticleUpdate/${article._id}`}>
-                                        <button className="dropdown-item text-danger">Update
-                                            <i className='bx bx-edit'></i>
-                                        </button>
-                                        </Link>
-                                        <button onClick={() => handleDelete(article._id)} className="dropdown-item text-danger">Delete
-                                            <i className='bx bxs-trash'></i>
-                                        </button>
-                                    </div>
-                                </div>
+                                {(user) ? <>
+                                    {((user.uid === article.uid) || userData.find(userDoc => userDoc.uid === user.uid && (userDoc.role === 'superAdmin' || userDoc.role === 'admin'))) && (
+                                        <>
+                                            <div className="d-flex justify-content-end mt-1 ">
+                                                <a href="#!" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                    <i className='fa-solid fa-ellipsis-vertical dark' aria-hidden="true"></i>
+                                                    {/* <FontAwesomeIcon icon="fa-solid fa-ellipsis-vertical" /> */}
+                                                </a>
+
+                                                <div className="dropdown-menu dropdown-menu-right" aria-labelledby='triggerId'>
+                                                    <Link to={`/ArticleUpdate/${article._id}`}>
+                                                        <button className="dropdown-item text-danger">Update
+                                                            <i className='bx bx-edit'></i>
+                                                        </button>
+                                                    </Link>
+                                                    <button onClick={() => handleDelete(article._id)} className="dropdown-item text-danger">Delete
+                                                        <i className='bx bxs-trash'></i>
+                                                    </button>
+                                                </div>
+
+                                            </div>
+                                        </>
+                                    )}
+                                </> : <></>}
                                 {/*Text */}
                                 <div className="blog-text">
                                     <span>4 Auguest 2023/Web Design</span>

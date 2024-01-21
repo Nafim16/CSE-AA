@@ -10,6 +10,7 @@ import Footer from '../Footer/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import send from '../img/send.svg';
 
 const News = () => {
 
@@ -73,6 +74,7 @@ const News = () => {
         <div>
             <Head></Head>
 
+
             <div className='news'>
                 <Admin></Admin>
                 <div className="main-content">
@@ -81,6 +83,7 @@ const News = () => {
                             <div className="col-sm-6 offset-sm-3">
 
                                 {(user) ? <>
+
 
                                     {news.map(news =>
 
@@ -94,7 +97,8 @@ const News = () => {
                                                         </a>
                                                     </div>
                                                     <div className='mm'>
-                                                        <h5 className="mb-0" ><a href="#" className="text-dark">{news.name}</a></h5>
+                                                        <p className="mb-1 user-Name text-start" >{news.name}</p>
+                                                        <p className='create-time'>Created at</p>
                                                     </div>
                                                 </div>
 
@@ -132,31 +136,73 @@ const News = () => {
                                                 />
                                                 <img src="" alt="" />
                                             </div>
-                                            <div className="mb-3">
+                                            {/* <div className="mb-3">
                                                 <div className="d-flex justify-content-between mb-2">
                                                     <div className="d-flex">
                                                         <span className="text-dark mr-2">Comment</span>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> */}
                                             <hr />
                                             <div className="post-block-comments">
                                                 {/* Comment input */}
+                                                {/* <div className="mb-3 d-flex justify-content-center">
+                                                    <div className='d-flex align-items-center'>
+                                                        <input type="text" className="transparent-input comment-area" placeholder='Add your Comment'/>
+                                                        <div>
+                                                            <button className='b-img'><img src={send} /></button>
+                                                        </div>
+                                                    </div>
+                                                </div> */}
+
                                                 <div className="input-group mb-3">
-                                                    <input type="text" className="form-control" placeholder='Add your Comment' />
-                                                    <div className="input-group-append">
-                                                        <button type="button" className="btn btn-primary">
-                                                            <i className='bx bxs-paper-plane' ></i>
-                                                        </button>
+                                                    <input type="text" className="form-control transparent-input comment-area" placeholder="Add your Comment"/>
+                                                    <button className="b-img"><img src={send} className='img-fluid'/></button>
+                                                </div>
+
+                                                {/* Comment content */}
+                                                <div className="ms-5">
+                                                    <div className="d-flex justify-content-between mb-2">
+                                                        <div className="d-flex">
+                                                            <span className="com mt-1">Comments(5)</span>
+                                                        </div>
+
                                                     </div>
                                                 </div>
-                                                {/* Comment content */}
                                                 <div className="comment-view-box mb-3">
-                                                    <div className="d-flex mb-2">
-                                                        <img src="" alt="" className="author-img author-img-small mr-2" />
+                                                    <div className="d-flex mb-2 justify-content-center">
+                                                        <div className='d-flex align-items-center'>
+                                                            <div>
+                                                                <div className='d-flex justify-content-between'>
+                                                                    <h6 className="text-u">Name</h6>
+                                                                    <p className='text-c'>Created at</p>
+                                                                </div>
+                                                                <div>
+                                                                    <p className="mb-0 text-start">Dr. Reyes accepted the challenge of a new role in managing the Enterprise Leadership Delivery Team at Southwest Airlines.</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         <div>
-                                                            <h6 className="mb-1 text-dark xx">User-X</h6>
-                                                            <p className="mb-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, omnis.</p>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div className="comment-view-box">
+                                                    <div className="d-flex mb-2 justify-content-center">
+                                                        <div className='d-flex align-items-center'>
+                                                            <div>
+                                                                <div className='d-flex justify-content-between'>
+                                                                    <h6 className="text-u">Name</h6>
+                                                                    <p className='text-c'>Created at</p>
+                                                                </div>
+                                                                <div>
+                                                                    <p className="mb-0 text-start">Dr. Reyes accepted the challenge of a new role in managing the Enterprise Leadership Delivery Team at Southwest Airlines.</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div>
+
                                                         </div>
                                                     </div>
                                                 </div>

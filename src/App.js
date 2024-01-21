@@ -21,6 +21,7 @@ import ArticleUpdate from './Components/Articles/ArticleUpdate';
 import NewsUpdate from './Components/News/NewsUpdate';
 import ChangeRole from './Components/Admins/SuperAdmin/ChangeRole';
 import ProfileUpdate from './Components/Profile/ProfileUpdate';
+import JobUpdates from './Components/Job/JobUpdates';
 
 
 
@@ -65,7 +66,14 @@ function App() {
     },
     {
       path: "/job",
-      element: <Job />
+      element: <Job />,
+      loader:() =>fetch('http://localhost:5000/job')
+    },
+
+    {
+      path:'/JobUpdates/:id',
+      element:<JobUpdates />,
+      loader: ({params}) => fetch(`http://localhost:5000/job/${params.id}`)
     },
     {
       path: "/committee",

@@ -24,8 +24,9 @@ const Admin = () => {
        
         const name = user.displayName;
         const uid = user.uid;
+        const approval = 'WaitingForApprove';
 
-        const newspost = { post, name, uid};
+        const newspost = { post, name, uid, approval};
         console.log('news created: ', newspost);
         form.reset();
 

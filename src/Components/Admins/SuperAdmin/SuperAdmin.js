@@ -5,6 +5,9 @@ import Head from '../../Head/Head';
 import { AuthContext } from '../../../Context/UserContext';
 import Error from '../../Error/Error';
 import { Link, useLoaderData } from 'react-router-dom';
+import NewsApprove from './Approval/NewsApprove';
+import JobApprove from './Approval/JobApprove';
+import ArticleApprove from './Approval/ArticleApprove';
 
 const SuperAdmin = () => {
 
@@ -20,6 +23,18 @@ const SuperAdmin = () => {
     return (
         <div>
             <Head></Head>
+
+            <div className='mt-5 p-5'>
+                <NewsApprove></NewsApprove>
+            </div>
+
+            <div className='mt-5 p-5'>
+                <ArticleApprove></ArticleApprove>
+            </div>
+
+            <div className='mt-5 p-5'>
+                <JobApprove></JobApprove>
+            </div>
 
             <div className="mt-5 p-5">
                 {userData.find(userDoc => userDoc.uid === user.uid && userDoc.role === 'superAdmin') ? <>
