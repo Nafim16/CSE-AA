@@ -117,7 +117,7 @@ const Head = () => {
                                                     )
                                                 } */}
                                                 {
-                                                    userData.find(userDoc => userDoc.uid === user.uid && userDoc.role === 'superAdmin') && (
+                                                    userData.find(userDoc => userDoc.uid === user.uid && (userDoc.role === 'superAdmin' || userDoc.role === 'admin' )) && (
                                                         <>
                                                             <Link to={'/superadmin'} className="dropdown-item">Admin Dashboard</Link>
                                                             <div role="separator" className="dropdown-divider"></div>

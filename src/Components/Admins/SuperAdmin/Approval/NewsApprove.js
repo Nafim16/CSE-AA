@@ -61,17 +61,20 @@ const NewsApprove = () => {
     return (
 
 
-        <div className='container-fluid'>
-
+        <div className=''>
             <div className="row">
-                <div className="col-md-6">
-                    <div className="table-wrap">
-                        <table className="table table-responsive-xl">
+                <div className="col-md-12">
+                    <div className=" table-responsive">
+                        <table className="table table-borderless caption-top table-striped table-primary table-hover bg-shadow">
+                            <caption className='fs-2 fw-bold'>News</caption>
                             <thead>
                                 <tr>
-                                    <th>name</th>
-                                    <th>post</th>
+                                    <th>Name</th>
+                                    <th>Details</th>
+                                    <th>date</th>
                                     <th>Status</th>
+                                    <th></th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -81,19 +84,27 @@ const NewsApprove = () => {
                                         {news.approval === 'WaitingForApprove' && <>
                                             {
                                                 news.approval === 'approved' ?
-                                                    <></> : <>
+                                                    <> </> : <>
                                                         <tr>
                                                             <td>
-                                                                <div className="pl-3">
+                                                                <div className="">
                                                                     <span>{news.name}</span>
                                                                 </div>
                                                             </td>
                                                             <td
                                                                 dangerouslySetInnerHTML={{ __html: news.post }}
                                                             />
+                                                            <td>{news.createdAt}</td>
                                                             <td>
-                                                                <button onClick={() => handleApprove(news._id)} type="submit" className='btn btn-warning'>Approve⇒</button>
-                                                                <button className='btn btn-warning'>Delete</button>
+                                                                <span className="text-out-back d-flex justify-content-center align-items-center text-danger mx-auto">
+                                                                    Pending
+                                                                </span>
+                                                            </td>
+                                                            <td>
+                                                                <div className='d-flex justify-content-center align-items-center'>
+                                                                    <button onClick={() => handleApprove(news._id)} type="submit" className='btn btn-outline-success'>Approve⇒</button>
+                                                                    <button className='btn btn-outline-danger'>Decline</button>
+                                                                </div>
                                                             </td>
                                                         </tr>
                                                     </>

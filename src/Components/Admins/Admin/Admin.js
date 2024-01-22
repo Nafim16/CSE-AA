@@ -12,8 +12,8 @@ const Admin = () => {
 
     const editor = useRef(null);
 
-    const [post,setPost] = useState('');
-
+    const [post, setPost] = useState('');
+    const time = new Date();
 
     const handlePostSubmit = async (event) => {
         event.preventDefault();
@@ -21,12 +21,13 @@ const Admin = () => {
         // const post = form.post.value;
 
         // console.log('news created: ', post);
-       
+
         const name = user.displayName;
         const uid = user.uid;
         const approval = 'WaitingForApprove';
+        const createdAt = time.toLocaleString();
 
-        const newspost = { post, name, uid, approval};
+        const newspost = { post, name, uid, createdAt, approval };
         console.log('news created: ', newspost);
         form.reset();
 
@@ -41,13 +42,13 @@ const Admin = () => {
             .then(res => res.json()
                 .then(data => {
                     console.log(data);
-                    if(data.insertedId){
+                    if (data.insertedId) {
                         Swal.fire({
                             title: 'Success!',
                             text: 'Post created  Successfully',
                             icon: 'success',
                             confirmButtonText: 'Cool'
-                          })
+                        })
                     }
                 }))
 
@@ -67,9 +68,9 @@ const Admin = () => {
                                 <form onSubmit={handlePostSubmit}>
                                     <div className="form-group">
                                         <JoditEditor
-                                        ref={editor}
-                                        value={post} 
-                                        onChange={setPost}
+                                            ref={editor}
+                                            value={post}
+                                            onChange={setPost}
                                         />
                                         {/* <textarea className="form-control" name='post' placeholder='Write your news........' rows="5"></textarea> */}
                                     </div>
@@ -80,7 +81,7 @@ const Admin = () => {
                             </div>
                         </div>
                     </div>
-                
+
                 </>
             }
         </div>

@@ -1,12 +1,24 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { AuthContext } from '../../Context/UserContext';
 
 
 const JobCard = ({ job, jobs, setJobs }) => {
-  const { _id, name, title, description, location, position } = job;
+
+  const { user } = useContext(AuthContext);
+
+  const [userData, setUserData] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:5000/user')
+            .then(res => res.json())
+            .then(data => setUserData(data))
+
+    }, [])
+
+  const { _id, name, title, description, location, position, uid } = job;
 
   const handleDelete = _id => {
     Swal.fire({
@@ -57,7 +69,7 @@ const JobCard = ({ job, jobs, setJobs }) => {
 
 
 
-        <div className="grid-item w-100  ">
+        <div className="grid-item w-100">
           <h3 className="job-name"> {job.name} </h3>
           <h3 className="job-title">Hiring {job.title}!</h3>
           <p className="job-position">Position:  {job.position}</p>
@@ -66,20 +78,25 @@ const JobCard = ({ job, jobs, setJobs }) => {
 
 
 
-          <div className="d-flex justify-content-between align-items-center">
-            <Link to={`/JobUpdates/${_id}`}>
-              <button type="button" className="btn btn-outline-primary">
-                <FontAwesomeIcon icon={faPencilAlt} /> Edit
-              </button>
-            </Link>
+          {(user) ? <>
+            {((user.uid === job.uid) || userData.find(userDoc => userDoc.uid === user.uid && (userDoc.role === 'superAdmin' || userDoc.role === 'admin'))) && (
+              <>
 
-            <button type="button" className="btn btn-outline-danger" onClick={() => handleDelete(_id)}>
-              <FontAwesomeIcon icon={faTrash} /> Delete
-            </button>
-          </div>
+                <div className="d-flex justify-content-between align-items-center">
+                  <Link to={`/JobUpdates/${_id}`}>
+                    <button type="button" className="btn btn-outline-primary">
+                      <FontAwesomeIcon icon={faPencilAlt} /> Edit
+                    </button>
+                  </Link>
 
+                  <button type="button" className="btn btn-outline-danger" onClick={() => handleDelete(_id)}>
+                    <FontAwesomeIcon icon={faTrash} /> Delete
+                  </button>
+                </div>
 
-
+              </>
+            )}
+          </> : <></>}
 
         </div>
 

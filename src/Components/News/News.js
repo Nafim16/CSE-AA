@@ -58,7 +58,7 @@ const News = () => {
                                 text: "Your News has been deleted.",
                                 icon: "success"
                             })
-                            const remaining = newsData.filter(NewNews => NewNews._id !== _id);
+                            const remaining = news.filter(NewNews => NewNews._id !== _id);
                             setNews(remaining);
                         }
                     })
@@ -98,7 +98,7 @@ const News = () => {
                                                     </div>
                                                     <div className='mm'>
                                                         <p className="mb-1 user-Name text-start" >{news.name}</p>
-                                                        <p className='create-time'>Created at</p>
+                                                        <p className='create-time'>{news.createdAt}</p>
                                                     </div>
                                                 </div>
 

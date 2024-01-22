@@ -1,9 +1,13 @@
 import jobs from '../img/jobs.svg';
 import './Job.css';
 import Swal from 'sweetalert2';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { AuthContext } from '../../Context/UserContext';
 
 const JobCreate = () => {
+
+
+    const { user } = useContext(AuthContext);
 
     const [fillError, setFillError] = useState('');
 
@@ -21,9 +25,11 @@ const JobCreate = () => {
         const position = form.position.value;
         const location = form.location.value;
         const description = form.description.value;
+        const username = user.displayName;
+        const uid = user.uid;
         const approval = 'WaitingForApprove';
 
-        const newJob = { name, title, position, location, description, approval };
+        const newJob = { name, title, position, location, description, username, uid, approval };
 
         if (name.trim() === '' || title.trim() === '' || position.trim() === '' || location.trim() === '' || description.trim() === '') {
             setFillError('Please fill up all the fields.');

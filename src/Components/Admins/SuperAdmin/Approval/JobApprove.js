@@ -65,55 +65,67 @@ const JobApprove = () => {
     return (
 
 
-        <div className='container-fluid'>
+        <div className=''>
 
-            <div className="row">
-                <div className="col-md-6">
-                    <div className="table-wrap">
-                        <table className="table table-responsive-xl">
-                            <thead>
-                                <tr>
-                                    <th>name</th>
-                                    <th>post</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {Job.map(job => (
+        <div className="row">
+            <div className="col-md-12">
+                <div className=" table-responsive">
+                    <table className="table table-borderless caption-top table-striped table-primary table-hover bg-shadow">
+                        <caption className='fs-2 fw-bold'>Jobs</caption>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Details</th>
+                                <th>date</th>
+                                <th>Status</th>
+                                <th></th>
 
-                                    <React.Fragment key={job._id}>
-                                        {job.approval === 'WaitingForApprove' && <>
-                                            {
-                                                job.approval === 'approved' ?
-                                                    <></> : <>
-                                                        <tr>
-                                                            <td>
-                                                                <div className="pl-3">
-                                                                    <span>{job.title}</span>
-                                                                </div>
-                                                            </td>
-                                                            <td
-                                                                dangerouslySetInnerHTML={{ __html: job.position }}
-                                                            />
-                                                            <td>
-                                                                <button onClick={() => handleApprove(job._id)} type="submit" className='btn btn-warning'>Approve⇒</button>
-                                                                <button className='btn btn-warning'>Delete</button>
-                                                            </td>
-                                                        </tr>
-                                                    </>
-                                            }
-                                        </>}
-                                    </React.Fragment>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {Job.map(job => (
 
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
+                                <React.Fragment key={job._id}>
+                                    {job.approval === 'WaitingForApprove' && <>
+                                        {
+                                            job.approval === 'approved' ?
+                                                <> </> : <>
+                                                    <tr>
+                                                        <td>
+                                                            <div className="">
+                                                                <span>{job.title}</span>
+                                                            </div>
+                                                        </td>
+                                                        <td
+                                                            dangerouslySetInnerHTML={{ __html: job.position }}
+                                                        />
+                                                        <td>12/3/2024</td>
+                                                        <td>
+                                                            <span className="text-out-back d-flex justify-content-center align-items-center text-danger mx-auto">
+                                                                Pending
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <div className='d-flex justify-content-center align-items-center'>
+                                                            <button onClick={() => handleApprove(job._id)} type="submit" className='btn btn-outline-success'>Approve⇒</button>
+                                                            <button className='btn btn-outline-danger'>Decline</button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </>
+                                        }
+                                    </>}
+                                </React.Fragment>
+
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
             </div>
-
-
         </div>
+
+
+    </div>
     );
 };
 
