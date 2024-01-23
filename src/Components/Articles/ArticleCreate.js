@@ -20,6 +20,8 @@ const ArticleCreate = () => {
 
         const newArticle = { title, details, name, uid, approval };
 
+        form.reset();
+
         fetch('http://localhost:5000/article', {
             method: 'POST',
             headers: {

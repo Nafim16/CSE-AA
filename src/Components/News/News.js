@@ -28,6 +28,28 @@ const News = () => {
 
     }, [])
 
+    // //for auto fetching
+    // useEffect(() => {
+    //     const fetchNews = async () => {
+    //         try {
+    //             const response = await fetch('http://localhost:5000/news');
+    //             const data = await response.json();
+    //             setNews(data);
+    //         } catch (error) {
+    //             console.error('Error fetching news:', error);
+    //         }
+    //     };
+
+    //     // Fetch news initially
+    //     fetchNews();
+
+    //     // Set up interval for periodic polling
+    //     const intervalId = setInterval(fetchNews, 1000); // Fetch every 10 seconds
+
+    //     // Clean up interval on component unmount
+    //     return () => clearInterval(intervalId);
+    // }, []);
+
 
     const handleDelete = _id => {
         console.log(_id);
@@ -156,8 +178,8 @@ const News = () => {
                                                 </div> */}
 
                                                 <div className="input-group mb-3">
-                                                    <input type="text" className="form-control transparent-input comment-area" placeholder="Add your Comment"/>
-                                                    <button className="b-img"><img src={send} className='img-fluid'/></button>
+                                                    <input type="text" className="form-control transparent-input comment-area" placeholder="Add your Comment" />
+                                                    <button className="b-img"><img src={send} className='img-fluid' /></button>
                                                 </div>
 
                                                 {/* Comment content */}

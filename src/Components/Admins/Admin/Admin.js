@@ -18,10 +18,20 @@ const Admin = () => {
     const handlePostSubmit = async (event) => {
         event.preventDefault();
         const form = event.target;
-        // const post = form.post.value;
 
-        // console.log('news created: ', post);
+        if (!post.trim()) {
+            // If post value is empty or contains only whitespace
+            Swal.fire({
+                title: 'Error!',
+                text: 'Please write something before submitting.',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            });
+            return;
+        }
 
+        
+        
         const name = user.displayName;
         const uid = user.uid;
         const approval = 'WaitingForApprove';
@@ -45,10 +55,11 @@ const Admin = () => {
                     if (data.insertedId) {
                         Swal.fire({
                             title: 'Success!',
-                            text: 'Post created  Successfully',
+                            text: 'Post created Successfully, Wait for the Admins to Approve it',
                             icon: 'success',
                             confirmButtonText: 'Cool'
                         })
+                        setPost('');
                     }
                 }))
 
