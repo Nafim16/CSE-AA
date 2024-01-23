@@ -57,6 +57,45 @@ const NewsApprove = () => {
 
     }
 
+    const handleDelete = _id => {
+        console.log(_id);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Decline it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                //   Swal.fire({
+                //     title: "Deleted!",
+                //     text: "Your Article has been deleted.",
+                //     icon: "success"
+                //   });
+                fetch(`http://localhost:5000/news/${_id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        if (data.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Decline!",
+                                text: "This News has been deleted.",
+                                icon: "success"
+                            })
+                            const remaining = News.filter(NewNews => NewNews._id !== _id);
+                            setNews(remaining);
+                        }
+                    })
+
+            }
+        });
+
+    }
+
 
     return (
 
@@ -103,7 +142,7 @@ const NewsApprove = () => {
                                                             <td>
                                                                 <div className='d-flex justify-content-center align-items-center'>
                                                                     <button onClick={() => handleApprove(news._id)} type="submit" className='btn btn-outline-success'>Approve⇒</button>
-                                                                    <button className='btn btn-outline-danger'>Decline</button>
+                                                                    <button onClick={() => handleDelete(news._id)} className='btn btn-outline-danger'>Decline</button>
                                                                 </div>
                                                             </td>
                                                         </tr>
