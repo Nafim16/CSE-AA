@@ -16,8 +16,6 @@ const ArticleCreate = () => {
         const name = user.displayName;
         const uid = user.uid;
         const approval = 'WaitingForApprove';
-
-
         const newArticle = { title, details, name, uid, approval };
 
         form.reset();
@@ -42,7 +40,6 @@ const ArticleCreate = () => {
                 }
             })
     }
-
 
 
     return (

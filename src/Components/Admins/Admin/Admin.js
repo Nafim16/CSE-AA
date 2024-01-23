@@ -31,7 +31,6 @@ const Admin = () => {
         }
 
         
-        
         const name = user.displayName;
         const uid = user.uid;
         const approval = 'WaitingForApprove';
