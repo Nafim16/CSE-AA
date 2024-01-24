@@ -104,9 +104,10 @@ const NewsApprove = () => {
             <div className="row">
                 <div className="col-md-12">
                     <div className=" table-responsive">
-                        <table className="table table-borderless caption-top table-striped table-primary table-hover bg-shadow">
+                        <table className="table caption-top table-striped table-primary table-bordered border-secondary table-hover bg-shadow">
+                        
                             <caption className='fs-2 fw-bold'>News</caption>
-                            <thead>
+                            <thead className="table-dark">
                                 <tr>
                                     <th>Name</th>
                                     <th>Details</th>

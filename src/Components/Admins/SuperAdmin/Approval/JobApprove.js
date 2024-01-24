@@ -104,65 +104,65 @@ const JobApprove = () => {
 
         <div className=''>
 
-        <div className="row">
-            <div className="col-md-12">
-                <div className=" table-responsive">
-                    <table className="table table-borderless caption-top table-striped table-primary table-hover bg-shadow">
-                        <caption className='fs-2 fw-bold'>Jobs</caption>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Details</th>
-                                <th>date</th>
-                                <th>Status</th>
-                                <th></th>
+            <div className="row">
+                <div className="col-md-12">
+                    <div className=" table-responsive">
+                        <table className="table caption-top table-striped table-primary table-bordered border-secondary table-hover bg-shadow">
+                            <caption className='fs-2 fw-bold'>Jobs</caption>
+                            <thead className="table-dark">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Details</th>
+                                    <th>date</th>
+                                    <th>Status</th>
+                                    <th></th>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {Job.map(job => (
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {Job.map(job => (
 
-                                <React.Fragment key={job._id}>
-                                    {job.approval === 'WaitingForApprove' && <>
-                                        {
-                                            job.approval === 'approved' ?
-                                                <> </> : <>
-                                                    <tr>
-                                                        <td>
-                                                            <div className="">
-                                                                <span>{job.title}</span>
-                                                            </div>
-                                                        </td>
-                                                        <td
-                                                            dangerouslySetInnerHTML={{ __html: job.position }}
-                                                        />
-                                                        <td>12/3/2024</td>
-                                                        <td>
-                                                            <span className="text-out-back d-flex justify-content-center align-items-center text-danger mx-auto">
-                                                                Pending
-                                                            </span>
-                                                        </td>
-                                                        <td>
-                                                            <div className='d-flex justify-content-center align-items-center'>
-                                                            <button onClick={() => handleApprove(job._id)} type="submit" className='btn btn-outline-success'>Approve⇒</button>
-                                                            <button onClick={() => handleDelete(job._id)} className='btn btn-outline-danger'>Decline</button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </>
-                                        }
-                                    </>}
-                                </React.Fragment>
+                                    <React.Fragment key={job._id}>
+                                        {job.approval === 'WaitingForApprove' && <>
+                                            {
+                                                job.approval === 'approved' ?
+                                                    <> </> : <>
+                                                        <tr>
+                                                            <td>
+                                                                <div className="">
+                                                                    <span>{job.title}</span>
+                                                                </div>
+                                                            </td>
+                                                            <td
+                                                                dangerouslySetInnerHTML={{ __html: job.position }}
+                                                            />
+                                                            <td>12/3/2024</td>
+                                                            <td>
+                                                                <span className="text-out-back d-flex justify-content-center align-items-center text-danger mx-auto">
+                                                                    Pending
+                                                                </span>
+                                                            </td>
+                                                            <td>
+                                                                <div className='d-flex justify-content-center align-items-center'>
+                                                                    <button onClick={() => handleApprove(job._id)} type="submit" className='btn btn-outline-success'>Approve⇒</button>
+                                                                    <button onClick={() => handleDelete(job._id)} className='btn btn-outline-danger'>Decline</button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </>
+                                            }
+                                        </>}
+                                    </React.Fragment>
 
-                            ))}
-                        </tbody>
-                    </table>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
+
+
         </div>
-
-
-    </div>
     );
 };
 

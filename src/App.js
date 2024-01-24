@@ -53,7 +53,7 @@ function App() {
     {
       path: "/NewsUpdate/:id",
       element: <PrivateRoute> <NewsUpdate /> </PrivateRoute>,
-      loader: ({params}) => fetch(`http://localhost:5000/news/${params.id}`)
+      loader: ({ params }) => fetch(`http://localhost:5000/news/${params.id}`)
     },
 
     {
@@ -67,13 +67,13 @@ function App() {
     {
       path: "/job",
       element: <Job />,
-      loader:() =>fetch('http://localhost:5000/job')
+      loader: () => fetch('http://localhost:5000/job')
     },
 
     {
-      path:'/JobUpdates/:id',
-      element:<JobUpdates />,
-      loader: ({params}) => fetch(`http://localhost:5000/job/${params.id}`)
+      path: '/JobUpdates/:id',
+      element: <JobUpdates />,
+      loader: ({ params }) => fetch(`http://localhost:5000/job/${params.id}`)
     },
     {
       path: "/committee",

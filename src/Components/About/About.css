@@ -81,3 +81,10 @@
     box-shadow: 10px 10px 15px gray;
     border-radius: 50%;
 } */
+
+
+.about-bg{
+    background-color: #EFF0FF;
+    height: 100%;
+    width: 100%;
+}

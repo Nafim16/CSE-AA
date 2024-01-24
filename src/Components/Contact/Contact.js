@@ -13,7 +13,7 @@ const Contact = () => {
     return (
         <div>
             <Head></Head>
-            <div className='bg-contact'>
+            <div className='bg-contact vh-100'>
                 <div className="container-fluid justify-content-center mt-5 p-5">
                     <div className="justify-content-center text-center">
 
@@ -65,7 +65,7 @@ const Contact = () => {
                     </div>
                 </div>
             </div>
-            <Footer></Footer>
+            {/* <Footer></Footer> */}
         </div>
     );
 };

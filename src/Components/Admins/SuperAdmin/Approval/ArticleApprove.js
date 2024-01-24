@@ -105,9 +105,9 @@ const ArticleApprove = () => {
             <div className="row">
                 <div className="col-md-12">
                     <div className=" table-responsive">
-                        <table className="table table-borderless caption-top table-striped table-primary table-hover bg-shadow">
+                        <table className="table caption-top table-striped table-primary table-bordered border-secondary table-hover bg-shadow">
                             <caption className='fs-2 fw-bold'>Article</caption>
-                            <thead>
+                            <thead className="table-dark">
                                 <tr>
                                     <th>Name</th>
                                     <th>Details</th>
@@ -142,8 +142,8 @@ const ArticleApprove = () => {
                                                             </td>
                                                             <td>
                                                                 <div className='d-flex justify-content-center align-items-center'>
-                                                                <button onClick={() => handleApprove(article._id)} type="submit" className='btn btn-outline-success'>Approve⇒</button>
-                                                                <button onClick={() => handleDelete(article._id)} className='btn btn-outline-danger'>Decline</button>
+                                                                    <button onClick={() => handleApprove(article._id)} type="submit" className='btn btn-outline-success'>Approve⇒</button>
+                                                                    <button onClick={() => handleDelete(article._id)} className='btn btn-outline-danger'>Decline</button>
                                                                 </div>
                                                             </td>
                                                         </tr>
