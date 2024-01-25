@@ -22,6 +22,7 @@ import NewsUpdate from './Components/News/NewsUpdate';
 import ChangeRole from './Components/Admins/SuperAdmin/ChangeRole';
 import ProfileUpdate from './Components/Profile/ProfileUpdate';
 import JobUpdates from './Components/Job/JobUpdates';
+import UpdateEvent from './Components/Carouse_event/UpdateEvent';
 
 
 
@@ -57,8 +58,9 @@ function App() {
     },
 
     {
-      path: "/stories",
-      element: <Stories />
+      path: "/story",
+      element: <PrivateRoute><Stories /></PrivateRoute>,
+      loader:() => fetch('http://localhost:5000/story')
     },
     {
       path: "/businesses",
@@ -120,6 +122,11 @@ function App() {
     {
       path: "/createEvent",
       element: <CreateEvent />
+    },
+    {
+      path: "/updateEvent/:id",
+      element: <UpdateEvent></UpdateEvent>,
+      loader: ({ params }) => fetch(`http://localhost:5000/event/${params.id}`)
     },
   ])
 

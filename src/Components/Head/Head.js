@@ -60,7 +60,7 @@ const Head = () => {
                         </li>
                         <li className="nav-item">
                             {/* <a className="nav-link" href="#">Stories</a> */}
-                            <Link to={'/stories'} className="nav-link">Stories</Link>
+                            <Link to={'/story'} className="nav-link">Stories</Link>
                         </li>
                         <li className="nav-item">
                             {/* <a className="nav-link" href="#">Committee</a> */}

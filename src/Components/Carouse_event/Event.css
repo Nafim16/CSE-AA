@@ -48,7 +48,7 @@
 
 .container .box-container .box .image img {
     height: 100%;
-    width: 100%;
+    width: 50%;
     object-fit: cover;
 }
 
@@ -96,26 +96,23 @@
     padding-right: 5px;
 }
 
-/* .c-b{
-    
-    border-color: #2a7be4!important;
-    border: 2px solid;
-    
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-} */
-.x{
+
+.x {
     margin: 20px;
     border: none;
 }
-.x:hover{
-    border-color: #2a7be4!important;
+
+.x:hover {
+    border-color: #2a7be4 !important;
     border: 2px solid;
     box-shadow: 10px 10px 15px gray;
 }
 
 
+.deleteBtn {
+    margin-right: 20px;
+}
 
-
-
+.evn-btn {
+    border: none;
+}

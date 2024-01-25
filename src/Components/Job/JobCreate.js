@@ -13,7 +13,7 @@ const JobCreate = () => {
 
 
 
-
+    const time = new Date();
 
     const handleAddJob = (event) => {
         event.preventDefault();
@@ -27,9 +27,10 @@ const JobCreate = () => {
         const description = form.description.value;
         const username = user.displayName;
         const uid = user.uid;
+        const createdAt = time.toLocaleString();
         const approval = 'WaitingForApprove';
 
-        const newJob = { name, title, position, location, description, username, uid, approval };
+        const newJob = { name, title, position, location, description, username, uid, approval, createdAt };
 
         if (name.trim() === '' || title.trim() === '' || position.trim() === '' || location.trim() === '' || description.trim() === '') {
             setFillError('Please fill up all the fields.');

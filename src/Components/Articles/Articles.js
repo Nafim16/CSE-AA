@@ -124,7 +124,7 @@ const Articles = () => {
                                 </> : <></>}
                                 {/*Text */}
                                 <div className="blog-text">
-                                    <span>4 Auguest 2023/Web Design</span>
+                                    <span>{article.createdAt}</span>
                                     <a href="" className='blog-title'>{article.title}</a>
                                     <p>{article.details}</p>
                                     {/* <a href="" onClick={()=> handleReadMode(article._id)}>Read More</a> */}

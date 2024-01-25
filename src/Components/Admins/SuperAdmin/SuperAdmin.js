@@ -9,6 +9,7 @@ import NewsApprove from './Approval/NewsApprove';
 import JobApprove from './Approval/JobApprove';
 import ArticleApprove from './Approval/ArticleApprove';
 import TotalCounts from './TotalCounts';
+import EventApprove from './Approval/EventApprove';
 
 const SuperAdmin = () => {
 
@@ -44,6 +45,11 @@ const SuperAdmin = () => {
                     <div className='mt-5 p-5'>
                         <JobApprove></JobApprove>
                     </div>
+
+                    <div className='mt-5 p-5'>
+                        <EventApprove></EventApprove>
+                    </div>
+
                 </> : <>
 
                 </>}
