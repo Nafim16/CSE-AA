@@ -34,7 +34,7 @@ const About = () => {
                                     <img src={about1} alt="" className='img-fluid' />
                                 </div>
                             </div>
-
+                            <hr />
                             <div className='row mb-5'>
                                 <div className='col-md-5 col-lg-5'>
                                     <img src={about2} alt="" className='img-fluid' />
@@ -44,7 +44,7 @@ const About = () => {
                                     <div>Our Alumni Association is a vibrant community of past graduates, united by shared experiences and a commitment to ongoing success. Through events and networking, we foster connections and mentor future leaders. Join us in celebrating our alma mater's legacy and shaping the narrative of our alumni community. Stay connected for updates and opportunities to make a lasting impact.</div>
                                 </div>
                             </div>
-
+                            <hr />
                             <div className='row'>
                                 <div className='col-md-7 col-lg-7 text-start'>
                                     <div className='fs-2 fw-bold mb-3'>Our Objectives</div>
