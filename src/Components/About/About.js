@@ -6,7 +6,10 @@ import abir3 from '../img/abir3.png';
 import nafim3 from '../img/nafim3.png';
 import prbSir from '../img/prbSir.png';
 import julfa from '../img/julfa.png'
-import about from '../img/about.svg';
+import about1 from '../img/about1.svg';
+import about2 from '../img/about2.svg';
+import about3 from '../img/about3.svg';
+
 
 
 
@@ -25,30 +28,36 @@ const About = () => {
                             <div className='row mb-5'>
                                 <div className='col-md-7 col-lg-7 text-start'>
                                     <div className='fs-2 fw-bold mb-3'>Our Mission</div>
-                                    <div>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</div>
+                                    <div>The mission of the CSE Alumni Association is to cultivate a vibrant community of computer science and engineering graduates from Leading University. We are dedicated to fostering lifelong connections among our members, supporting their professional development, and contributing to the advancement of the computer science field. Through networking opportunities, educational initiatives, and collaborative partnerships, we aim to empower our alumni to thrive in their careers, make a positive impact on society, and maintain a strong connection to our alma mater's.</div>
                                 </div>
                                 <div className='col-md-5 col-lg-5'>
-                                    <img src={about} alt="" className='img-fluid' />
+                                    <img src={about1} alt="" className='img-fluid' />
                                 </div>
                             </div>
 
                             <div className='row mb-5'>
                                 <div className='col-md-5 col-lg-5'>
-                                    <img src={about} alt="" className='img-fluid' />
+                                    <img src={about2} alt="" className='img-fluid' />
                                 </div>
                                 <div className='col-md-7 col-lg-7 text-start'>
                                     <div className='fs-2 fw-bold mb-3'>Our Story</div>
-                                    <div>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</div>
+                                    <div>Our Alumni Association is a vibrant community of past graduates, united by shared experiences and a commitment to ongoing success. Through events and networking, we foster connections and mentor future leaders. Join us in celebrating our alma mater's legacy and shaping the narrative of our alumni community. Stay connected for updates and opportunities to make a lasting impact.</div>
                                 </div>
                             </div>
 
                             <div className='row'>
                                 <div className='col-md-7 col-lg-7 text-start'>
                                     <div className='fs-2 fw-bold mb-3'>Our Objectives</div>
-                                    <div>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</div>
+                                    <div>• Endorse the image of the CSE department. <br />
+                                        • Enhance and promote friendship, unity and brotherhoods among the former students. <br />
+                                        • Help and support the Alumni, friends, and families. <br />
+                                        • Organise re-union, seminar, workshop, pleasure trips for the Alumni. <br />
+                                        • Publish journals, souvenir for the Alumni. <br />
+                                        • Organise social and cultural events. <br />
+                                        • Provide voluntary services to promote welfare of the Leading University CSE Alumni</div>
                                 </div>
                                 <div className='col-md-5 col-lg-5'>
-                                    <img src={about} alt="" className='img-fluid' />
+                                    <img src={about3} alt="" className='img-fluid' />
                                 </div>
                             </div>
                         </div>
@@ -56,7 +65,7 @@ const About = () => {
                 </div>
                 <div className="wrapper">
 
-                    <h1 className='abourH1'>Our Team</h1>
+                    <h1 className='abourH1 fs-1 fw-bold text-secondary'>Our Team</h1>
 
                     <div className="team">
                         <div className="row">

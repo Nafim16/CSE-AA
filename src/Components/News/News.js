@@ -165,7 +165,7 @@ const News = () => {
                                                     </div>
                                                 </div>
                                             </div> */}
-                                            <hr />
+                                            <hr className='blank-line'/>
                                             <div className="post-block-comments">
                                                 {/* Comment input */}
                                                 {/* <div className="mb-3 d-flex justify-content-center">
