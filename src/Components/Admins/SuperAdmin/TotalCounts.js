@@ -50,8 +50,9 @@ const TotalCounts = () => {
                     <div className='col-md-4 col-sm-6 cards-body-low'>
                         <div class="card h-100 custom-card-body-b">
                             <div class="card-body">
-                                <h5 class="card-title">Registered User</h5>
-                                <p class="card-text">Total: {user.length}</p>
+                                <h5 class="card-title fs-4 fw-bold">Registered User</h5>
+                                <br /><br />
+                                <p class="card-text fs-5">Total: {user.length}</p>
 
                             </div>
                         </div>
@@ -59,8 +60,9 @@ const TotalCounts = () => {
                     <div className='col-md-4 col-sm-6 cards-body-low'>
                         <div class="card h-100  custom-card-body-p">
                             <div class="card-body">
-                                <h5 class="card-title">News</h5>
-                                <p class="card-text">Total: {news.length}</p>
+                                <h5 class="card-title fs-4 fw-bold">News</h5>
+                                <br /><br />
+                                <p class="card-text fs-5">Total: {news.length}</p>
 
                             </div>
                         </div>
@@ -68,8 +70,9 @@ const TotalCounts = () => {
                     <div className='col-md-4 col-sm-6 cards-body-low'>
                         <div class="card h-100 custom-card-body-b">
                             <div class="card-body">
-                                <h5 class="card-title">Article</h5>
-                                <p class="card-text">Total: {article.length}</p>
+                                <h5 class="card-title fs-4 fw-bold">Article</h5>
+                                <br /><br />
+                                <p class="card-text fs-5">Total: {article.length}</p>
 
                             </div>
                         </div>
@@ -77,8 +80,9 @@ const TotalCounts = () => {
                     <div className='col-md-4 col-sm-6 cards-body-low'>
                         <div class="card h-100 custom-card-body-p">
                             <div class="card-body">
-                                <h5 class="card-title">Stories</h5>
-                                <p class="card-text">Total: {stories.length}</p>
+                                <h5 class="card-title fs-4 fw-bold">Stories</h5>
+                                <br /><br />
+                                <p class="card-text fs-5">Total: {stories.length}</p>
 
                             </div>
                         </div>
@@ -86,8 +90,9 @@ const TotalCounts = () => {
                     <div className='col-md-4 col-sm-6 cards-body-low'>
                         <div class="card h-100 custom-card-body-b">
                             <div class="card-body">
-                                <h5 class="card-title">Job Post</h5>
-                                <p class="card-text">Total: {job.length}</p>
+                                <h5 class="card-title fs-4 fw-bold">Job Post</h5>
+                                <br /><br />
+                                <p class="card-text fs-5">Total: {job.length}</p>
 
                             </div>
                         </div>
@@ -95,8 +100,9 @@ const TotalCounts = () => {
                     <div className='col-md-4 col-sm-6 cards-body-low'>
                         <div class="card h-100 custom-card-body-p">
                             <div class="card-body">
-                                <h5 class="card-title">Event</h5>
-                                <p class="card-text">Total: {events.length}</p>
+                                <h5 class="card-title fs-4 fw-bold">Event</h5>
+                                <br /><br />
+                                <p class="card-text fs-5">Total: {events.length}</p>
 
                             </div>
                         </div>
