@@ -24,7 +24,9 @@
 
 }
 
+.log-text{
 
+}
 
 .animated-text .text-span {
     position: relative;
@@ -36,6 +38,7 @@
     animation: words 7s infinite;
     line-height: 1.5;
     font-size: 1.2em;
+    font-weight: 600;
 }
 
 
@@ -82,4 +85,31 @@
 
     }
 
+}
+
+
+.shadow-btn {
+    padding: 10px 20px;
+    border: none;
+    font-size: 17px;
+    color: #fff;
+    border-radius: 7px;
+    letter-spacing: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: 0.5s;
+    transition-property: box-shadow;
+
+}
+
+.shadow-btn {
+    background: rgb(255, 25, 0);
+    box-shadow: 0 0 25px rgb(113, 9, 9);
+}
+
+.shadow-btn:hover {
+    box-shadow: 0 0 5px rgb(168, 28, 26),
+        0 0 25px rgb(206, 14, 14),
+        0 0 50px rgb(187, 11, 11),
+        0 0 100px rgb(228, 7, 7);
 }

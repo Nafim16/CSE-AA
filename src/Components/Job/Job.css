@@ -2,11 +2,13 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
+    justify-content: center;
     flex-direction: row;
     max-width: 1600px;
     margin: 0 auto;
     margin-top: 50px;
     margin-bottom: 50px;
+    background-color: #565773;
 }
 
 .grid-item {
@@ -80,3 +82,35 @@
         max-width: 300px;
     }
 }
+
+.job-card {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #ffffff; /* Default background color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Default neomorphic shadow */
+  }
+  
+  .job-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Neomorphic shadow on hover */
+  }
+  
+  .btn-container {
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .btn-container:hover {
+    opacity: 0.8;
+  }
+  
+  .edit-button:hover {
+    text-decoration: underline;
+    /* Add any other text animation styles you want */
+  }
+  
+  .delete-button:hover {
+    background-color: #ff9999; /* Add your desired hover background color */
+    color: #ffffff; /* Text color on hover */
+    box-shadow: 0 8px 16px rgba(255, 153, 153, 0.6); /* Colorful neomorphic shadow on hover */
+  }

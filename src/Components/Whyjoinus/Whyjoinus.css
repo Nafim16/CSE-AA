@@ -4,9 +4,10 @@
     border: 2px solid;
 }
 .backCLR{
-    background-color: beige;
-    margin-top: 5%;
-    margin-bottom: 5%;
+    /* background-color: beige; */
+    background-image: linear-gradient(to right, #d3cce3, #e9e4f0);
+    /* margin-top: 5%;
+    margin-bottom: 5%; */
     overflow: hidden;
 }
 

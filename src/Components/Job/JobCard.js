@@ -69,7 +69,7 @@ const JobCard = ({ job, jobs, setJobs }) => {
 
 
 
-        <div className="grid-item w-100">
+        <div className="grid-item w-100 job-card">
           <h3 className="job-name"> {job.name} </h3>
           <h3 className="job-title">Hiring {job.title}!</h3>
           <p className="job-position">Position:  {job.position}</p>

@@ -20,7 +20,7 @@ const Login = () => {
                     <div className='col-md-4 justify-content-center'>
                         <div className='mb-4 text-center mt-5 p-5'>
                             <div className='animated-text'>
-                                <h3>Join the CSE Alumni Association, Leading University to reconnect with your <span className='text-span'></span></h3>
+                                <h3 className='log-text'>Join the CSE Alumni Association, Leading University to reconnect with your <span className='text-span'></span></h3>
                             </div>
                         </div>
                         {/* <form>
@@ -45,16 +45,26 @@ const Login = () => {
                         <img src={reading} alt="" className='img-fluid justify-content-end mt-3 p-3' />
                     </div>
 
-                    <div className='col-md-12'>
-                        <div className='col'>
-                            <div className='img-area'>
-                                <img src={loginarea} alt="log" className="img-fluid" />
+
+                    <div className='row g-5'>
+                        <div className='col-md-6 d-flex align-items-center' >
+                            <div className='col'>
+                                <div className=''>
+                                    <img src={loginarea} alt="log" className="img-fluid" />
+                                </div>
                             </div>
+                        </div>
+                        <div className='col-md-6 d-flex align-items-center justify-content-center'  >
+                            <button class="shadow-btn login-btn">
+                                CSE Alumni Association
+                            </button>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
+
     );
 };
 
