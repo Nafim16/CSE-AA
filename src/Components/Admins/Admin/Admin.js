@@ -10,16 +10,18 @@ const Admin = () => {
 
     const { user } = useContext(AuthContext);
 
+
+    const time = new Date();
     const editor = useRef(null);
 
     const [post, setPost] = useState('');
-    const time = new Date();
-
     const handlePostSubmit = async (event) => {
         event.preventDefault();
         const form = event.target;
 
-        if (!post.trim()) {
+        const title = form.title.value;
+
+        if (!post.trim() || !title.trim()) {
             // If post value is empty or contains only whitespace
             Swal.fire({
                 title: 'Error!',
@@ -30,15 +32,15 @@ const Admin = () => {
             return;
         }
 
-        
         const name = user.displayName;
         const uid = user.uid;
         const approval = 'WaitingForApprove';
         const createdAt = time.toLocaleString();
 
-        const newspost = { post, name, uid, createdAt, approval };
+        const newspost = { title, post, name, uid, createdAt, approval };
         console.log('news created: ', newspost);
         form.reset();
+
 
 
         fetch('http://localhost:5000/news', {
@@ -65,35 +67,86 @@ const Admin = () => {
     };
 
 
-
-
     return (
         <div>
             {
                 <>
+
                     <div className='mt-5 pt-5'>
                         <div className="d-flex">
-                            <div className="container-fluid w-75">
-                                <h3>Create Post</h3>
-                                <form onSubmit={handlePostSubmit}>
-                                    <div className="form-group">
-                                        <JoditEditor
-                                            ref={editor}
-                                            value={post}
-                                            onChange={setPost}
-                                        />
-                                        {/* <textarea className="form-control" name='post' placeholder='Write your news........' rows="5"></textarea> */}
+                            <div className='mx-auto'>
+                                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Create New Post</button>
+                            </div>
+                            <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div className="modal-dialog">
+                                    <div className="modal-content">
+                                        <div className="modal-header">
+                                            <h1 className="modal-title fs-5" id="exampleModalLabel">New Topic</h1>
+                                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div className="modal-body d-flex justify-content-center">
+                                            <form onSubmit={handlePostSubmit}>
+                                                <div className="mb-3">
+                                                    <label for="recipient-name" className="col-form-label">Title:</label>
+                                                    <input type="text" className="form-control" id="recipient-name" name='title' />
+                                                </div>
+                                                <div className="mb-3">
+                                                    <label for="message-text" className="col-form-label">Details</label>
+                                                    <JoditEditor
+                                                        ref={editor}
+                                                        value={post}
+                                                        onChange={setPost}
+                                                    />
+                                                    {/* <textarea className="form-control" id="message-text" name='post'></textarea> */}
+                                                </div>
+                                                <div className="modal-footer">
+                                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="Submit" className="btn btn-primary">Create</button>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
-                                    <div className="mt-2 d-flex justify-content-end">
-                                        <button type="submit " className='btn btn-primary me-2'>create</button>
-                                    </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                 </>
+
             }
+
+            {/*  */}
+            {/* <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Open modal for</button>
+
+            <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h1 className="modal-title fs-5" id="exampleModalLabel">New message to</h1>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                            <form>
+                                <div className="mb-3">
+                                    <label for="recipient-name" className="col-form-label">Recipient:</label>
+                                    <input type="text" className="form-control" id="recipient-name" />
+                                </div>
+                                <div className="mb-3">
+                                    <label for="message-text" className="col-form-label">Message:</label>
+                                    <textarea className="form-control" id="message-text"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" className="btn btn-primary">Send message</button>
+                        </div>
+                    </div>
+                </div>
+            </div> */}
+            {/*  */}
+
+
         </div>
     );
 };

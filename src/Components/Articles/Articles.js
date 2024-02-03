@@ -128,7 +128,7 @@ const Articles = () => {
                                     <a href="" className='blog-title'>{article.title}</a>
                                     <p>{article.details}</p>
                                     {/* <a href="" onClick={()=> handleReadMode(article._id)}>Read More</a> */}
-                                    <button onClick={() => handleReadMode(article._id)}>Read More</button>
+                                    <button onClick={() => handleReadMode(article._id)} className='nextPage mx-auto'>Read More</button>
                                 </div>
                             </div>
                         </div>

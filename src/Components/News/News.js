@@ -90,15 +90,65 @@ const News = () => {
 
     }
 
+    const time = new Date();
+    const commentSubmit = (event, newsId) => {
+        event.preventDefault();
+        const form = event.target;
+        const comment = form.comment.value;
+        const createdAt = time.toLocaleString();
+        const uid = user.uid;
+        const name = user.displayName;
+        const newComment = { comment, createdAt, name, uid, newsId };
+        console.log(newComment);
+        form.reset();
+
+
+        fetch(`http://localhost:5000/comments`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newComment)
+        })
+            .then(res => res.json()
+                .then(data => {
+                    console.log(data);
+                    if (data.insertedId) {
+                        Swal.fire({
+                            title: 'Success!',
+                            text: 'Post created Successfully, Wait for the Admins to Approve it',
+                            icon: 'success',
+                            confirmButtonText: 'Cool'
+                        })
+
+                    }
+                }))
+    }
+
+
+    const [comments, setComments] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:5000/comments')
+            .then(res => res.json())
+            .then(data => setComments(data))
+
+    }, [])
+
 
 
     return (
         <div>
             <Head></Head>
 
-
             <div className='news'>
                 <Admin></Admin>
+
+
+
+
+
+
+
                 <div className="main-content">
                     <div className="custom-container">
                         <div className="row">
@@ -109,15 +159,14 @@ const News = () => {
 
                                     {news.map(news =>
 
-
                                         <div className="post-block mt-5" key={news._id}>
                                             <div className="d-flex justify-content-between">
                                                 <div className="d-flex mb-3">
-                                                    <div className="mr-2">
+                                                    {/* <div className="mr-2">
                                                         <a href="#" className="text-dark">
                                                             <img src={logo6} alt="" className="author-img" />
                                                         </a>
-                                                    </div>
+                                                    </div> */}
                                                     <div className='mm'>
                                                         <p className="mb-1 user-Name text-start" >{news.name}</p>
                                                         <p className='create-time'>{news.createdAt}</p>
@@ -151,6 +200,7 @@ const News = () => {
 
                                             </div>
                                             <div className="post-block-content mb-2 ">
+                                                <h4 className='text-start'> Topic: {news.title}</h4>
                                                 <p className='p'
 
                                                     dangerouslySetInnerHTML={{ __html: news.post }}
@@ -165,69 +215,47 @@ const News = () => {
                                                     </div>
                                                 </div>
                                             </div> */}
-                                            <hr className='blank-line'/>
+                                            <hr className='blank-line' />
                                             <div className="post-block-comments">
                                                 {/* Comment input */}
-                                                {/* <div className="mb-3 d-flex justify-content-center">
-                                                    <div className='d-flex align-items-center'>
-                                                        <input type="text" className="transparent-input comment-area" placeholder='Add your Comment'/>
-                                                        <div>
-                                                            <button className='b-img'><img src={send} /></button>
-                                                        </div>
+                                                <form onSubmit={(event) => commentSubmit(event, news._id)}>
+                                                    <div className="input-group mb-3">
+                                                        <input name="comment" type="text" className="form-control transparent-input comment-area" placeholder="Add your Comment" />
+                                                        <button type="submit" className="b-img"><img src={send} className='img-fluid' /></button>
                                                     </div>
-                                                </div> */}
-
-                                                <div className="input-group mb-3">
-                                                    <input type="text" className="form-control transparent-input comment-area" placeholder="Add your Comment" />
-                                                    <button className="b-img"><img src={send} className='img-fluid' /></button>
-                                                </div>
-
-                                                {/* Comment content */}
+                                                </form>
+                                                {/* Comment content */}     
+                                                    
                                                 <div className="ms-5">
                                                     <div className="d-flex justify-content-between mb-2">
                                                         <div className="d-flex">
-                                                            <span className="com mt-1">Comments(5)</span>
+                                                            <span className="com mt-1">Comments...</span>
                                                         </div>
 
                                                     </div>
                                                 </div>
-                                                <div className="comment-view-box mb-3">
-                                                    <div className="d-flex mb-2 justify-content-center">
-                                                        <div className='d-flex align-items-center'>
-                                                            <div>
-                                                                <div className='d-flex justify-content-between'>
-                                                                    <h6 className="text-u">Name</h6>
-                                                                    <p className='text-c'>Created at</p>
-                                                                </div>
-                                                                <div>
-                                                                    <p className="mb-0 text-start">Dr. Reyes accepted the challenge of a new role in managing the Enterprise Leadership Delivery Team at Southwest Airlines.</p>
+                                                
+                                                {comments
+                                                    .filter(comment => comment.newsId === news._id)
+                                                    .map(comment => (
+                                                        <div key={comment._id}>
+                                                            <div className="comment-view-box mb-3">
+                                                                <div className="mb-2">
+                                                                    <div>
+                                                                        <div>
+                                                                            <div className='d-flex justify-content-between'>
+                                                                                <h6 className="text-u">{comment.name}</h6>
+                                                                                <p className='text-c'>{comment.createdAt}</p>
+                                                                            </div>
+                                                                            <div>
+                                                                                <p className="mb-0 text-start">{comment.comment}</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div className="comment-view-box">
-                                                    <div className="d-flex mb-2 justify-content-center">
-                                                        <div className='d-flex align-items-center'>
-                                                            <div>
-                                                                <div className='d-flex justify-content-between'>
-                                                                    <h6 className="text-u">Name</h6>
-                                                                    <p className='text-c'>Created at</p>
-                                                                </div>
-                                                                <div>
-                                                                    <p className="mb-0 text-start">Dr. Reyes accepted the challenge of a new role in managing the Enterprise Leadership Delivery Team at Southwest Airlines.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                    ))}
                                             </div>
                                         </div>
                                     )}
