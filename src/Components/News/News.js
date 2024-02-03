@@ -28,7 +28,7 @@ const News = () => {
 
     }, [])
 
-    // //for auto fetching
+    //for auto fetching
     // useEffect(() => {
     //     const fetchNews = async () => {
     //         try {
@@ -90,6 +90,56 @@ const News = () => {
 
     }
 
+
+    // const handleDelete = _id => {
+    //     console.log(_id);
+    //     Swal.fire({
+    //         title: "Are you sure?",
+    //         text: "You won't be able to revert this!",
+    //         icon: "warning",
+    //         showCancelButton: true,
+    //         confirmButtonColor: "#3085d6",
+    //         cancelButtonColor: "#d33",
+    //         confirmButtonText: "Yes, delete it!"
+    //     }).then((result) => {
+    //         if (result.isConfirmed) {
+    //             // Delete the news
+    //             fetch(`http://localhost:5000/news/${_id}`, {
+    //                 method: 'DELETE'
+    //             })
+    //                 .then(res => res.json())
+    //                 .then(data => {
+    //                     console.log(data);
+    //                     if (data.deletedCount > 0) {
+    //                         Swal.fire({
+    //                             title: "Deleted!",
+    //                             text: "Your News has been deleted.",
+    //                             icon: "success"
+    //                         });
+
+    //                         // Delete the associated comments
+    //                         fetch(`http://localhost:5000/comments/${_id}`, {
+    //                             method: 'DELETE'
+    //                         })
+    //                             .then(res => res.json())
+    //                             .then(commentData => {
+    //                                 console.log(commentData);
+    //                                 // Handle the response as needed
+    //                             });
+
+    //                         // Update the state to remove the deleted news
+    //                         const remaining = news.filter(NewNews => NewNews._id !== _id);
+    //                         setNews(remaining);
+    //                     }
+    //                 });
+    //         }
+    //     });
+    // }
+
+
+
+
+
     const time = new Date();
     const commentSubmit = (event, newsId) => {
         event.preventDefault();
@@ -126,13 +176,76 @@ const News = () => {
     }
 
 
-    const [comments, setComments] = useState([]);
-    useEffect(() => {
-        fetch('http://localhost:5000/comments')
-            .then(res => res.json())
-            .then(data => setComments(data))
+    // const [comments, setComments] = useState([]);
+    // useEffect(() => {
+    //     fetch('http://localhost:5000/comments')
+    //         .then(res => res.json())
+    //         .then(data => setComments(data))
 
-    }, [])
+    // }, [])
+
+    const [comments, setComments] = useState([]);
+
+    useEffect(() => {
+        const fetchComments = async () => {
+            try {
+                const response = await fetch('http://localhost:5000/comments');
+                const data = await response.json();
+                setComments(data);
+            } catch (error) {
+                console.error('Error fetching comments:', error);
+            }
+        };
+
+        // Fetch comments initially
+        fetchComments();
+
+        // Set up interval for periodic polling
+        const intervalId = setInterval(fetchComments, 1000); // Fetch every 1 seconds
+
+        // Clean up interval on component unmount
+        return () => clearInterval(intervalId);
+    }, []);
+
+    const deleteComment = _id => {
+        console.log(_id);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                //   Swal.fire({
+                //     title: "Deleted!",
+                //     text: "Your Article has been deleted.",
+                //     icon: "success"
+                //   });
+                fetch(`http://localhost:5000/comments/${_id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        if (data.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your Comment has been deleted.",
+                                icon: "success"
+                            })
+                            const remaining = comments.filter(com => com._id !== _id);
+                            setComments(remaining);
+                        }
+                    })
+
+            }
+        });
+    }
+
+
 
 
 
@@ -224,8 +337,8 @@ const News = () => {
                                                         <button type="submit" className="b-img"><img src={send} className='img-fluid' /></button>
                                                     </div>
                                                 </form>
-                                                {/* Comment content */}     
-                                                    
+                                                {/* Comment content */}
+
                                                 <div className="ms-5">
                                                     <div className="d-flex justify-content-between mb-2">
                                                         <div className="d-flex">
@@ -234,7 +347,7 @@ const News = () => {
 
                                                     </div>
                                                 </div>
-                                                
+
                                                 {comments
                                                     .filter(comment => comment.newsId === news._id)
                                                     .map(comment => (
@@ -245,7 +358,10 @@ const News = () => {
                                                                         <div>
                                                                             <div className='d-flex justify-content-between'>
                                                                                 <h6 className="text-u">{comment.name}</h6>
-                                                                                <p className='text-c'>{comment.createdAt}</p>
+                                                                                <div className='d-flex gap-2'>
+                                                                                    <p className='text-c'>{comment.createdAt}</p>
+                                                                                    <button onClick={() => deleteComment(comment._id)} type="button" className="btn-close"></button>
+                                                                                </div>
                                                                             </div>
                                                                             <div>
                                                                                 <p className="mb-0 text-start">{comment.comment}</p>
