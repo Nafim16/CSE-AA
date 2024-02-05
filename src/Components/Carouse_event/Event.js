@@ -165,8 +165,6 @@ const Event = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-
-
                 fetch(`http://localhost:5000/event/${_id}`, {
                     method: 'DELETE'
                 })
@@ -186,6 +184,10 @@ const Event = () => {
         });
 
 
+    }
+
+    const HandleEventRead =_id=>{
+        console.log(_id);
     }
 
 
@@ -227,46 +229,49 @@ const Event = () => {
                                 <div className='container'>
                                     <div className='box-container'>
                                         {pair.map((event) => (
+
                                             <div className='box' key={event._id}>
-                                                <div className='image '>
-                                                    <img src={sohidminar3} className='img1 ' alt='...' />
-                                                </div>
-                                                <div className='content transition'>
-                                                    <h3>{event.title}</h3>
-                                                    <p>{event.description}</p>
-                                                    <a href='' className='btn'>
-                                                        read more
-                                                    </a>
-                                                    <div className='icons'>
-                                                        <span>
-                                                            <i className='fa-solid fa-calendar-days'></i>
-                                                            {event.startDate}
-                                                        </span>
-                                                        <span>
-                                                            <i className='fa-solid fa-user'></i>
-                                                            {event.endDate}
-                                                        </span>
+                                                
+                                                    <div className='image '>
+                                                        <img src={sohidminar3} className='img1 ' alt='...' />
                                                     </div>
-                                                    {(user) ? <>
-                                                        {((user.uid === event.uid) || userData.find(userDoc => userDoc.uid === user.uid && (userDoc.role === 'superAdmin' || userDoc.role === 'admin'))) && (
-                                                            <>
-                                                                <div>
-                                                                    <span className='deleteBtn'>
-                                                                        <i onClick={() => handleDelete(event._id)} className='fa-solid fa-trash'></i>
-                                                                    </span>
+                                                    <div className='content transition'>
+                                                        <h3>{event.title}</h3>
+                                                        <p>{event.description}</p>
+                                                        <Link className='btn' to={`/readeventdetails/${event._id}`} onClick={() => HandleEventRead(event._id)}>
+                                                            Read more
+                                                        </Link>
+                                                        <div className='icons'>
+                                                            <span>
+                                                                <i className='fa-solid fa-calendar-days'></i>
+                                                                {event.startDate}
+                                                            </span>
+                                                            <span>
+                                                                <i className='fa-solid fa-user'></i>
+                                                                {event.endDate}
+                                                            </span>
+                                                        </div>
+                                                        {(user) ? <>
+                                                            {((user.uid === event.uid) || userData.find(userDoc => userDoc.uid === user.uid && (userDoc.role === 'superAdmin' || userDoc.role === 'admin'))) && (
+                                                                <>
+                                                                    <div>
+                                                                        <span className='deleteBtn'>
+                                                                            <i onClick={() => handleDelete(event._id)} className='fa-solid fa-trash'></i>
+                                                                        </span>
 
-                                                                    <Link to={`/updateEvent/${event._id}`}>
+                                                                        <Link to={`/updateEvent/${event._id}`}>
 
-                                                                        <button className='evn-btn' >
-                                                                            <i class="fa-regular fa-pen-to-square"></i>
-                                                                        </button>
-                                                                    </Link>
+                                                                            <button className='evn-btn' >
+                                                                                <i class="fa-regular fa-pen-to-square"></i>
+                                                                            </button>
+                                                                        </Link>
 
-                                                                </div>
-                                                            </>
-                                                        )}
-                                                    </> : <></>}
-                                                </div>
+                                                                    </div>
+                                                                </>
+                                                            )}
+                                                        </> : <></>}
+                                                    </div>
+                                                
                                             </div>
                                         ))}
                                     </div>

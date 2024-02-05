@@ -1,9 +1,28 @@
 import React from 'react';
-import loginarea from '../img/loginarea.png';
+import sohidminar3 from '../img/loginarea.png';
+import leading from '../img/shohidMinar3.jpg';
 import './Login.css'
 import { useNavigate } from 'react-router-dom';
 import reading from '../img/reading.svg'
 import logo3 from '../img/logo3.svg';
+import { useKeenSlider } from "keen-slider/react"
+
+const carousel = (slider) => {
+    const z = 300
+    function rotate() {
+        const deg = 360 * slider.track.details.progress
+        slider.container.style.transform = `translateZ(-${z}px) rotateY(${-deg}deg)`
+    }
+    slider.on("created", () => {
+        const deg = 360 / slider.slides.length
+        slider.slides.forEach((element, idx) => {
+            element.style.transform = `rotateY(${deg * idx}deg) translateZ(${z}px)`
+        })
+        rotate()
+    })
+    slider.on("detailsChanged", rotate)
+}
+
 
 const Login = () => {
 
@@ -11,6 +30,16 @@ const Login = () => {
     const registerClicked = () => {
         navigate("/registration");
     };
+
+    const [sliderRef] = useKeenSlider( 
+        {
+            loop: true,
+            selector: ".carousel__cell",
+            renderMode: "custom",
+            mode: "free-snap",
+        },
+        [carousel]
+    )
 
     return (
         <div>
@@ -46,11 +75,17 @@ const Login = () => {
                     </div>
 
 
-                    <div className='row g-5'>
-                        <div className='col-md-6 d-flex align-items-center' >
-                            <div className='col'>
-                                <div className=''>
-                                    <img src={loginarea} alt="log" className="img-fluid" />
+                    <div className='row gap-5'>
+                        <div className='col-md-6 d-flex align-items-center justify-content-center' >
+                            <div className="wrapper-x homeStories1">
+                                <div className="scene">
+                                    <div className="carousel keen-slider" ref={sliderRef}>
+                                        <div className="carousel__cell number-slide1 "> <img src={sohidminar3} className='img7' alt='...' /></div>
+                                        <div className="carousel__cell number-slide2"><img src={leading} className='img7' alt='...'/></div>
+                                        <div className="carousel__cell number-slide3">3</div>
+                                        <div className="carousel__cell number-slide4">4</div>
+                                        <div className="carousel__cell number-slide5">5</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

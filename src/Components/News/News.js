@@ -51,46 +51,6 @@ const News = () => {
     // }, []);
 
 
-    const handleDelete = _id => {
-        console.log(_id);
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                //   Swal.fire({
-                //     title: "Deleted!",
-                //     text: "Your Article has been deleted.",
-                //     icon: "success"
-                //   });
-                fetch(`http://localhost:5000/news/${_id}`, {
-                    method: 'DELETE'
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        console.log(data);
-                        if (data.deletedCount > 0) {
-                            Swal.fire({
-                                title: "Deleted!",
-                                text: "Your News has been deleted.",
-                                icon: "success"
-                            })
-                            const remaining = news.filter(NewNews => NewNews._id !== _id);
-                            setNews(remaining);
-                        }
-                    })
-
-            }
-        });
-
-    }
-
-
     // const handleDelete = _id => {
     //     console.log(_id);
     //     Swal.fire({
@@ -103,7 +63,11 @@ const News = () => {
     //         confirmButtonText: "Yes, delete it!"
     //     }).then((result) => {
     //         if (result.isConfirmed) {
-    //             // Delete the news
+    //             //   Swal.fire({
+    //             //     title: "Deleted!",
+    //             //     text: "Your Article has been deleted.",
+    //             //     icon: "success"
+    //             //   });
     //             fetch(`http://localhost:5000/news/${_id}`, {
     //                 method: 'DELETE'
     //             })
@@ -115,26 +79,63 @@ const News = () => {
     //                             title: "Deleted!",
     //                             text: "Your News has been deleted.",
     //                             icon: "success"
-    //                         });
-
-    //                         // Delete the associated comments
-    //                         fetch(`http://localhost:5000/comments/${_id}`, {
-    //                             method: 'DELETE'
     //                         })
-    //                             .then(res => res.json())
-    //                             .then(commentData => {
-    //                                 console.log(commentData);
-    //                                 // Handle the response as needed
-    //                             });
-
-    //                         // Update the state to remove the deleted news
     //                         const remaining = news.filter(NewNews => NewNews._id !== _id);
     //                         setNews(remaining);
     //                     }
-    //                 });
+    //                 })
+
     //         }
     //     });
+
     // }
+
+    const [comments, setComments] = useState([]);
+
+    const handleDelete = _id => {
+        console.log(_id);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Delete the news
+                fetch(`http://localhost:5000/news/${_id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        if (data.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your News has been deleted.",
+                                icon: "success"
+                            });
+
+                            // Delete the associated comments
+                            fetch(`http://localhost:5000/comments/${_id}`, {
+                                method: 'DELETE'
+                            })
+                                .then(res => res.json())
+                                .then(commentData => {
+                                    console.log(commentData);
+                                    // Handle the response as needed
+                                });
+
+                            // Update the state to remove the deleted news
+                            const remaining = news.filter(NewNews => NewNews._id !== _id);
+                            setNews(remaining);
+                        }
+                    });
+            }
+        });
+    }
 
 
 
@@ -184,7 +185,7 @@ const News = () => {
 
     // }, [])
 
-    const [comments, setComments] = useState([]);
+    
 
     useEffect(() => {
         const fetchComments = async () => {
@@ -360,7 +361,7 @@ const News = () => {
                                                                                 <h6 className="text-u">{comment.name}</h6>
                                                                                 <div className='d-flex gap-2'>
                                                                                     <p className='text-c'>{comment.createdAt}</p>
-                                                                                    <button onClick={() => deleteComment(comment._id)} type="button" className="btn-close"></button>
+                                                                                    <button onClick={() => deleteComment(comment._id, true)} type="button" className="btn-close"></button>
                                                                                 </div>
                                                                             </div>
                                                                             <div>

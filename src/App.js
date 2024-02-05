@@ -23,6 +23,7 @@ import ChangeRole from './Components/Admins/SuperAdmin/ChangeRole';
 import ProfileUpdate from './Components/Profile/ProfileUpdate';
 import JobUpdates from './Components/Job/JobUpdates';
 import UpdateEvent from './Components/Carouse_event/UpdateEvent';
+import EventReg from './Components/Carouse_event/EventReg/EventReg';
 
 
 
@@ -126,6 +127,11 @@ function App() {
     {
       path: "/updateEvent/:id",
       element: <UpdateEvent></UpdateEvent>,
+      loader: ({ params }) => fetch(`http://localhost:5000/event/${params.id}`)
+    },
+    {
+      path: "/readeventdetails/:id",
+      element: <EventReg></EventReg>,
       loader: ({ params }) => fetch(`http://localhost:5000/event/${params.id}`)
     },
   ])
