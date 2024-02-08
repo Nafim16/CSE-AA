@@ -28,7 +28,7 @@ const Profile = () => {
                         <div>
                             <h3 className='text-center pb-5 fs-1'>User Information</h3>
                         </div>
-                        <div className='row'>
+                        <div className='row g-5'>
                             <div className='col-md-6'>
                                 <div className='d-flex justify-content-center'>
                                     {currentUser.map(currentUser =>
@@ -61,7 +61,7 @@ const Profile = () => {
                                 </div>
                             </div>
                             <div className='col-md-6'>
-                                <img src={profilecard} alt="" />
+                                <img src={profilecard} alt="" className='img-fluid'/>
                             </div>
                         </div>
                     </div>

@@ -31,7 +31,7 @@ const Login = () => {
         navigate("/registration");
     };
 
-    const [sliderRef] = useKeenSlider( 
+    const [sliderRef] = useKeenSlider(
         {
             loop: true,
             selector: ".carousel__cell",
@@ -75,13 +75,13 @@ const Login = () => {
                     </div>
 
 
-                    <div className='row gap-5'>
+                    <div className='row'>
                         <div className='col-md-6 d-flex align-items-center justify-content-center' >
                             <div className="wrapper-x homeStories1">
                                 <div className="scene">
                                     <div className="carousel keen-slider" ref={sliderRef}>
                                         <div className="carousel__cell number-slide1 "> <img src={sohidminar3} className='img7' alt='...' /></div>
-                                        <div className="carousel__cell number-slide2"><img src={leading} className='img7' alt='...'/></div>
+                                        <div className="carousel__cell number-slide2"><img src={leading} className='img7' alt='...' /></div>
                                         <div className="carousel__cell number-slide3">3</div>
                                         <div className="carousel__cell number-slide4">4</div>
                                         <div className="carousel__cell number-slide5">5</div>

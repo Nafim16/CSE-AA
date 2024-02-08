@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import './HomeArticle.css';
 
 import job from '../../img/job.png';
-import event from '../../img/event.png';
+import event from '../../img/loginarea.png';
 import connect from '../../img/connect.png';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import 'swiper/css/autoplay';
+import { Autoplay } from 'swiper/modules';
 
 const HomeArticle = () => {
     // const isMediumToLarge = window.innerWidth >= 768;
@@ -49,19 +51,24 @@ const HomeArticle = () => {
                 pagination={{
                     clickable: true,
                 }}
-                modules={[Pagination]}
+                autoplay={{
+                    delay: 2500,
+                    disableOnInteraction: false,
+                }}
+
+                modules={[Pagination, Autoplay]}
                 className="mySwiper"
             >
                 {article.map(article => (
                     <SwiperSlide key={article._id}>
                         <div className='btn-light'>
-                        <div className="card text-white h-100 bg mb-3 p-3 shadow" style={{ height: '300px', overflow: 'hidden' }}>
-    <img src={event} alt='' className='card-img-top image1' />
-    <div className="card-header text-primary">{article.title}</div>
-    <div className="card-body">
-        <p className="card-text text-black" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{article.details}</p>
-    </div>
-</div>
+                            <div className="card text-white h-100 bg mb-3 p-3 shadow" style={{ height: '300px', overflow: 'hidden' }}>
+                                <img src={event} alt='' className='card-img-top image1 blog-img' />
+                                <div className="card-header text-primary">{article.title}</div>
+                                <div className="card-body">
+                                    <p className="card-text text-black" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{article.details}</p>
+                                </div>
+                            </div>
 
                         </div>
                     </SwiperSlide>

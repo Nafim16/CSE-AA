@@ -82,7 +82,7 @@ const Articles = () => {
                     <h3>Articles</h3>
                 </div>
 
-                <h1>Total Article: {article.length}</h1>
+                {/* <h1>Total Article: {article.length}</h1> */}
 
 
                 {/* blog-container */}
@@ -91,7 +91,7 @@ const Articles = () => {
                     {articles.map(article =>
 
                         <div key={article._id}>
-                            <div className="blog-box">
+                            <div className="blog-box shadow">
                                 {/* image */}
                                 <div className="blog-img">
                                     <img src={news} alt="" />
@@ -125,8 +125,8 @@ const Articles = () => {
                                 {/*Text */}
                                 <div className="blog-text">
                                     <span>{article.createdAt}</span>
-                                    <a href="" className='blog-title'>{article.title}</a>
-                                    <p>{article.details}</p>
+                                    <div className='blog-title'>{article.title}</div>
+                                    <p  style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{article.details}</p>
                                     {/* <a href="" onClick={()=> handleReadMode(article._id)}>Read More</a> */}
                                     <button onClick={() => handleReadMode(article._id)} className='nextPage mx-auto'>Read More</button>
                                 </div>
