@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { PieChart, Pie, Sector, Tooltip, Cell, ResponsiveContainer } from 'recharts';
+
 
 const TotalCounts = () => {
 
@@ -41,7 +43,29 @@ const TotalCounts = () => {
             .then(data => setUser(data))
     }, []);
 
+    const data = [
+        { name: 'Registered User', value: user.length },
+        { name: 'Forums', value: news.length },
+        { name: 'Articles', value: article.length },
+        { name: 'Stories', value: stories.length },
+        { name: 'Job Post', value: job.length },
+        { name: 'Events', value: events.length },
+    ];
 
+    const COLORS = ['#0088FE', '#00C49F', '#FFac28', '#FF8042', '#7F7757', '#K49010'];
+
+    const RADIAN = Math.PI / 180;
+    const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+        const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+        const x = cx + radius * Math.cos(-midAngle * RADIAN);
+        const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+        return (
+            <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+                {`${(percent * 100).toFixed(0)}%`}
+            </text>
+        );
+    };
 
     return (
         <div className=''>
@@ -110,6 +134,27 @@ const TotalCounts = () => {
                 </div>
             </div>
 
+            <div className='mt-5'>
+                <ResponsiveContainer width="100%" height={600}>
+                    <PieChart>
+                        <Pie
+                            data={data}
+                            cx="50%"
+                            cy="50%"
+                            labelLine={false}
+                            label={renderCustomizedLabel}
+                            outerRadius={230}
+                            fill="#8884d8"
+                            dataKey="value"
+                        >
+                            {data.map((entry, index) => (
+                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                            ))}
+                        </Pie>
+                        <Tooltip />
+                    </PieChart>
+                </ResponsiveContainer>
+            </div>
         </div>
     );
 };
