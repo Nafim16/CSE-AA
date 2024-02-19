@@ -131,12 +131,10 @@ function App() {
     },
     {
       path: "/readeventdetails/:id",
-      element: <EventReg></EventReg>,
+      element: <PrivateRoute><EventReg></EventReg></PrivateRoute>,
       loader: ({ params }) => fetch(`http://localhost:5000/event/${params.id}`)
     },
   ])
-
-
 
   return (
     <div className='App'>

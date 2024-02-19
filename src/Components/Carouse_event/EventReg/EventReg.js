@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 
 
@@ -6,9 +6,27 @@ import './EventReg.css';
 import Head from '../../Head/Head';
 import Footer from '../../Footer/Footer';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../../Context/UserContext';
 
 
 const EventReg = () => {
+
+    const { user } = useContext(AuthContext);
+
+    const [users, setUser] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:5000/user')
+            .then(res => res.json())
+            .then(data => setUser(data))
+    }, []);
+
+
+    const [reg, setReg] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:5000/reg')
+            .then(res => res.json())
+            .then(data => setReg(data))
+    }, [])
 
     const events = useLoaderData();
 
@@ -94,10 +112,6 @@ const EventReg = () => {
 
                 <form onSubmit={(event) => EventRegSubmit(event, events._id)} >
 
-
-
-
-
                     <div className='row'>
 
                         <div className='col-md-6 d-flex align-items-center justify-content-center'>
@@ -145,19 +159,76 @@ const EventReg = () => {
 
                     </div>
 
-
-
-
-
-
-
                     <button class="btn btn-primary " type="submit">Register Event</button>
                 </form>
             </div>
+
+
+            {(user) && <>
+                {users.find(userDoc => userDoc.uid === user.uid && (userDoc.role === 'admin' || userDoc.role === 'superAdmin')) ? <>
+                    <div className='mt-5 p-5'>
+
+                        <div className="row">
+                            <div className="col-md-12">
+                                <div className=" table-responsive">
+                                    <table className="table caption-top table-striped table-primary table-bordered border-secondary table-hover bg-shadow">
+                                        <caption className='fs-2 fw-bold'>Event Registration List</caption>
+                                        <thead className="table-dark">
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Student ID</th>
+                                                <th>Transaction ID</th>
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {reg
+                                                .filter(regs => regs.eventsId === events._id)
+                                                .map(regs => (
+
+                                                    <React.Fragment key={regs._id}>
+
+                                                        <tr>
+                                                            <td>
+                                                                <div className="">
+                                                                    <span>{regs.name}</span>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                {regs.email}
+                                                            </td>
+                                                            <td>
+                                                                {regs.studentId}
+                                                            </td>
+                                                            <td>
+                                                                <span className="text-danger">
+                                                                    {regs.transactionID}
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+
+
+                                                    </React.Fragment>
+
+                                                ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </> : <>
+
+                </>}
+            </>}
+
+
             <Footer></Footer>
 
 
-        </div>
+        </div >
 
     );
 
