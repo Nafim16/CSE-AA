@@ -185,7 +185,7 @@ const News = () => {
 
     // }, [])
 
-    
+
 
     useEffect(() => {
         const fetchComments = async () => {
@@ -273,107 +273,106 @@ const News = () => {
 
                                     {news.map(news =>
 
-                                        <div className="post-block mt-5" key={news._id}>
-                                            <div className="d-flex justify-content-between">
-                                                <div className="d-flex mb-3">
-                                                    {/* <div className="mr-2">
+                                        <div key={news._id}>
+                                            {news.approval === 'approved' && <>
+                                                <div className="post-block mt-5">
+                                                    <div className="d-flex justify-content-between">
+                                                        <div className="d-flex mb-3">
+                                                            {/* <div className="mr-2">
                                                         <a href="#" className="text-dark">
                                                             <img src={logo6} alt="" className="author-img" />
                                                         </a>
                                                     </div> */}
-                                                    <div className='mm'>
-                                                        <p className="mb-1 user-Name text-start" >{news.name}</p>
-                                                        <p className='create-time'>{news.createdAt}</p>
-                                                    </div>
-                                                </div>
-
-
-                                                {((user.uid === news.uid) || userData.find(userDoc => userDoc.uid === user.uid && (userDoc.role === 'superAdmin' || userDoc.role === 'admin'))) && (
-                                                    <>
-
-                                                        <div className="post-block-user-options">
-                                                            <a href="#!" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
-                                                                aria-expanded="false">
-                                                                <i className='fa-solid fa-ellipsis-vertical dark' aria-hidden="true"></i>
-                                                                {/* <FontAwesomeIcon icon="fa-solid fa-ellipsis-vertical" /> */}
-                                                            </a>
-                                                            <div className="dropdown-menu dropdown-menu-right" aria-labelledby='triggerId'>
-                                                                <Link to={`/NewsUpdate/${news._id}`}>
-                                                                    <button className="dropdown-item text-danger">Update
-                                                                        <i className='bx bx-edit'></i>
-                                                                    </button>
-                                                                </Link>
-                                                                <button onClick={() => handleDelete(news._id)} href="#" className="dropdown-item text-danger">Delete
-                                                                    <i className='bx bxs-trash'></i>
-                                                                </button>
+                                                            <div className='mm'>
+                                                                <p className="mb-1 user-Name text-start" >{news.name}</p>
+                                                                <p className='create-time'>{news.createdAt}</p>
                                                             </div>
                                                         </div>
 
-                                                    </>
-                                                )}
 
-                                            </div>
-                                            <div className="post-block-content mb-2 ">
-                                                <h4 className='text-start'> Topic: {news.title}</h4>
-                                                <p className='p'
+                                                        {((user.uid === news.uid) || userData.find(userDoc => userDoc.uid === user.uid && (userDoc.role === 'superAdmin' || userDoc.role === 'admin'))) && (
+                                                            <>
 
-                                                    dangerouslySetInnerHTML={{ __html: news.post }}
+                                                                <div className="post-block-user-options">
+                                                                    <a href="#!" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                                                                        aria-expanded="false">
+                                                                        <i className='fa-solid fa-ellipsis-vertical dark' aria-hidden="true"></i>
+                                                                        {/* <FontAwesomeIcon icon="fa-solid fa-ellipsis-vertical" /> */}
+                                                                    </a>
+                                                                    <div className="dropdown-menu dropdown-menu-right" aria-labelledby='triggerId'>
+                                                                        <Link to={`/NewsUpdate/${news._id}`}>
+                                                                            <button className="dropdown-item text-danger">Update
+                                                                                <i className='bx bx-edit'></i>
+                                                                            </button>
+                                                                        </Link>
+                                                                        <button onClick={() => handleDelete(news._id)} href="#" className="dropdown-item text-danger">Delete
+                                                                            <i className='bx bxs-trash'></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
 
-                                                />
-                                                <img src="" alt="" />
-                                            </div>
-                                            {/* <div className="mb-3">
-                                                <div className="d-flex justify-content-between mb-2">
-                                                    <div className="d-flex">
-                                                        <span className="text-dark mr-2">Comment</span>
+                                                            </>
+                                                        )}
+
                                                     </div>
-                                                </div>
-                                            </div> */}
-                                            <hr className='blank-line' />
-                                            <div className="post-block-comments">
-                                                {/* Comment input */}
-                                                <form onSubmit={(event) => commentSubmit(event, news._id)}>
-                                                    <div className="input-group mb-3">
-                                                        <input name="comment" type="text" className="form-control transparent-input comment-area" placeholder="Add your Comment" />
-                                                        <button type="submit" className="b-img"><img src={send} className='img-fluid' /></button>
-                                                    </div>
-                                                </form>
-                                                {/* Comment content */}
 
-                                                <div className="ms-5">
-                                                    <div className="d-flex justify-content-between mb-2">
-                                                        <div className="d-flex">
-                                                            <span className="com mt-1">Comments...</span>
+                                                    <div className="post-block-content mb-2 ">
+                                                        <h4 className='text-start'> Topic: {news.title}</h4>
+                                                        <p className='p'
+
+                                                            dangerouslySetInnerHTML={{ __html: news.post }}
+
+                                                        />
+                                                        <img src="" alt="" />
+                                                    </div>
+
+                                                    <hr className='blank-line' />
+                                                    <div className="post-block-comments">
+                                                        {/* Comment input */}
+                                                        <form onSubmit={(event) => commentSubmit(event, news._id)}>
+                                                            <div className="input-group mb-3">
+                                                                <input name="comment" type="text" className="form-control transparent-input comment-area" placeholder="Add your Comment" />
+                                                                <button type="submit" className="b-img"><img src={send} className='img-fluid' /></button>
+                                                            </div>
+                                                        </form>
+                                                        {/* Comment content */}
+
+                                                        <div className="ms-5">
+                                                            <div className="d-flex justify-content-between mb-2">
+                                                                <div className="d-flex">
+                                                                    <span className="com mt-1">Comments...</span>
+                                                                </div>
+
+                                                            </div>
                                                         </div>
 
-                                                    </div>
-                                                </div>
-
-                                                {comments
-                                                    .filter(comment => comment.newsId === news._id)
-                                                    .map(comment => (
-                                                        <div key={comment._id}>
-                                                            <div className="comment-view-box mb-3">
-                                                                <div className="mb-2">
-                                                                    <div>
-                                                                        <div>
-                                                                            <div className='d-flex justify-content-between'>
-                                                                                <h6 className="text-u">{comment.name}</h6>
-                                                                                <div className='d-flex gap-2'>
-                                                                                    <p className='text-c'>{comment.createdAt}</p>
-                                                                                    <button onClick={() => deleteComment(comment._id, true)} type="button" className="btn-close"></button>
-                                                                                </div>
-                                                                            </div>
+                                                        {comments
+                                                            .filter(comment => comment.newsId === news._id)
+                                                            .map(comment => (
+                                                                <div key={comment._id}>
+                                                                    <div className="comment-view-box mb-3">
+                                                                        <div className="mb-2">
                                                                             <div>
-                                                                                <p className="mb-0 text-start">{comment.comment}</p>
+                                                                                <div>
+                                                                                    <div className='d-flex justify-content-between'>
+                                                                                        <h6 className="text-u">{comment.name}</h6>
+                                                                                        <div className='d-flex gap-2'>
+                                                                                            <p className='text-c'>{comment.createdAt}</p>
+                                                                                            <button onClick={() => deleteComment(comment._id, true)} type="button" className="btn-close"></button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <p className="mb-0 text-start">{comment.comment}</p>
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                    ))}
-                                            </div>
+                                                            ))}
+                                                    </div>
+                                                </div>
+                                            </>}
                                         </div>
                                     )}
 

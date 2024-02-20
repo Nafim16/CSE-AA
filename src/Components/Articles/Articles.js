@@ -91,46 +91,48 @@ const Articles = () => {
                     {articles.map(article =>
 
                         <div key={article._id}>
-                            <div className="blog-box shadow">
-                                {/* image */}
-                                <div className="blog-img">
-                                    <img src={news} alt="" />
-                                </div>
-                                {/* menu */}
-                                {(user) ? <>
-                                    {((user.uid === article.uid) || userData.find(userDoc => userDoc.uid === user.uid && (userDoc.role === 'superAdmin' || userDoc.role === 'admin'))) && (
-                                        <>
-                                            <div className="d-flex justify-content-end mt-1 ">
-                                                <a href="#!" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
-                                                    aria-expanded="false">
-                                                    <i className='fa-solid fa-ellipsis-vertical dark' aria-hidden="true"></i>
-                                                    {/* <FontAwesomeIcon icon="fa-solid fa-ellipsis-vertical" /> */}
-                                                </a>
+                            {article.approval === 'approved' && <>
+                                <div className="blog-box shadow">
+                                    {/* image */}
+                                    <div className="blog-img">
+                                        <img src={news} alt="" />
+                                    </div>
+                                    {/* menu */}
+                                    {(user) ? <>
+                                        {((user.uid === article.uid) || userData.find(userDoc => userDoc.uid === user.uid && (userDoc.role === 'superAdmin' || userDoc.role === 'admin'))) && (
+                                            <>
+                                                <div className="d-flex justify-content-end mt-1 ">
+                                                    <a href="#!" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
+                                                        <i className='fa-solid fa-ellipsis-vertical dark' aria-hidden="true"></i>
+                                                        {/* <FontAwesomeIcon icon="fa-solid fa-ellipsis-vertical" /> */}
+                                                    </a>
 
-                                                <div className="dropdown-menu dropdown-menu-right" aria-labelledby='triggerId'>
-                                                    <Link to={`/ArticleUpdate/${article._id}`}>
-                                                        <button className="dropdown-item text-danger">Update
-                                                            <i className='bx bx-edit'></i>
+                                                    <div className="dropdown-menu dropdown-menu-right" aria-labelledby='triggerId'>
+                                                        <Link to={`/ArticleUpdate/${article._id}`}>
+                                                            <button className="dropdown-item text-danger">Update
+                                                                <i className='bx bx-edit'></i>
+                                                            </button>
+                                                        </Link>
+                                                        <button onClick={() => handleDelete(article._id)} className="dropdown-item text-danger">Delete
+                                                            <i className='bx bxs-trash'></i>
                                                         </button>
-                                                    </Link>
-                                                    <button onClick={() => handleDelete(article._id)} className="dropdown-item text-danger">Delete
-                                                        <i className='bx bxs-trash'></i>
-                                                    </button>
-                                                </div>
+                                                    </div>
 
-                                            </div>
-                                        </>
-                                    )}
-                                </> : <></>}
-                                {/*Text */}
-                                <div className="blog-text">
-                                    <span>{article.createdAt}</span>
-                                    <div className='blog-title'>{article.title}</div>
-                                    <p  style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{article.details}</p>
-                                    {/* <a href="" onClick={()=> handleReadMode(article._id)}>Read More</a> */}
-                                    <button onClick={() => handleReadMode(article._id)} className='nextPage mx-auto'>Read More</button>
+                                                </div>
+                                            </>
+                                        )}
+                                    </> : <></>}
+                                    {/*Text */}
+                                    <div className="blog-text">
+                                        <span>{article.createdAt}</span>
+                                        <div className='blog-title'>{article.title}</div>
+                                        <p style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{article.details}</p>
+                                        {/* <a href="" onClick={()=> handleReadMode(article._id)}>Read More</a> */}
+                                        <button onClick={() => handleReadMode(article._id)} className='nextPage mx-auto'>Read More</button>
+                                    </div>
                                 </div>
-                            </div>
+                            </>}
                         </div>
 
                     )}
