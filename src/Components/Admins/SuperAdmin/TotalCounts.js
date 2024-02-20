@@ -84,7 +84,7 @@ const TotalCounts = () => {
                     <div className='col-md-4 col-sm-6 cards-body-low'>
                         <div class="card h-100  custom-card-body-p">
                             <div class="card-body">
-                                <h5 class="card-title fs-4 fw-bold">News</h5>
+                                <h5 class="card-title fs-4 fw-bold">Forums</h5>
                                 <br /><br />
                                 <p class="card-text fs-5">Total: {news.length}</p>
 

@@ -42,10 +42,9 @@ const Head = () => {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
-                        <li className="nav-item">
-                            {/* <a className="nav-link" href="#">Businesses</a> */}
+                        {/* <li className="nav-item">
                             <Link to={'/businesses'} className="nav-link">Businesses</Link>
-                        </li>
+                        </li> */}
                         <li className="nav-item">
                             {/* <a className="nav-link" href="#">Job-Opportunity</a> */}
                             <Link to={'/job'} className="nav-link">Job-Opportunity</Link>
