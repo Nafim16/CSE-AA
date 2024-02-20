@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import './HomeArticle.css';
 
-import job from '../../img/job.png';
-import event from '../../img/loginarea.png';
-import connect from '../../img/connect.png';
+
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
@@ -11,14 +9,13 @@ import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import { Autoplay } from 'swiper/modules';
 
-const HomeArticle = () => {
-    // const isMediumToLarge = window.innerWidth >= 768;
+const HomeJobs = () => {
 
-    const [article, setArticle] = useState([]);
+    const [job, setJob] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/article')
+        fetch('http://localhost:5000/job')
             .then(res => res.json())
-            .then(data => setArticle(data))
+            .then(data => setJob(data))
     }, []);
 
 
@@ -43,7 +40,7 @@ const HomeArticle = () => {
 
     return (
         <div className='mt-3'>
-            <h1>Latest Articles</h1>
+            <h1>Latest Jobs</h1>
             <Swiper
                 slidesPerView={slidesPerView}
                 spaceBetween={30}
@@ -59,19 +56,26 @@ const HomeArticle = () => {
                 modules={[Pagination, Autoplay]}
                 className="mySwiper"
             >
-                {article.map(article => (
-                    <React.Fragment key={article._id}>
-                        {article.approval === 'approved' && (
+                {job.map(job => (
+                    <React.Fragment key={job._id}>
+                        {job.approval === 'approved' && (
                             <SwiperSlide>
-                                <div className='btn-light'>
-                                    <div className="card text-white h-100 bg mb-3 p-3 shadow" style={{ height: '300px', overflow: 'hidden' }}>
-                                        <img src={event} alt='' className='card-img-top image1 blog-img' />
-                                        <div className="card-header text-primary">{article.title}</div>
-                                        <div className="card-body">
-                                            <p className="card-text text-black" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{article.details}</p>
+                                {job.approval === 'WaitingForApprove' ? (
+                                    <></> // If the job is waiting for approval, render nothing
+                                ) : (
+                                    <div className='btn-light'>
+                                        <div className="card text-white h-100 bg mb-3 p-3 shadow" style={{ height: '300px', overflow: 'hidden' }}>
+                                            <div className="card-header text-success">
+                                                <h3><b>{job.name}</b></h3>
+                                                <h6>{job.title}</h6>
+                                            </div>
+                                            <div className="card-body">
+                                                <p className='text-black '><b>Location : <br />{job.location}</b></p>
+                                                <p className="card-text text-black" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{job.description}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                )}
                             </SwiperSlide>
                         )}
                     </React.Fragment>
@@ -84,4 +88,4 @@ const HomeArticle = () => {
     );
 };
 
-export default HomeArticle;
+export default HomeJobs;

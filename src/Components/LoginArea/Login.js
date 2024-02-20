@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import sohidminar3 from '../img/loginarea.png';
 import leading from '../img/shohidMinar3.jpg';
 import './Login.css'
@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import reading from '../img/reading.svg'
 import logo3 from '../img/logo3.svg';
 import { useKeenSlider } from "keen-slider/react"
+import { AuthContext } from '../../Context/UserContext';
+import homeAnimation1 from '../img/ProfileAnimation1.gif';
 
 const carousel = (slider) => {
     const z = 300
@@ -30,6 +32,8 @@ const Login = () => {
     const registerClicked = () => {
         navigate("/registration");
     };
+
+    const {user} = useContext(AuthContext);
 
     const [sliderRef] = useKeenSlider(
         {
@@ -90,9 +94,24 @@ const Login = () => {
                             </div>
                         </div>
                         <div className='col-md-6 d-flex align-items-center justify-content-center'  >
-                            <button class="shadow-btn login-btn">
+                            {/* <button class="shadow-btn login-btn">
                                 CSE Alumni Association
-                            </button>
+                            </button> */}
+                            <div class="home-card">
+                                <div class="home-imgbox">
+                                    <div class="home-img">
+                                        <img src={homeAnimation1} alt="" />
+                                    </div>
+                                </div>
+                                {(user) &&
+                                    <>
+                                        <div class="home-details">
+                                            <h2 class="home-title">{user.displayName}</h2>
+                                            <span class="home-caption"><span className='text-black'>ID : </span>2012020191</span>
+                                        </div>
+
+                                    </>}
+                            </div>
                         </div>
                     </div>
                 </div>

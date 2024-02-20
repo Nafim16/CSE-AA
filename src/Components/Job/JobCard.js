@@ -64,45 +64,45 @@ const JobCard = ({ job, jobs, setJobs }) => {
   return (
 
     <div>
-      {job.approval === 'approved' ? <>
-        <div className="grid-container">
 
-          <div className="grid-item w-100 job-card">
-            <h3 className="job-name"> {job.name} </h3>
-            <h3 className="job-title">Hiring {job.title}!</h3>
-            <p className="job-position">Position:  {job.position}</p>
-            <p className="job-location">Location: {job.location}</p>
-            <p className="job-description">{job.description}</p>
+      <div className="grid-container">
+
+        <div className="grid-item w-100 job-card">
+          <h3 className="job-name"> {job.name} </h3>
+          <h3 className="job-title">Hiring {job.title}!</h3>
+          <p className="job-position">Position:  {job.position}</p>
+          <p className="job-location">Location: {job.location}</p>
+          <p className="job-description" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{job.description}</p>
 
 
 
-            {(user) ? <>
-              {((user.uid === job.uid) || userData.find(userDoc => userDoc.uid === user.uid && (userDoc.role === 'superAdmin' || userDoc.role === 'admin'))) && (
-                <>
+          {(user) ? <>
+            {((user.uid === job.uid) || userData.find(userDoc => userDoc.uid === user.uid && (userDoc.role === 'superAdmin' || userDoc.role === 'admin'))) && (
+              <>
 
-                  <div className="d-flex justify-content-between align-items-center">
-                    <Link to={`/JobUpdates/${_id}`}>
-                      <button type="button" className="btn btn-outline-primary">
-                        <FontAwesomeIcon icon={faPencilAlt} /> Edit
-                      </button>
-                    </Link>
-
-                    <button type="button" className="btn btn-outline-danger" onClick={() => handleDelete(_id)}>
-                      <FontAwesomeIcon icon={faTrash} /> Delete
+                <div className="d-flex justify-content-between align-items-center">
+                  <Link to={`/JobUpdates/${_id}`}>
+                    <button type="button" className="btn btn-outline-primary">
+                      <FontAwesomeIcon icon={faPencilAlt} /> Edit
                     </button>
-                  </div>
+                  </Link>
 
-                </>
-              )}
-            </> : <></>}
+                  <button type="button" className="btn btn-outline-danger" onClick={() => handleDelete(_id)}>
+                    <FontAwesomeIcon icon={faTrash} /> Delete
+                  </button>
+                </div>
 
-          </div>
-
-
-
+              </>
+            )}
+          </> : <></>}
 
         </div>
-      </>:<></>}
+
+
+
+
+      </div>
+
     </div>
   );
 };
