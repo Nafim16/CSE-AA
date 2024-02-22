@@ -162,18 +162,18 @@ const EventReg = () => {
                     <button class="btn btn-primary " type="submit">Register Event</button>
                 </form> */}
                 <div className="evt-container">
-                    <form action="" className='evt-form'>
+                    <form onSubmit={(event) => EventRegSubmit(event, events._id)} className='evt-form'>
                         <div className="evt-card evt-cart">
-                            <b><label className="evt-title">Registration</label></b>
+                            <b><h1 className="evt-title">Registration</h1></b>
                             <hr className="evt-hr" />
                             <div className="evt-steps">
                                 <div className="evt-step">
                                     <div>
                                         <span>Details</span>
                                         <div className="">
-                                            <input type="text" placeholder="Enter a Name" className="evt-input_field" />
-                                            <input type="text" placeholder="Enter a Email" className="evt-input_field" />
-                                            <input type="text" placeholder="Enter a Student ID" className="evt-input_field" />
+                                            <input type="text" placeholder="Enter a Name" className="evt-input_field" name='name' />
+                                            <input type="number" placeholder="Enter a Student ID" className="evt-input_field" name='studentId'/>
+                                            <input type="email" placeholder="Enter a Email" className="evt-input_field" name='email'/>
                                         </div>
                                     </div>
                                     <hr className="evt-hr" />
@@ -185,7 +185,7 @@ const EventReg = () => {
                                     <hr className="evt-hr" />
                                     <div className="evt-promo">
                                         <span>Transaction ID</span>
-                                        <input type="text" placeholder="Enter a Promo Code" className="evt-input_field" />
+                                        <input type="text" placeholder="Enter a Promo Code" className="evt-input_field" name="transactionID"/>
                                     </div>
                                     <hr className="evt-hr" />
                                 </div>
