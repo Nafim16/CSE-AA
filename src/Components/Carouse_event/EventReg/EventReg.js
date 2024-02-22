@@ -108,9 +108,9 @@ const EventReg = () => {
             </div>
 
 
-            <div className='formfield mb-5'>
+            <div className='formfield mb-5 d-flex justify-content-center'>
 
-                <form onSubmit={(event) => EventRegSubmit(event, events._id)} >
+                {/* <form onSubmit={(event) => EventRegSubmit(event, events._id)} >
 
                     <div className='row'>
 
@@ -160,7 +160,50 @@ const EventReg = () => {
                     </div>
 
                     <button class="btn btn-primary " type="submit">Register Event</button>
-                </form>
+                </form> */}
+                <div className="evt-container">
+                    <form action="" className='evt-form'>
+                        <div className="evt-card evt-cart">
+                            <b><label className="evt-title">Registration</label></b>
+                            <hr className="evt-hr" />
+                            <div className="evt-steps">
+                                <div className="evt-step">
+                                    <div>
+                                        <span>Details</span>
+                                        <div className="">
+                                            <input type="text" placeholder="Enter a Name" className="evt-input_field" />
+                                            <input type="text" placeholder="Enter a Email" className="evt-input_field" />
+                                            <input type="text" placeholder="Enter a Student ID" className="evt-input_field" />
+                                        </div>
+                                    </div>
+                                    <hr className="evt-hr" />
+                                    <div>
+                                        <span>PAYMENT METHOD</span>
+                                        <p>Bkash</p>
+                                        <p>12345678901</p>
+                                    </div>
+                                    <hr className="evt-hr" />
+                                    <div className="evt-promo">
+                                        <span>Transaction ID</span>
+                                        <input type="text" placeholder="Enter a Promo Code" className="evt-input_field" />
+                                    </div>
+                                    <hr className="evt-hr" />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="evt-card evt-checkout">
+                            <div className="evt-footer d-flex justify-content-end">
+                                <button className="evt-checkout-btn">Register</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+
+
+
+
             </div>
 
 

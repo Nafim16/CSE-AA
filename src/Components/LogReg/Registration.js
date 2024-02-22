@@ -240,7 +240,7 @@ const Registration = () => {
                     <form onSubmit={handleFormSubmitReg} className="signup-form-container">
                         <p className="big-heading">Create Account</p>
                         <div className="social-media-platform">
-                            <a href="#" onClick={handleGoogleSignIn} ><i className='bx bx-lg bxl-google'></i></a>
+                            {/* <a href="#" onClick={handleGoogleSignIn} ><i className='bx bx-lg bxl-google'></i></a> */}
                             {/* <a href="#" ><i className='bx bx-sm bxl-twitter'></i></a>
                             <a href="#" ><i className='bx bx-sm bxl-github'></i></a> */}
                         </div>

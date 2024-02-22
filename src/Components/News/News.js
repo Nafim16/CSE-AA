@@ -358,7 +358,11 @@ const News = () => {
                                                                                         <h6 className="text-u">{comment.name}</h6>
                                                                                         <div className='d-flex gap-2'>
                                                                                             <p className='text-c'>{comment.createdAt}</p>
-                                                                                            <button onClick={() => deleteComment(comment._id, true)} type="button" className="btn-close"></button>
+                                                                                            {((user.uid === comment.uid) || userData.find(userDoc => userDoc.uid === user.uid && (userDoc.role === 'superAdmin' || userDoc.role === 'admin'))) && (
+                                                                                                <>
+                                                                                                    <button onClick={() => deleteComment(comment._id, true)} type="button" className="btn-close"></button>
+                                                                                                </>
+                                                                                            )}
                                                                                         </div>
                                                                                     </div>
                                                                                     <div>
