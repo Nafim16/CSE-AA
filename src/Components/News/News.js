@@ -317,7 +317,7 @@ const News = () => {
                                                     </div>
 
                                                     <div className="post-block-content mb-2 ">
-                                                        <h4 className='text-start'> Topic: {news.title}</h4>
+                                                        <h5 className='text-start'><b> Topic: {news.title}</b></h5>
                                                         <p className='p'
 
                                                             dangerouslySetInnerHTML={{ __html: news.post }}

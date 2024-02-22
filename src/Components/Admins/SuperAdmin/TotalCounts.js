@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { PieChart, Pie, Sector, Tooltip, Cell, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Sector, Tooltip, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend } from 'recharts';
 
 
 const TotalCounts = () => {
@@ -66,6 +66,7 @@ const TotalCounts = () => {
             </text>
         );
     };
+
 
     return (
         <div className=''>
@@ -135,25 +136,52 @@ const TotalCounts = () => {
             </div>
 
             <div className='mt-5'>
-                <ResponsiveContainer width="100%" height={600}>
-                    <PieChart>
-                        <Pie
-                            data={data}
-                            cx="50%"
-                            cy="50%"
-                            labelLine={false}
-                            label={renderCustomizedLabel}
-                            outerRadius={230}
-                            fill="#8884d8"
-                            dataKey="value"
-                        >
-                            {data.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                            ))}
-                        </Pie>
-                        <Tooltip />
-                    </PieChart>
-                </ResponsiveContainer>
+                <div className="row">
+                    <div className="col-md-6">
+                        <ResponsiveContainer width="100%" height={600}>
+                            <PieChart>
+                                <Pie
+                                    data={data}
+                                    cx="50%"
+                                    cy="50%"
+                                    labelLine={false}
+                                    label={renderCustomizedLabel}
+                                    outerRadius={200}
+                                    fill="#8884d8"
+                                    dataKey="value"
+                                >
+                                    {data.map((entry, index) => (
+                                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                    ))}
+                                </Pie>
+                                <Tooltip />
+                            </PieChart>
+                        </ResponsiveContainer>
+                    </div>
+                    <div className="col-md-6">
+                        <ResponsiveContainer width="100%" height="100%">
+                            <BarChart
+                                width={500}
+                                height={300}
+                                data={data}
+                                margin={{
+                                    top: 5,
+                                    right: 30,
+                                    left: 20,
+                                    bottom: 5,
+                                }}
+                                barSize={30}
+                            >
+                                <XAxis dataKey="name" scale="point" padding={{ left: 20, right: 20 }} />
+                                <YAxis />
+                                <Tooltip />
+                                <Legend />
+                                <CartesianGrid strokeDasharray="3 3" />
+                                <Bar dataKey="value" fill="#8884d8" background={{ fill: '#eee' }} />
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </div>
+                </div>
             </div>
         </div>
     );
