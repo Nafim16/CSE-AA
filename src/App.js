@@ -144,7 +144,7 @@ function App() {
     {
       path: "/jobapply/:id",
       element: <ApplyJob></ApplyJob>,
-      loader: ({ params }) => fetch(`http://localhost:5000/jobapply/${params.id}`)
+      loader: ({ params }) => fetch(`http://localhost:5000/job/${params.id}`)
     },
   ])
 
