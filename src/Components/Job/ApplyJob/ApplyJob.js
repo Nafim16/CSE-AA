@@ -16,9 +16,9 @@ const ApplyJob = () => {
             .then(data => setUser(data))
     }, []);
 
-    const [apply, setApply] = useState([]);
+    const [applies, setApply] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/reg')
+        fetch('http://localhost:5000/apply')
             .then(res => res.json())
             .then(data => setApply(data))
     }, [])
@@ -125,19 +125,19 @@ const ApplyJob = () => {
                             <div className="col-md-12">
                                 <div className=" table-responsive">
                                     <table className="table caption-top table-striped table-primary table-bordered border-secondary table-hover bg-shadow">
-                                        <caption className='fs-2 fw-bold'>Event Registration List</caption>
+                                        <caption className='fs-2 fw-bold'>Applied Users</caption>
                                         <thead className="table-dark">
                                             <tr>
                                                 <th>Name</th>
+                                                <th>Contact</th>
                                                 <th>Email</th>
-                                                <th>Student ID</th>
-                                                <th>Transaction ID</th>
+                                                <th>CV</th>
 
 
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {apply
+                                            {applies
                                                 .filter(apply => apply.jobsId === jobs._id)
                                                 .map(apply => (
 
@@ -157,11 +157,10 @@ const ApplyJob = () => {
                                                             </td>
                                                             <td>
                                                                 <span className="text-danger">
-                                                                    {apply.cv}
+                                                                    <a href={window + apply.cv} target="_blank" rel="noopener noreferrer">Click To open CV</a>
                                                                 </span>
                                                             </td>
                                                         </tr>
-
 
                                                     </React.Fragment>
 

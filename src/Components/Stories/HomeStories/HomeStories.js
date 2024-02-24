@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import sohidminar3 from '../../img/shohidMinar3.jpg';
 
-import './homestories.css';
+
 
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -14,10 +14,18 @@ import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import { Autoplay } from 'swiper/modules';
 
+
 // import required modules
 import { EffectCoverflow, Pagination } from 'swiper/modules';
 
 const HomeStories = () => {
+
+    const [stories, setStories] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:5000/story')
+            .then(res => res.json())
+            .then(data => setStories(data))
+    }, []);
 
 
 
@@ -39,27 +47,25 @@ const HomeStories = () => {
                         slideShadows: true,
                     }}
                     pagination={{
-                    clickable: true,
-                }}
+                        clickable: true,
+                    }}
                     autoplay={{
                         delay: 2500,
                         disableOnInteraction: false,
                     }}
                     modules={[EffectCoverflow, Pagination, Autoplay]}
                     className="mySwiper"
+
                 >
-                    <SwiperSlide className='' style={{ width: '700px' }}>
-                        <img src={sohidminar3} className='img-fluid' style={{ width: '700px' }}/>
-                    </SwiperSlide>
-                    <SwiperSlide className='' style={{ width: '700px' }}>
-                        <img src={sohidminar3} className='img-fluid' style={{ width: '700px' }}/>
-                    </SwiperSlide>
-                    <SwiperSlide className='' style={{ width: '700px' }}>
-                        <img src={sohidminar3} className='img-fluid' style={{ width: '700px' }}/>
-                    </SwiperSlide>
-                    <SwiperSlide className='' style={{ width: '700px' }}>
-                        <img src={sohidminar3} className='img-fluid' style={{ width: '700px' }}/>
-                    </SwiperSlide>
+                    {stories.map(story => (
+                        <SwiperSlide key={story._id} className='' style={{ width: '500px', height: '550px' }}>
+                            <img src={story.photo} className='img-fluid' style={{ width: '500px', height: '500px' }} />
+                            <h2>{story.title}</h2>
+                        </SwiperSlide>
+
+                    ))}
+
+
                 </Swiper>
             </div>
 

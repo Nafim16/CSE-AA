@@ -94,7 +94,7 @@ const Articles = () => {
                                 <div className="blog-box shadow">
                                     {/* image */}
                                     <div className="blog-img">
-                                        <img src={news} alt="" />
+                                        <img src={article.photoUrl} alt="" />
                                     </div>
                                     {/* menu */}
                                     {(user) ? <>
@@ -103,11 +103,14 @@ const Articles = () => {
                                                 <div className="d-flex justify-content-end mt-1 ">
                                                     <a href="#!" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
                                                         aria-expanded="false">
-                                                        <i className='fa-solid fa-ellipsis-vertical dark' aria-hidden="true"></i>
+                                                        <div className='icon-art'>
+                                                            <i className='fa-solid fa-ellipsis-vertical dark ' aria-hidden="true"></i>
+                                                        </div>
                                                         {/* <FontAwesomeIcon icon="fa-solid fa-ellipsis-vertical" /> */}
                                                     </a>
 
-                                                    <div className="dropdown-menu dropdown-menu-right" aria-labelledby='triggerId'>
+                                                    <div className="dropdown-menu dropdown-menu-right " aria-labelledby='triggerId'>
+
                                                         <Link to={`/ArticleUpdate/${article._id}`}>
                                                             <button className="dropdown-item text-danger">Update
                                                                 <i className='bx bx-edit'></i>
@@ -116,6 +119,7 @@ const Articles = () => {
                                                         <button onClick={() => handleDelete(article._id)} className="dropdown-item text-danger">Delete
                                                             <i className='bx bxs-trash'></i>
                                                         </button>
+
                                                     </div>
 
                                                 </div>
@@ -125,12 +129,12 @@ const Articles = () => {
                                     {/*Text */}
                                     <div className="blog-text">
                                         <span>{article.createdAt}</span>
-                                        <div className='blog-title'>{article.title}</div>
+                                        <div className='blog-title'><b>{article.title}</b></div>
                                         <p style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{article.details}</p>
                                         {/* <a href="" onClick={()=> handleReadMode(article._id)}>Read More</a> */}
                                         {/* <button onClick={() => handleReadMode(article._id)} className='nextPage mx-auto'>Read More</button> */}
                                         <Link className='btn' to={`/readarticledetails/${article._id}`}>
-                                        <button className='nextPage mx-auto'>Read More</button>
+                                            <button className='nextPage mx-auto'>Read More</button>
                                         </Link>
                                     </div>
                                 </div>
