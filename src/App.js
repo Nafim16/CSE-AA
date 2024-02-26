@@ -63,7 +63,7 @@ function App() {
     {
       path: "/story",
       element: <PrivateRoute><Stories /></PrivateRoute>,
-      loader:() => fetch('http://localhost:5000/story')
+      loader: () => fetch('http://localhost:5000/story')
     },
     {
       path: "/businesses",
@@ -143,7 +143,7 @@ function App() {
     },
     {
       path: "/jobapply/:id",
-      element: <ApplyJob></ApplyJob>,
+      element: <PrivateRoute><ApplyJob></ApplyJob></PrivateRoute>,
       loader: ({ params }) => fetch(`http://localhost:5000/job/${params.id}`)
     },
   ])
