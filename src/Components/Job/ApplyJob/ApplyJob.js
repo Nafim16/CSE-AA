@@ -110,7 +110,7 @@ const ApplyJob = () => {
                     </div>
                 </div>
 
-                <div className='mt-5 pt-5'>
+                <div className='mt-5'>
                     <div className='formfield mb-5 d-flex justify-content-center'>
                         <div className="evt-container">
                             <form onSubmit={(event) => JobApplySubmit(event, jobs._id)} className='evt-form'>
@@ -166,8 +166,8 @@ const ApplyJob = () => {
                                             <thead className="table-dark">
                                                 <tr>
                                                     <th>Name</th>
-                                                    <th>Contact</th>
                                                     <th>Email</th>
+                                                    <th>Contact</th>
                                                     <th>CV</th>
 
 
@@ -194,7 +194,7 @@ const ApplyJob = () => {
                                                                 </td>
                                                                 <td>
                                                                     <span className="text-danger">
-                                                                        <button onClick={() => handleCVClick(apply.cv)}>CV</button>
+                                                                        <button className='btn btn-secondary' onClick={() => handleCVClick(apply.cv)}>Click To Open CV</button>
 
                                                                         {/* <a href={apply.cv} target="_blank" rel="noopener noreferrer">Click To open CV</a> */}
                                                                     </span>
