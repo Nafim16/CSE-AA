@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import Head from '../../Head/Head';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../../Context/UserContext';
@@ -24,6 +24,18 @@ const ApplyJob = () => {
     }, [])
 
 
+    const navigate = useNavigate();
+
+    // const handleCVClick = (cvUrl) => {
+    //     const domain = cvUrl.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0];
+    //     const newUrl = '//' + domain;
+    //     const newTab = window.open(newUrl, '_blank');
+    //     //navigate(newTab.opener);
+    // };
+    const handleCVClick = (cvUrl) => {
+        window.open(cvUrl, '_blank');
+    };
+    
 
     const JobApplySubmit = (event, jobsId) => {
         event.preventDefault();
@@ -157,7 +169,9 @@ const ApplyJob = () => {
                                                             </td>
                                                             <td>
                                                                 <span className="text-danger">
-                                                                    <a href={window + apply.cv} target="_blank" rel="noopener noreferrer">Click To open CV</a>
+                                                                    <button onClick={() => handleCVClick(apply.cv)}>CV</button>
+
+                                                                    {/* <a href={apply.cv} target="_blank" rel="noopener noreferrer">Click To open CV</a> */}
                                                                 </span>
                                                             </td>
                                                         </tr>

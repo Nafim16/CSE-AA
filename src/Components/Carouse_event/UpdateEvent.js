@@ -19,12 +19,12 @@ const UpdateEvent = () => {
         const form = event.target;
 
         const title = form.title.value;
-        const type = form.type.value;
+        const photoUrl = form.photoUrl.value;
         const description = form.description.value;
         const startDate = form.startDate.value;
         const endDate = form.endDate.value;
 
-        const updatedEvent = { title, type, description, startDate, endDate }
+        const updatedEvent = { title, photoUrl, description, startDate, endDate }
 
         console.log(updatedEvent);
 
@@ -85,8 +85,8 @@ const UpdateEvent = () => {
                                 </div>
 
                                 <div className="form-floating mb-3">
-                                    <input type="text" className="form-control" id="floatingTextareaDisabled" name="type" defaultValue={events.type} placeholder='Event Type' />
-                                    <label htmlFor="floatingTextareaDisabled">Event Type</label>
+                                    <input type="text" className="form-control" id="floatingTextareaDisabled" name="photoUrl" placeholder='Photo URl' defaultValue={events.photoUrl}  />
+                                    <label htmlFor="floatingTextareaDisabled">Photo URl</label>
                                 </div>
 
                                 <div className="form-floating mb-3">
