@@ -86,12 +86,12 @@ const Head = () => {
                         {
                             (user) ?
                                 <>
-                                    <div className="btn-group dropstart">
+                                    <div className="btn-group">
                                         <button className="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                             <img src={profile} alt="" />
                                         </button>
                                         <div className='mx-auto'>
-                                            <div className="dropdown-menu" >
+                                            <div className="dropdown-menu dropdown-menu-start dropdown-menu-lg-end" >
                                                 <span className="dropdown-item">{(user && user.displayName) || (userData && userData.name)}</span>
                                                 <div role="separator" className="dropdown-divider"></div>
                                                 <Link to={'/profile'} className="dropdown-item">Profile</Link>
