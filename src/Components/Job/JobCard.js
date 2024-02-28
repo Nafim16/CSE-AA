@@ -76,7 +76,8 @@ const JobCard = ({ job, jobs, setJobs }) => {
             <h3 className="job-title">Hiring {job.title}!</h3>
             <p className="job-position">Position:  {job.position}</p>
             <p className="job-location">Location: {job.location}</p>
-            <p className="job-description" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{job.description}</p>
+            <p className="job-description text-truncate">{job.description}</p>
+
 
 
 

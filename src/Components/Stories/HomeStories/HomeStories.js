@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import sohidminar3 from '../../img/shohidMinar3.jpg';
 
-
+import './homestories.css';
 
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -58,8 +58,8 @@ const HomeStories = () => {
 
                 >
                     {stories.map(story => (
-                        <SwiperSlide key={story._id} className='' style={{ width: '500px', height: '550px' }}>
-                            <img src={story.photo} className='img-fluid' style={{ width: '500px', height: '500px' }} />
+                        <SwiperSlide key={story._id} className='stories-slide-content' style={{ width: '500px', height: '550px' }}>
+                            <img src={story.photo} className='img-fluid stories-slide-image' />
                             <h2>{story.title}</h2>
                         </SwiperSlide>
 

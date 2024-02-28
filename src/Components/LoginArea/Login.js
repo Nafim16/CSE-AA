@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import sohidminar3 from '../img/loginarea.png';
 import leading from '../img/shohidMinar3.jpg';
 import './Login.css'
@@ -32,8 +32,14 @@ const Login = () => {
     const registerClicked = () => {
         navigate("/registration");
     };
+    const [currentUser, setCurrentuser] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:5000/user')
+            .then(res => res.json())
+            .then(data => setCurrentuser(data))
+    }, []);
 
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     const [sliderRef] = useKeenSlider(
         {
@@ -84,11 +90,11 @@ const Login = () => {
                             <div className="wrapper-x homeStories1">
                                 <div className="scene">
                                     <div className="carousel keen-slider" ref={sliderRef}>
-                                        <div className="carousel__cell number-slide1 "> <img src={sohidminar3} className='img7' alt='...' /></div>
-                                        <div className="carousel__cell number-slide2"><img src={leading} className='img7' alt='...' /></div>
-                                        <div className="carousel__cell number-slide3">3</div>
-                                        <div className="carousel__cell number-slide4">4</div>
-                                        <div className="carousel__cell number-slide5">5</div>
+                                        <div className="carousel__cell number-slide1 "><img src={sohidminar3} className='img7 img-fluid' alt='...' /></div>
+                                        <div className="carousel__cell number-slide2"><img src={leading} className='img7 img-fluid' alt='...' /></div>
+                                        <div className="carousel__cell number-slide3"><img src={sohidminar3} className='img7 img-fluid' alt='...' /></div>
+                                        <div className="carousel__cell number-slide4"><img src={leading} className='img7 img-fluid' alt='...' /></div>
+                                        {/* <div className="carousel__cell number-slide5">5</div> */}
                                     </div>
                                 </div>
                             </div>
@@ -105,10 +111,15 @@ const Login = () => {
                                 </div>
                                 {(user) &&
                                     <>
-                                        <div class="home-details">
-                                            <h2 class="home-title">{user.displayName}</h2>
-                                            <span class="home-caption"><span className='text-black'>ID : </span>2012020191</span>
-                                        </div>
+                                        {currentUser.map(currentUser =>
+                                            <div class="home-details" key={currentUser._id}>
+                                                {currentUser.uid === user.uid ? <>
+                                                    <h2 class="home-title">{currentUser.name}</h2>
+                                                    <span class="home-caption"><span className='text-black'>Batch : </span>{currentUser.batch}</span>
+                                                </> : <></>}
+                                            </div>
+                                        )}
+
 
                                     </>}
                             </div>

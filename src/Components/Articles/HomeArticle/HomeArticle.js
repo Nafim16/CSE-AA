@@ -65,10 +65,12 @@ const HomeArticle = () => {
                             <SwiperSlide>
                                 <div className='btn-light'>
                                     <div className="card text-white h-100 bg mb-3 p-3 shadow" style={{ height: '300px', overflow: 'hidden' }}>
-                                    <img src={article.photoUrl} alt='' className='card-img-top image1 blog-img' />
+                                        <img src={article.photoUrl} alt='' className='card-img-top image1 blog-img' />
                                         <div className="card-header text-primary">{article.title}</div>
                                         <div className="card-body">
-                                            <p className="card-text text-black" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{article.details}</p>
+                                            <p className="card-text text-black" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}
+                                                dangerouslySetInnerHTML={{ __html: article.details }}
+                                            />
                                         </div>
                                     </div>
                                 </div>

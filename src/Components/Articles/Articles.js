@@ -130,7 +130,9 @@ const Articles = () => {
                                     <div className="blog-text">
                                         <span>{article.createdAt}</span>
                                         <div className='blog-title'><b>{article.title}</b></div>
-                                        <p style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{article.details}</p>
+                                        <p style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}
+                                            dangerouslySetInnerHTML={{ __html: article.details }}
+                                        />
                                         {/* <a href="" onClick={()=> handleReadMode(article._id)}>Read More</a> */}
                                         {/* <button onClick={() => handleReadMode(article._id)} className='nextPage mx-auto'>Read More</button> */}
                                         <Link className='btn' to={`/readarticledetails/${article._id}`}>

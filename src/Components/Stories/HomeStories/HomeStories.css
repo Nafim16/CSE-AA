@@ -1,0 +1,12 @@
+
+.stories-slide-image{
+    width: 500px;
+    height: 500px;
+}
+
+@media (max-width: 768px) {
+    .stories-slide-image{
+        width: 380px;
+        height: 500px;
+    }
+}

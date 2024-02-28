@@ -9,8 +9,6 @@ import JoditEditor from 'jodit-react';
 const Admin = () => {
 
     const { user } = useContext(AuthContext);
-
-
     const time = new Date();
     const editor = useRef(null);
 
