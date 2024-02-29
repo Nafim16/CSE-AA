@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import sohidminar3 from '../../img/shohidMinar3.jpg';
 
-import './homestories.css';
+import './homeStories.css';
 
 
 import { Swiper, SwiperSlide } from 'swiper/react';
