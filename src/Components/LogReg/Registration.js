@@ -127,7 +127,7 @@ const Registration = () => {
                     uid: loggedUser.uid,
                 };
 
-                fetch('https://cse-aa-server.vercel.app/user', {
+                fetch('http://localhost:5000/user', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json',
@@ -153,7 +153,7 @@ const Registration = () => {
 
         handleRegisterClick();
 
-        // fetch('https://cse-aa-server.vercel.app/user', {
+        // fetch('http://localhost:5000/user', {
         //     method: 'POST',
         //     headers: {
         //         'content-type': 'application/json'

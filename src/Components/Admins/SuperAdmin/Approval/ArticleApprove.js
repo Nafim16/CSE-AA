@@ -5,7 +5,7 @@ import '../User.css';
 const ArticleApprove = () => {
     const [Article, setArticle] = useState([]);
     useEffect(() => {
-        fetch('https://cse-aa-server.vercel.app/article')
+        fetch('http://localhost:5000/article')
             .then(res => res.json())
             .then(data => setArticle(data))
     }, [])
@@ -28,7 +28,7 @@ const ArticleApprove = () => {
                 //     text: "Your file has been deleted.",
                 //     icon: "success"
                 //   });
-                fetch(`https://cse-aa-server.vercel.app/article/${_id}`, {
+                fetch(`http://localhost:5000/article/${_id}`, {
                     method: 'PATCH',
                     headers: {
                         'content-type': 'application/json'
@@ -74,7 +74,7 @@ const ArticleApprove = () => {
                 //     text: "Your Article has been deleted.",
                 //     icon: "success"
                 //   });
-                fetch(`https://cse-aa-server.vercel.app/article/${_id}`, {
+                fetch(`http://localhost:5000/article/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

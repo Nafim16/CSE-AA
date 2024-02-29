@@ -41,7 +41,7 @@ const ArticleCreate = () => {
             return;
         }
 
-        fetch('https://cse-aa-server.vercel.app/article', {
+        fetch('http://localhost:5000/article', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

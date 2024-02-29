@@ -15,7 +15,7 @@ const EventReg = () => {
 
     const [users, setUser] = useState([]);
     useEffect(() => {
-        fetch('https://cse-aa-server.vercel.app/user')
+        fetch('http://localhost:5000/user')
             .then(res => res.json())
             .then(data => setUser(data))
     }, []);
@@ -23,7 +23,7 @@ const EventReg = () => {
 
     const [reg, setReg] = useState([]);
     useEffect(() => {
-        fetch('https://cse-aa-server.vercel.app/reg')
+        fetch('http://localhost:5000/reg')
             .then(res => res.json())
             .then(data => setReg(data))
     }, [])
@@ -44,7 +44,7 @@ const EventReg = () => {
         form.reset();
 
 
-        fetch(`https://cse-aa-server.vercel.app/reg`, {
+        fetch(`http://localhost:5000/reg`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -8,9 +8,11 @@ import ArticleCreate from './ArticleCreate';
 import { Link, useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Context/UserContext';
-
+import { Tooltip } from 'react-tooltip';
+import 'react-tooltip/dist/react-tooltip.css';
 
 const Articles = () => {
+
 
     const { user } = useContext(AuthContext);
     const article = useLoaderData();
@@ -21,7 +23,7 @@ const Articles = () => {
 
     const [userData, setUserData] = useState([]);
     useEffect(() => {
-        fetch('https://cse-aa-server.vercel.app/user')
+        fetch('http://localhost:5000/user')
             .then(res => res.json())
             .then(data => setUserData(data))
 
@@ -45,7 +47,7 @@ const Articles = () => {
                 //     text: "Your Article has been deleted.",
                 //     icon: "success"
                 //   });
-                fetch(`https://cse-aa-server.vercel.app/article/${_id}`, {
+                fetch(`http://localhost:5000/article/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -77,7 +79,7 @@ const Articles = () => {
             <section className="blog">
                 {/* Heading */}
                 <div className="blog-heading">
-                    <span>Leading University</span>
+                    <span>Alumni Association</span>
                     <h3>Articles</h3>
                 </div>
 
@@ -129,7 +131,15 @@ const Articles = () => {
                                     {/*Text */}
                                     <div className="blog-text">
                                         <span>{article.createdAt}</span>
-                                        <div className='blog-title'><b>{article.title}</b></div>
+                                        <div class="article-tooltip-container">
+                                            <div className='blog-title text-truncate'>
+
+                                                <span class="article-tooltip-text"><b>{article.title}</b></span>
+                                                <span class="article-tooltip">{article.title}</span>
+
+
+                                            </div>
+                                        </div>
                                         <p style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}
                                             dangerouslySetInnerHTML={{ __html: article.details }}
                                         />

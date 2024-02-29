@@ -29,7 +29,7 @@ const JobUpdates = () => {
 
         //Sending data to the sever
 
-        fetch(`https://cse-aa-server.vercel.app/job/${_id}`, {
+        fetch(`http://localhost:5000/job/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

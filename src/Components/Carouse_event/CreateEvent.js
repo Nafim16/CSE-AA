@@ -32,7 +32,7 @@ const CreateEvent = () => {
 
         // Send Data to the Server
 
-        fetch('https://cse-aa-server.vercel.app/event', {
+        fetch('http://localhost:5000/event', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

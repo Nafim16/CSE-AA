@@ -22,7 +22,7 @@ const HomeStories = () => {
 
     const [stories, setStories] = useState([]);
     useEffect(() => {
-        fetch('https://cse-aa-server.vercel.app/story')
+        fetch('http://localhost:5000/story')
             .then(res => res.json())
             .then(data => setStories(data))
     }, []);
@@ -31,7 +31,7 @@ const HomeStories = () => {
 
     return (
         <div>
-            <h1>Stories</h1>
+            <h1 className='fw-bold mt-5 mb-4'>Stories</h1>
 
             <div>
                 <Swiper

@@ -28,7 +28,7 @@ const StoriesCreate = () => {
         }
         console.log(newStory);
 
-        fetch('https://cse-aa-server.vercel.app/story', {
+        fetch('http://localhost:5000/story', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newStory)

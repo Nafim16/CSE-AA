@@ -34,7 +34,7 @@ const Login = () => {
     };
     const [currentUser, setCurrentuser] = useState([]);
     useEffect(() => {
-        fetch('https://cse-aa-server.vercel.app/user')
+        fetch('http://localhost:5000/user')
             .then(res => res.json())
             .then(data => setCurrentuser(data))
     }, []);

@@ -52,18 +52,18 @@ function App() {
     {
       path: "/news",
       element: <PrivateRoute> <News /> </PrivateRoute>,
-      loader: () => fetch('https://cse-aa-server.vercel.app/news')
+      loader: () => fetch('http://localhost:5000/news')
     },
     {
       path: "/NewsUpdate/:id",
       element: <PrivateRoute> <NewsUpdate /> </PrivateRoute>,
-      loader: ({ params }) => fetch(`https://cse-aa-server.vercel.app/news/${params.id}`)
+      loader: ({ params }) => fetch(`http://localhost:5000/news/${params.id}`)
     },
 
     {
       path: "/story",
       element: <PrivateRoute><Stories /></PrivateRoute>,
-      loader: () => fetch('https://cse-aa-server.vercel.app/story')
+      loader: () => fetch('http://localhost:5000/story')
     },
     {
       path: "/businesses",
@@ -72,13 +72,13 @@ function App() {
     {
       path: "/job",
       element: <Job />,
-      loader: () => fetch('https://cse-aa-server.vercel.app/job')
+      loader: () => fetch('http://localhost:5000/job')
     },
 
     {
       path: '/JobUpdates/:id',
       element: <JobUpdates />,
-      loader: ({ params }) => fetch(`https://cse-aa-server.vercel.app/job/${params.id}`)
+      loader: ({ params }) => fetch(`http://localhost:5000/job/${params.id}`)
     },
     {
       path: "/committee",
@@ -95,32 +95,32 @@ function App() {
     {
       path: "/articles",
       element: <Articles />,
-      loader: () => fetch('https://cse-aa-server.vercel.app/article')
+      loader: () => fetch('http://localhost:5000/article')
     },
     {
       path: 'ArticleUpdate/:id',
       element: <ArticleUpdate />,
-      loader: ({ params }) => fetch(`https://cse-aa-server.vercel.app/article/${params.id}`)
+      loader: ({ params }) => fetch(`http://localhost:5000/article/${params.id}`)
     },
     {
       path: "/profile",
       element: <PrivateRoute> <Profile /> </PrivateRoute>,
-      loader: () => fetch('https://cse-aa-server.vercel.app/user')
+      loader: () => fetch('http://localhost:5000/user')
     },
     {
       path: '/ProfileUpdate/:id',
       element: <ProfileUpdate />,
-      loader: ({ params }) => fetch(`https://cse-aa-server.vercel.app/user/${params.id}`)
+      loader: ({ params }) => fetch(`http://localhost:5000/user/${params.id}`)
     },
     {
       path: "/superadmin",
       element: <PrivateRoute> <SuperAdmin /> </PrivateRoute>,
-      loader: () => fetch('https://cse-aa-server.vercel.app/user')
+      loader: () => fetch('http://localhost:5000/user')
     },
     {
       path: "/changerole/:id",
       element: <PrivateRoute> <ChangeRole /> </PrivateRoute>,
-      loader: ({ params }) => fetch(`https://cse-aa-server.vercel.app/user/${params.id}`)
+      loader: ({ params }) => fetch(`http://localhost:5000/user/${params.id}`)
     },
     {
       path: "/createEvent",
@@ -129,22 +129,22 @@ function App() {
     {
       path: "/updateEvent/:id",
       element: <UpdateEvent></UpdateEvent>,
-      loader: ({ params }) => fetch(`https://cse-aa-server.vercel.app/event/${params.id}`)
+      loader: ({ params }) => fetch(`http://localhost:5000/event/${params.id}`)
     },
     {
       path: "/readeventdetails/:id",
       element: <PrivateRoute><EventReg></EventReg></PrivateRoute>,
-      loader: ({ params }) => fetch(`https://cse-aa-server.vercel.app/event/${params.id}`)
+      loader: ({ params }) => fetch(`http://localhost:5000/event/${params.id}`)
     },
     {
       path: "/readarticledetails/:id",
       element: <ArticleRead></ArticleRead>,
-      loader: ({ params }) => fetch(`https://cse-aa-server.vercel.app/article/${params.id}`)
+      loader: ({ params }) => fetch(`http://localhost:5000/article/${params.id}`)
     },
     {
       path: "/jobapply/:id",
       element: <PrivateRoute><ApplyJob></ApplyJob></PrivateRoute>,
-      loader: ({ params }) => fetch(`https://cse-aa-server.vercel.app/job/${params.id}`)
+      loader: ({ params }) => fetch(`http://localhost:5000/job/${params.id}`)
     },
   ])
 

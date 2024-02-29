@@ -13,7 +13,7 @@ const HomeJobs = () => {
 
     const [job, setJob] = useState([]);
     useEffect(() => {
-        fetch('https://cse-aa-server.vercel.app/job')
+        fetch('http://localhost:5000/job')
             .then(res => res.json())
             .then(data => setJob(data))
     }, []);
@@ -40,7 +40,7 @@ const HomeJobs = () => {
 
     return (
         <div className='mt-3'>
-            <h1>Latest Jobs</h1>
+            <h1 className='fw-bold mt-5 mb-4'>Latest Jobs</h1>
             <Swiper
                 slidesPerView={slidesPerView}
                 spaceBetween={30}
