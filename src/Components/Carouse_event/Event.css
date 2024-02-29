@@ -134,3 +134,13 @@
     -webkit-box-orient: vertical;
     white-space: normal;
 }
+
+.evt-carousel {
+    margin-top: -100px;
+}
+
+@media (max-width: 800px) {
+    .evt-carousel {
+        margin-top: -50px;
+    }
+}

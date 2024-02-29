@@ -92,8 +92,6 @@ const ArticleCreate = () => {
                                     value={details}
                                     onChange={setDetails}
                                 />
-                                {/* <input className="form-control" name="details" cols="5" rows="5" /> */}
-                                
                             </div>
                             <div className="form-floating ">
                                 <input className="form-control" type="text" name="photoUrl" />

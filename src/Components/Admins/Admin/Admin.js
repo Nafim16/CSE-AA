@@ -33,7 +33,7 @@ const Admin = () => {
         const name = user.displayName;
         const uid = user.uid;
         const approval = 'WaitingForApprove';
-        const createdAt = time.toLocaleString();
+        const createdAt = time.toISOString();
 
         const newspost = { title, post, name, uid, createdAt, approval };
         console.log('news created: ', newspost);
