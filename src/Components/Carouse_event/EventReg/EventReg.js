@@ -41,6 +41,17 @@ const EventReg = () => {
         const newEventReg = { name, email, studentId, transactionID, eventsId };
         console.log(newEventReg);
 
+        if (!name.trim() || !email.trim() || !studentId.trim() || !transactionID.trim()) {
+            // If post value is empty or contains only whitespace
+            Swal.fire({
+                title: 'Error!',
+                text: 'Please write all required data before submitting.',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            });
+            return;
+        }
+
         form.reset();
 
 
