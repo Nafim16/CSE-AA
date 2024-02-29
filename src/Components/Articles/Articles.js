@@ -8,8 +8,7 @@ import ArticleCreate from './ArticleCreate';
 import { Link, useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Context/UserContext';
-import { Tooltip } from 'react-tooltip';
-import 'react-tooltip/dist/react-tooltip.css';
+
 
 const Articles = () => {
 
