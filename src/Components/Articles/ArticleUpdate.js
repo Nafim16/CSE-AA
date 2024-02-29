@@ -17,7 +17,7 @@ const ArticleUpdate = () => {
 
         const updateArticle = { title, details, photoUrl };
 
-        fetch(`http://localhost:5000/article/${article._id}`, {
+        fetch(`https://cse-aa-server.vercel.app/article/${article._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

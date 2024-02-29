@@ -39,7 +39,7 @@ const JobCreate = () => {
 
         // Sending data to the server
 
-        fetch('http://localhost:5000/job', {
+        fetch('https://cse-aa-server.vercel.app/job', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

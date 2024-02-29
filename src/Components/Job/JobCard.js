@@ -12,7 +12,7 @@ const JobCard = ({ job, jobs, setJobs }) => {
 
   const [userData, setUserData] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:5000/user')
+    fetch('https://cse-aa-server.vercel.app/user')
       .then(res => res.json())
       .then(data => setUserData(data))
 
@@ -32,7 +32,7 @@ const JobCard = ({ job, jobs, setJobs }) => {
       if (result.isConfirmed) {
 
 
-        fetch(`http://localhost:5000/job/${_id}`, {
+        fetch(`https://cse-aa-server.vercel.app/job/${_id}`, {
           method: "DELETE",
 
         })

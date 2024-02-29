@@ -25,7 +25,7 @@ const ProfileUpdate = () => {
         const update = { name, batch, phone, gender, blood, city, role };
 
 
-        fetch(`http://localhost:5000/user/${currentUser._id}`, {
+        fetch(`https://cse-aa-server.vercel.app/user/${currentUser._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

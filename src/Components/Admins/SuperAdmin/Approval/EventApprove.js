@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 const EventApprove = () => {
     const [Events, setEvents] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/event')
+        fetch('https://cse-aa-server.vercel.app/event')
             .then(res => res.json())
             .then(data => setEvents(data))
     }, [])
@@ -27,7 +27,7 @@ const EventApprove = () => {
                 //     text: "Your file has been deleted.",
                 //     icon: "success"
                 //   });
-                fetch(`http://localhost:5000/event/${_id}`, {
+                fetch(`https://cse-aa-server.vercel.app/event/${_id}`, {
                     method: 'PATCH',
                     headers: {
                         'content-type': 'application/json'
@@ -73,7 +73,7 @@ const EventApprove = () => {
                 //     text: "Your Article has been deleted.",
                 //     icon: "success"
                 //   });
-                fetch(`http://localhost:5000/event/${_id}`, {
+                fetch(`https://cse-aa-server.vercel.app/event/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

@@ -9,7 +9,7 @@ import { AuthContext } from '../../Context/UserContext';
 const Event = () => {
     const [events, setEvents] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/event')
+        fetch('https://cse-aa-server.vercel.app/event')
             .then((res) => res.json())
             .then((data) => setEvents(data));
     }, []);
@@ -17,7 +17,7 @@ const Event = () => {
     const { user } = useContext(AuthContext);
     const [userData, setUserData] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/user')
+        fetch('https://cse-aa-server.vercel.app/user')
             .then(res => res.json())
             .then(data => setUserData(data))
 
@@ -36,7 +36,7 @@ const Event = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/event/${_id}`, {
+                fetch(`https://cse-aa-server.vercel.app/event/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

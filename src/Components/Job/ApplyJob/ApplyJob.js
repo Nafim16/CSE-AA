@@ -13,14 +13,14 @@ const ApplyJob = () => {
 
     const [users, setUser] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/user')
+        fetch('https://cse-aa-server.vercel.app/user')
             .then(res => res.json())
             .then(data => setUser(data))
     }, []);
 
     const [applies, setApply] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/apply')
+        fetch('https://cse-aa-server.vercel.app/apply')
             .then(res => res.json())
             .then(data => setApply(data))
     }, [])
@@ -62,7 +62,7 @@ const ApplyJob = () => {
             return;
         }
 
-        fetch('http://localhost:5000/apply', {
+        fetch('https://cse-aa-server.vercel.app/apply', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

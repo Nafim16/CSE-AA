@@ -12,33 +12,33 @@ const TotalCounts = () => {
     const [job, setJob] = useState([]);
     const [events, setEvents] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/article')
+        fetch('https://cse-aa-server.vercel.app/article')
             .then(res => res.json())
             .then(data => setArticle(data))
     }, []);
 
     useEffect(() => {
-        fetch('http://localhost:5000/event')
+        fetch('https://cse-aa-server.vercel.app/event')
             .then(res => res.json())
             .then(data => setEvents(data))
     }, []);
     useEffect(() => {
-        fetch('http://localhost:5000/job')
+        fetch('https://cse-aa-server.vercel.app/job')
             .then(res => res.json())
             .then(data => setJob(data))
     }, []);
     useEffect(() => {
-        fetch('http://localhost:5000/news')
+        fetch('https://cse-aa-server.vercel.app/news')
             .then(res => res.json())
             .then(data => setNews(data))
     }, []);
     useEffect(() => {
-        fetch('http://localhost:5000/story')
+        fetch('https://cse-aa-server.vercel.app/story')
             .then(res => res.json())
             .then(data => setStories(data))
     }, []);
     useEffect(() => {
-        fetch('http://localhost:5000/user')
+        fetch('https://cse-aa-server.vercel.app/user')
             .then(res => res.json())
             .then(data => setUser(data))
     }, []);

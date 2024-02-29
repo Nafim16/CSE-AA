@@ -21,7 +21,7 @@ const Articles = () => {
 
     const [userData, setUserData] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/user')
+        fetch('https://cse-aa-server.vercel.app/user')
             .then(res => res.json())
             .then(data => setUserData(data))
 
@@ -45,7 +45,7 @@ const Articles = () => {
                 //     text: "Your Article has been deleted.",
                 //     icon: "success"
                 //   });
-                fetch(`http://localhost:5000/article/${_id}`, {
+                fetch(`https://cse-aa-server.vercel.app/article/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
