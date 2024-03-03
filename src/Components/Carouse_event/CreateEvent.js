@@ -32,7 +32,7 @@ const CreateEvent = () => {
 
         // Send Data to the Server
 
-        fetch('http://localhost:5000/event', {
+        fetch('https://cse-aa-server.onrender.com/event', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -16,7 +16,7 @@ const HomeArticle = () => {
 
     const [article, setArticle] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/article')
+        fetch('https://cse-aa-server.onrender.com/article')
             .then(res => res.json())
             .then(data => setArticle(data))
     }, []);

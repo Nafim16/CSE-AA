@@ -34,14 +34,13 @@ const Admin = () => {
         const uid = user.uid;
         const approval = 'WaitingForApprove';
         const createdAt = time.toLocaleString();
-
         const newspost = { title, post, name, uid, createdAt, approval };
         console.log('news created: ', newspost);
         form.reset();
 
 
 
-        fetch('http://localhost:5000/news', {
+        fetch('https://cse-aa-server.onrender.com/news', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

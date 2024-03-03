@@ -30,7 +30,7 @@ const UpdateEvent = () => {
 
         // Send Data to the Server
 
-        fetch(`http://localhost:5000/event/${events._id}`, {
+        fetch(`https://cse-aa-server.onrender.com/event/${events._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
