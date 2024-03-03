@@ -22,7 +22,7 @@ const Articles = () => {
 
     const [userData, setUserData] = useState([]);
     useEffect(() => {
-        fetch('https://cse-aa-server.onrender.com/user')
+        fetch('http://localhost:5000/user')
             .then(res => res.json())
             .then(data => setUserData(data))
 
@@ -46,7 +46,7 @@ const Articles = () => {
                 //     text: "Your Article has been deleted.",
                 //     icon: "success"
                 //   });
-                fetch(`https://cse-aa-server.onrender.com/article/${_id}`, {
+                fetch(`http://localhost:5000/article/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

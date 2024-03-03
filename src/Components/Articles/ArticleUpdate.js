@@ -20,7 +20,7 @@ const ArticleUpdate = () => {
 
         const updateArticle = { title, details, photoUrl };
 
-        fetch(`https://cse-aa-server.onrender.com/article/${article._id}`, {
+        fetch(`http://localhost:5000/article/${article._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

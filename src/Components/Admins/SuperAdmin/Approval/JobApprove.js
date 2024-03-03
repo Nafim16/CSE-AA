@@ -9,7 +9,7 @@ const JobApprove = () => {
     const [Job, setJob] = useState([]);
 
     useEffect(() => {
-        fetch('https://cse-aa-server.onrender.com/job')
+        fetch('http://localhost:5000/job')
             .then(res => res.json())
             .then(data => setJob(data))
     }, [])
@@ -32,7 +32,7 @@ const JobApprove = () => {
                 //     text: "Your file has been deleted.",
                 //     icon: "success"
                 //   });
-                fetch(`https://cse-aa-server.onrender.com/job/${_id}`, {
+                fetch(`http://localhost:5000/job/${_id}`, {
                     method: 'PATCH',
                     headers: {
                         'content-type': 'application/json'
@@ -76,7 +76,7 @@ const JobApprove = () => {
                 //     text: "Your Article has been deleted.",
                 //     icon: "success"
                 //   });
-                fetch(`https://cse-aa-server.onrender.com/job/${_id}`, {
+                fetch(`http://localhost:5000/job/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

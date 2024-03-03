@@ -5,7 +5,7 @@ const NewsApprove = () => {
 
     const [News, setNews] = useState([]);
     useEffect(() => {
-        fetch('https://cse-aa-server.onrender.com/news')
+        fetch('http://localhost:5000/news')
             .then(res => res.json())
             .then(data => setNews(data))
     }, [])
@@ -28,7 +28,7 @@ const NewsApprove = () => {
                 //     text: "Your file has been deleted.",
                 //     icon: "success"
                 //   });
-                fetch(`https://cse-aa-server.onrender.com/news/${_id}`, {
+                fetch(`http://localhost:5000/news/${_id}`, {
                     method: 'PATCH',
                     headers: {
                         'content-type': 'application/json'
@@ -74,7 +74,7 @@ const NewsApprove = () => {
                 //     text: "Your Article has been deleted.",
                 //     icon: "success"
                 //   });
-                fetch(`https://cse-aa-server.onrender.com/news/${_id}`, {
+                fetch(`http://localhost:5000/news/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
