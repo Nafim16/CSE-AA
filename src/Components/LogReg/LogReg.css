@@ -177,16 +177,16 @@
     padding: 0 3%;
 }
 
-::-webkit-datetime-edit-month-field,
+/* ::-webkit-datetime-edit-month-field,
 ::-webkit-datetime-edit-day-field,
 ::-webkit-datetime-edit-year-field,
 .input-logreg::placeholder {
     background-color: #fff;
     color: #84848d;
 
-}
+} */
 
-.input-logreg[type="date"]::-webkit-calendar-picker-indicator {
+/* .input-logreg[type="date"]::-webkit-calendar-picker-indicator {
     color: rgba(0, 0, 0, 0);
     opacity: 1;
     display: block;
@@ -194,7 +194,7 @@
     height: 20px;
     width: 20px;
 
-}
+} */
 
 .text-fields.name:after {
     content: 'Name';
