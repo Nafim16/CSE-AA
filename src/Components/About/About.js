@@ -68,7 +68,7 @@ const About = () => {
                     <h1 className='abourH1 fs-1 fw-bold text-secondary'>Our Team</h1>
 
                     <div className="team">
-                        <div className="row">
+                        <div className="row teamF">
                             <div className="col-md-3 col-sm-6">
                                 <div className="team_member">
                                     <div >

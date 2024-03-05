@@ -81,12 +81,12 @@ const Head = () => {
 
                     </ul>
 
-                    <div className="ms-auto my-2 my-lg-0 mx-5">
+                    <div className="ms-auto">
 
                         {
                             (user) ?
                                 <>
-                                    <div className="btn-group">
+                                    <div className="btn-group mx-5">
                                         <button className="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                             <img src={profile} alt="" />
                                         </button>
