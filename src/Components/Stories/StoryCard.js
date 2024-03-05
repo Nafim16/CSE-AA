@@ -85,9 +85,9 @@ const StoryCard = ({ story, setStories, stories }) => {
                       <button
                         onClick={() => handleDelete(_id)}
                         className="dropdown-item delete">Delete</button>
-                      <button
+                      {/* <button
 
-                        className="dropdown-item update">Update</button>
+                        className="dropdown-item update">Update</button> */}
                     </div>
                   </div>
                 </>
