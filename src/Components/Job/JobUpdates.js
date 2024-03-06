@@ -29,7 +29,7 @@ const JobUpdates = () => {
 
         //Sending data to the sever
 
-        fetch(`http://localhost:5000/job/${_id}`, {
+        fetch(`https://cse-aa-server.onrender.com/job/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

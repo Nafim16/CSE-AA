@@ -15,7 +15,7 @@ const EventReg = () => {
 
     const [users, setUser] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/user')
+        fetch('https://cse-aa-server.onrender.com/user')
             .then(res => res.json())
             .then(data => setUser(data))
     }, []);
@@ -23,7 +23,7 @@ const EventReg = () => {
 
     const [reg, setReg] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/reg')
+        fetch('https://cse-aa-server.onrender.com/reg')
             .then(res => res.json())
             .then(data => setReg(data))
     }, [])
@@ -55,7 +55,7 @@ const EventReg = () => {
         form.reset();
 
 
-        fetch(`http://localhost:5000/reg`, {
+        fetch(`https://cse-aa-server.onrender.com/reg`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

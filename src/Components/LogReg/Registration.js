@@ -127,7 +127,7 @@ const Registration = () => {
                     uid: loggedUser.uid,
                 };
 
-                fetch('http://localhost:5000/user', {
+                fetch('https://cse-aa-server.onrender.com/user', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json',
@@ -153,7 +153,7 @@ const Registration = () => {
 
         handleRegisterClick();
 
-        // fetch('http://localhost:5000/user', {
+        // fetch('https://cse-aa-server.onrender.com/user', {
         //     method: 'POST',
         //     headers: {
         //         'content-type': 'application/json'
@@ -222,7 +222,7 @@ const Registration = () => {
     return (
         <div>
             <Head></Head>
-            <div className="body2">
+            <div className="body2 pt-5 mt-5">
                 <div className="container">
                     <div className="login-link">
                         <div className="logo">

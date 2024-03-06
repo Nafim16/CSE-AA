@@ -22,7 +22,7 @@ const HomeStories = () => {
 
     const [stories, setStories] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/story')
+        fetch('https://cse-aa-server.onrender.com/story')
             .then(res => res.json())
             .then(data => setStories(data))
     }, []);

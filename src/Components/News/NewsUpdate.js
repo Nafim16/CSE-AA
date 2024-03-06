@@ -21,7 +21,7 @@ const NewsUpdate = () => {
         //form.reset();
 
 
-        fetch(`http://localhost:5000/news/${news._id}`, {
+        fetch(`https://cse-aa-server.onrender.com/news/${news._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

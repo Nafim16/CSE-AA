@@ -40,7 +40,7 @@ const Admin = () => {
 
 
 
-        fetch('http://localhost:5000/news', {
+        fetch('https://cse-aa-server.onrender.com/news', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

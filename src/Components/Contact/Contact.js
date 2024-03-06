@@ -21,7 +21,7 @@ const Contact = () => {
                             <div className="col-md-6">
                                 <div className="d-flex justify-content-center">
                                     <div className='bg-get-board d-flex justify-content-center align-items-center'>
-                                        <div className='p-5'>
+                                        <div>
                                             <div className='fs-1 fw-bold text-start'>
                                                 Get In Touch
                                             </div>
