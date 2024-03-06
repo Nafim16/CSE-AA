@@ -10,8 +10,28 @@
     box-shadow: 4px 11px 13px 0px rgba(0, 0, 0, 0.25), 5px 6px 24px 0px rgba(0, 0, 0, 0.25) inset;
 }
 
-@media (max-width: 767px) {
-    /* Adjust the width for screens smaller than 768px (mobile) */
+@media (max-width: 320px) {
+
+
+    .bg-get-board {
+        width: 100%;
+        padding: 15px;
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 560px) {
+
+
+    .bg-get-board {
+        width: 100%;
+        padding: 15px;
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 1200px) {
+
     .bg-get-board {
         width: 100%;
         padding: 15px;
