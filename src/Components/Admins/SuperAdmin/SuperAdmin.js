@@ -46,9 +46,9 @@ const SuperAdmin = () => {
                         <JobApprove></JobApprove>
                     </div>
 
-                    <div className='mt-5 p-5'>
+                    {/* <div className='mt-5 p-5'>
                         <EventApprove></EventApprove>
-                    </div>
+                    </div> */}
 
                 </> : <>
 

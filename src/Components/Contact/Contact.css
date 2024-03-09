@@ -11,8 +11,6 @@
 }
 
 @media (max-width: 320px) {
-
-
     .bg-get-board {
         width: 100%;
         padding: 15px;
@@ -21,8 +19,6 @@
 }
 
 @media (max-width: 560px) {
-
-
     .bg-get-board {
         width: 100%;
         padding: 15px;
@@ -31,9 +27,9 @@
 }
 
 @media (max-width: 1200px) {
-
     .bg-get-board {
         width: 100%;
         padding: 15px;
     }
 }
+
