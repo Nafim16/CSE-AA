@@ -11,20 +11,43 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import send from '../img/send.svg';
+import axios from 'axios';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const News = () => {
 
     const { user } = useContext(AuthContext);
+    const axiosSecure = useAxiosSecure();
 
-    const newsData = useLoaderData();
+    // const newsData = useLoaderData();
 
-    const [news, setNews] = useState(newsData);
+    // const [news, setNews] = useState(newsData);
+    const [news, setNews] = useState([]);
+    useEffect(() => {
+        // fetch('http://localhost:5000/user')
+        //     .then(res => res.json())
+        //     .then(data => setUserData(data))
+        // axios.get('http://localhost:5000/news', {
+        //     withCredentials: true
+        // })
+        //     .then(res => {
+        //         setNews(res.data);
+        //     })
+        axiosSecure.get('/news')
+            .then(res => setNews(res.data))
+
+
+    }, [axiosSecure])
 
     const [userData, setUserData] = useState([]);
     useEffect(() => {
-        fetch('https://cse-aa-server.onrender.com/user')
+        fetch('http://localhost:5000/user') //{credentials:'include'} if not using axios
             .then(res => res.json())
             .then(data => setUserData(data))
+        // axios.get('http://localhost:5000/user',{withCredentials:true})
+        // .then(res=>{
+        //     setUserData(res.data);
+        // })
 
     }, [])
 
@@ -32,7 +55,7 @@ const News = () => {
     // useEffect(() => {
     //     const fetchNews = async () => {
     //         try {
-    //             const response = await fetch('https://cse-aa-server.onrender.com/news');
+    //             const response = await fetch('http://localhost:5000/news');
     //             const data = await response.json();
     //             setNews(data);
     //         } catch (error) {
@@ -68,7 +91,7 @@ const News = () => {
     //             //     text: "Your Article has been deleted.",
     //             //     icon: "success"
     //             //   });
-    //             fetch(`https://cse-aa-server.onrender.com/news/${_id}`, {
+    //             fetch(`http://localhost:5000/news/${_id}`, {
     //                 method: 'DELETE'
     //             })
     //                 .then(res => res.json())
@@ -105,7 +128,7 @@ const News = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 // Delete the news
-                fetch(`https://cse-aa-server.onrender.com/news/${_id}`, {
+                fetch(`http://localhost:5000/news/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -119,7 +142,7 @@ const News = () => {
                             });
 
                             // Delete the associated comments
-                            fetch(`https://cse-aa-server.onrender.com/comments/${_id}`, {
+                            fetch(`http://localhost:5000/comments/${_id}`, {
                                 method: 'DELETE'
                             })
                                 .then(res => res.json())
@@ -154,7 +177,7 @@ const News = () => {
         form.reset();
 
 
-        fetch(`https://cse-aa-server.onrender.com/comments`, {
+        fetch(`http://localhost:5000/comments`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -179,7 +202,7 @@ const News = () => {
 
     // const [comments, setComments] = useState([]);
     // useEffect(() => {
-    //     fetch('https://cse-aa-server.onrender.com/comments')
+    //     fetch('http://localhost:5000/comments')
     //         .then(res => res.json())
     //         .then(data => setComments(data))
 
@@ -190,7 +213,7 @@ const News = () => {
     useEffect(() => {
         const fetchComments = async () => {
             try {
-                const response = await fetch('https://cse-aa-server.onrender.com/comments');
+                const response = await fetch('http://localhost:5000/comments');
                 const data = await response.json();
                 setComments(data);
             } catch (error) {
@@ -225,7 +248,7 @@ const News = () => {
                 //     text: "Your Article has been deleted.",
                 //     icon: "success"
                 //   });
-                fetch(`https://cse-aa-server.onrender.com/comments/${_id}`, {
+                fetch(`http://localhost:5000/comments/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

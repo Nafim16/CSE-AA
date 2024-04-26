@@ -13,7 +13,7 @@ const HomeJobs = () => {
 
     const [job, setJob] = useState([]);
     useEffect(() => {
-        fetch('https://cse-aa-server.onrender.com/job')
+        fetch('http://localhost:5000/job')
             .then(res => res.json())
             .then(data => setJob(data))
     }, []);

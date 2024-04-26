@@ -25,7 +25,7 @@ const ProfileUpdate = () => {
         const update = { name, batch, phone, gender, blood, city, role };
 
 
-        fetch(`https://cse-aa-server.onrender.com/user/${currentUser._id}`, {
+        fetch(`http://localhost:5000/user/${currentUser._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

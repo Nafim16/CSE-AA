@@ -10,7 +10,7 @@ const StoryCard = ({ story, setStories, stories }) => {
   const { user } = useContext(AuthContext);
   const [userData, setUserData] = useState([]);
   useEffect(() => {
-    fetch('https://cse-aa-server.onrender.com/user')
+    fetch('http://localhost:5000/user')
       .then(res => res.json())
       .then(data => setUserData(data))
 
@@ -28,7 +28,7 @@ const StoryCard = ({ story, setStories, stories }) => {
       if (result.isConfirmed) {
 
 
-        fetch(`https://cse-aa-server.onrender.com/story/${_id}`, {
+        fetch(`http://localhost:5000/story/${_id}`, {
           method: "DELETE",
 
         })

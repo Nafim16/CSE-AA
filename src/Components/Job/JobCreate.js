@@ -39,7 +39,7 @@ const JobCreate = () => {
 
         // Sending data to the server
 
-        fetch('https://cse-aa-server.onrender.com/job', {
+        fetch('http://localhost:5000/job', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

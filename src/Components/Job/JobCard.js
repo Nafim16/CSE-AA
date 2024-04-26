@@ -12,7 +12,7 @@ const JobCard = ({ job, jobs, setJobs }) => {
 
   const [userData, setUserData] = useState([]);
   useEffect(() => {
-    fetch('https://cse-aa-server.onrender.com/user')
+    fetch('http://localhost:5000/user')
       .then(res => res.json())
       .then(data => setUserData(data))
 
@@ -32,7 +32,7 @@ const JobCard = ({ job, jobs, setJobs }) => {
       if (result.isConfirmed) {
 
 
-        fetch(`https://cse-aa-server.onrender.com/job/${_id}`, {
+        fetch(`http://localhost:5000/job/${_id}`, {
           method: "DELETE",
 
         })

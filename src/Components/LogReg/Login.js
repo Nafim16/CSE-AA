@@ -4,6 +4,7 @@ import './LogReg.css';
 import Head from '../Head/Head';
 import { AuthContext } from '../../Context/UserContext';
 import logo6 from '../img/logo6.svg';
+import axios from 'axios';
 
 
 const Login = () => {
@@ -41,11 +42,23 @@ const Login = () => {
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
+                const user = { email };
                 if (!loggedUser.emailVerified) {
                     alert('Please verify your email address');
                 }
                 form.reset();
                 navigate(from, { replace: true });
+                //access token
+                // axios.post('http://localhost:5000/jwt', user, {
+                //     withCredentials: true
+                // })
+                //     .then(res => {
+                //         console.log(res.data);
+                //         if (res.data.success) {
+                //             navigate(from, { replace: true });
+                //         }
+                //     })
+
             })
             .catch(error => {
                 console.log(error);
@@ -136,12 +149,12 @@ const Login = () => {
                                 <input className='input-logreg' type="password" name="password" id="password" placeholder='Enter Your Password' />
                             </div> */}
                             <div class="form-floating mb-3 w-100">
-                                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name='email' ref={emailRef}/>
-                                    <label for="floatingInput"><i className='bx bx-envelope'></i>Email address</label>
+                                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name='email' ref={emailRef} />
+                                <label for="floatingInput"><i className='bx bx-envelope'></i>Email address</label>
                             </div>
                             <div class="form-floating w-100">
-                                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name='password'/>
-                                    <label for="floatingPassword"><i className='bx bx-lock' ></i>Password</label>
+                                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name='password' />
+                                <label for="floatingPassword"><i className='bx bx-lock' ></i>Password</label>
                             </div>
                             <p><small>Forget Password? Please<button className='btn btn-link' onClick={handleResetPass}>Reset Password</button></small></p>
                             <input type="submit" value="login" className="nextPage" />

@@ -13,14 +13,14 @@ const ApplyJob = () => {
 
     const [users, setUser] = useState([]);
     useEffect(() => {
-        fetch('https://cse-aa-server.onrender.com/user')
+        fetch('http://localhost:5000/user')
             .then(res => res.json())
             .then(data => setUser(data))
     }, []);
 
     const [applies, setApply] = useState([]);
     useEffect(() => {
-        fetch('https://cse-aa-server.onrender.com/apply')
+        fetch('http://localhost:5000/apply')
             .then(res => res.json())
             .then(data => setApply(data))
     }, [])
@@ -62,7 +62,7 @@ const ApplyJob = () => {
             return;
         }
 
-        fetch('https://cse-aa-server.onrender.com/apply', {
+        fetch('http://localhost:5000/apply', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
