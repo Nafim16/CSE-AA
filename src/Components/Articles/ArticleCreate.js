@@ -4,6 +4,7 @@ import './Articles.css';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Context/UserContext';
 import JoditEditor from 'jodit-react';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const ArticleCreate = () => {
 
@@ -12,7 +13,7 @@ const ArticleCreate = () => {
     const [details, setDetails] = useState('');
 
     const editor = useRef(null);
-
+    const axiosSecure = useAxiosSecure();
 
     const time = new Date();
     const handleAddArticle = event => {
@@ -41,17 +42,18 @@ const ArticleCreate = () => {
             return;
         }
 
-        fetch('http://localhost:5000/article', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(newArticle)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data.insertedId) {
+        // fetch('http://localhost:5000/article', {
+        //     method: 'POST',
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     body: JSON.stringify(newArticle)
+        // })
+        //     .then(res => res.json())
+        axiosSecure.post('/article', newArticle)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.insertedId) {
                     Swal.fire({
                         title: 'ADDED!',
                         text: 'Article Added Successfully',
@@ -86,7 +88,7 @@ const ArticleCreate = () => {
                             </div>
 
                             <div className="mb-4">
-                            <label>Description</label>
+                                <label>Description</label>
                                 <JoditEditor
                                     ref={editor}
                                     value={details}

@@ -1,13 +1,23 @@
-import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useLoaderData, useParams } from 'react-router-dom';
 
 import Head from '../../Head/Head';
 import Footer from '../../Footer/Footer';
 import Articles from '../Articles';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const ArticleRead = () => {
 
-    const articles = useLoaderData();
+    // const articles = useLoaderData();
+    const axiosSecure = useAxiosSecure();
+    const [articles, setArticle] = useState([]);
+    const { id } = useParams();
+    useEffect(() => {
+        // fetch('http://localhost:5000/article')
+        //     .then(res => res.json())
+        axiosSecure.get(`/article/${id}`)
+            .then(res => setArticle(res.data))
+    }, [axiosSecure, id]);
 
     return (
         <div>

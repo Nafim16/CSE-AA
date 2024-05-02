@@ -8,15 +8,24 @@ import ArticleCreate from './ArticleCreate';
 import { Link, useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Context/UserContext';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 
 const Articles = () => {
 
+    const axiosSecure = useAxiosSecure();
+
 
     const { user } = useContext(AuthContext);
-    const article = useLoaderData();
+    // const article = useLoaderData();
 
-    const [articles, setArticles] = useState(article);
+    const [articles, setArticles] = useState([]);
+    useEffect(() => {
+        axiosSecure.get('/article')
+            .then(res => setArticles(res.data))
+
+    }, [axiosSecure])
+
 
 
 
@@ -46,13 +55,14 @@ const Articles = () => {
                 //     text: "Your Article has been deleted.",
                 //     icon: "success"
                 //   });
-                fetch(`http://localhost:5000/article/${_id}`, {
-                    method: 'DELETE'
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        console.log(data);
-                        if (data.deletedCount > 0) {
+                // fetch(`http://localhost:5000/article/${_id}`, {
+                //     method: 'DELETE'
+                // })
+                //     .then(res => res.json())
+                axiosSecure.delete(`/article/${_id}`)
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data.deletedCount > 0) {
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Your Article has been deleted.",

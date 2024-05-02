@@ -1,12 +1,24 @@
-import React, { useRef, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
+import { useLoaderData, useParams } from 'react-router-dom';
 import articleimg from '../img/articleimg.svg';
 import Swal from 'sweetalert2';
 import JoditEditor from 'jodit-react';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const ArticleUpdate = () => {
 
-    const article = useLoaderData();
+    // const article = useLoaderData();
+    const axiosSecure = useAxiosSecure();
+
+    const [article, setArticle] = useState([]);
+    const { id } = useParams();
+    useEffect(() => {
+        // fetch('http://localhost:5000/article')
+        //     .then(res => res.json())
+        axiosSecure.get(`/article/${id}`)
+            .then(res => setArticle(res.data))
+    }, [axiosSecure, id]);
+
     const [details, setDetails] = useState('');
 
     const editor = useRef(null);
@@ -20,17 +32,18 @@ const ArticleUpdate = () => {
 
         const updateArticle = { title, details, photoUrl };
 
-        fetch(`http://localhost:5000/article/${article._id}`, {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(updateArticle)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data.modifiedCount > 0) {
+        // fetch(`http://localhost:5000/article/${article._id}`, {
+        //     method: 'PUT',
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     body: JSON.stringify(updateArticle)
+        // })
+        //     .then(res => res.json())
+        axiosSecure.put(`/article/${article._id}`, updateArticle)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.modifiedCount > 0) {
                     Swal.fire({
                         title: 'UPDATED!',
                         text: 'Article Updated Successfully',

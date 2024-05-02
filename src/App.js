@@ -99,12 +99,12 @@ function App() {
     {
       path: "/articles",
       element: <Articles />,
-      loader: () => fetch('http://localhost:5000/article')
+      // loader: () => fetch('http://localhost:5000/article')
     },
     {
       path: 'ArticleUpdate/:id',
       element: <ArticleUpdate />,
-      loader: ({ params }) => fetch(`http://localhost:5000/article/${params.id}`)
+      // loader: ({ params }) => fetch(`http://localhost:5000/article/${params.id}`)
     },
     {
       path: "/profile",
@@ -143,7 +143,7 @@ function App() {
     {
       path: "/readarticledetails/:id",
       element: <ArticleRead></ArticleRead>,
-      loader: ({ params }) => fetch(`http://localhost:5000/article/${params.id}`)
+      // loader: ({ params }) => fetch(`http://localhost:5000/article/${params.id}`)
     },
     {
       path: "/jobapply/:id",

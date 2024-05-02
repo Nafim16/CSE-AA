@@ -10,16 +10,18 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import { Autoplay } from 'swiper/modules';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const HomeArticle = () => {
     // const isMediumToLarge = window.innerWidth >= 768;
-
+    const axiosSecure = useAxiosSecure();
     const [article, setArticle] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/article')
-            .then(res => res.json())
-            .then(data => setArticle(data))
-    }, []);
+        // fetch('http://localhost:5000/article')
+        //     .then(res => res.json())
+        axiosSecure.get('/article')
+            .then(res => setArticle(res.data))
+    }, [axiosSecure]);
 
 
 
