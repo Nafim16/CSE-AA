@@ -1,11 +1,21 @@
-import React, { useRef, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
+import { useLoaderData, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import JoditEditor from 'jodit-react';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const NewsUpdate = () => {
 
-    const news = useLoaderData();
+    // const news = useLoaderData();
+    const axiosSecure = useAxiosSecure();
+    const [news, setNews] = useState([]);
+    const { id } = useParams();
+    useEffect(() => {
+        axiosSecure.get(`/news/${id}`)
+            .then(res => setNews(res.data))
+    }, [axiosSecure,id]);
+
+
     const editor = useRef(null);
     const [post, setPost] = useState('');
     const handleUpdate = event => {
@@ -21,17 +31,18 @@ const NewsUpdate = () => {
         //form.reset();
 
 
-        fetch(`http://localhost:5000/news/${news._id}`, {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(newsUpdate)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data.modifiedCount > 0) {
+        // fetch(`http://localhost:5000/news/${news._id}`, {
+        //     method: 'PUT',
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     body: JSON.stringify(newsUpdate)
+        // })
+        //     .then(res => res.json())
+        axiosSecure.put(`/news/${news._id}`, newsUpdate)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.modifiedCount > 0) {
                     Swal.fire({
                         title: 'UPDATED!',
                         text: 'News Updated Successfully',

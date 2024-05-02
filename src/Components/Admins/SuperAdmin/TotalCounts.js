@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { PieChart, Pie, Sector, Tooltip, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend } from 'recharts';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 
 const TotalCounts = () => {
 
+    const axiosSecure = useAxiosSecure();
 
     const [user, setUser] = useState([]);
     const [news, setNews] = useState([]);
@@ -28,10 +30,12 @@ const TotalCounts = () => {
             .then(data => setJob(data))
     }, []);
     useEffect(() => {
-        fetch('http://localhost:5000/news')
-            .then(res => res.json())
-            .then(data => setNews(data))
-    }, []);
+        // fetch('http://localhost:5000/news')
+        //     .then(res => res.json())
+        //     .then(data => setNews(data))
+        axiosSecure.get('/news')
+            .then(res => setNews(res.data))
+    }, [axiosSecure]);
     useEffect(() => {
         fetch('http://localhost:5000/story')
             .then(res => res.json())

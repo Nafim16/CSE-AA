@@ -30,7 +30,10 @@ import ApplyJob from './Components/Job/ApplyJob/ApplyJob';
 
 
 
+
 function App() {
+
+  
 
   const router = createBrowserRouter([
     {
@@ -52,12 +55,13 @@ function App() {
     {
       path: "/news",
       element: <PrivateRoute> <News /> </PrivateRoute>,
-      loader: () => fetch('http://localhost:5000/news')
+      // loader: () => fetch('http://localhost:5000/news')
     },
     {
       path: "/NewsUpdate/:id",
       element: <PrivateRoute> <NewsUpdate /> </PrivateRoute>,
-      loader: ({ params }) => fetch(`http://localhost:5000/news/${params.id}`)
+      // loader: ({ params }) => fetch(`http://localhost:5000/news/${params.id}`)
+      // loader:({params})=>axiosseq.get(`/news/${params.id}`)
     },
 
     {

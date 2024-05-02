@@ -1,14 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 
 const NewsApprove = () => {
-
+    const axiosSecure = useAxiosSecure();
     const [News, setNews] = useState([]);
+    // useEffect(() => {
+    //     // fetch('http://localhost:5000/news')
+    //     //     .then(res => res.json())
+    //     //     .then(data => setNews(data))
+    //     axiosSecure.get('/news')
+    //         .then(res => setNews(res.data))
+    // }, [axiosSecure])
     useEffect(() => {
-        fetch('http://localhost:5000/news')
-            .then(res => res.json())
-            .then(data => setNews(data))
-    }, [])
+        axiosSecure.get('/news')
+            .then(res => {
+                console.log(res.data); // Check if data is received correctly
+                setNews(res.data);
+            })
+            .catch(error => {
+                console.error('Error fetching news data:', error); // Log any errors
+            });
+    }, [axiosSecure]);
 
     const handleApprove = _id => {
         console.log(_id);
@@ -28,17 +41,34 @@ const NewsApprove = () => {
                 //     text: "Your file has been deleted.",
                 //     icon: "success"
                 //   });
-                fetch(`http://localhost:5000/news/${_id}`, {
-                    method: 'PATCH',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify({ approval: 'approved' })
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        console.log(data);
-                        if (data.modifiedCount > 0) {
+                // fetch(`http://localhost:5000/news/${_id}`, {
+                //     method: 'PATCH',
+                //     headers: {
+                //         'content-type': 'application/json'
+                //     },
+                //     body: JSON.stringify({ approval: 'approved' })
+                // })
+                //     .then(res => res.json())
+                //     .then(data => {
+                //         console.log(data);
+                //         if (data.modifiedCount > 0) {
+                //             Swal.fire({
+                //                 title: "Approved",
+                //                 text: "Approved by Admin",
+                //                 icon: "success"
+                //             });
+                //             const remaining = News.filter(news => news._id !== _id);
+                //             const updated = News.find(news => news._id === _id);
+                //             updated.approval = 'approved'
+                //             const newNews = [updated, ...remaining];
+                //             setNews(newNews);
+                //         }
+                //     })
+                axiosSecure.patch(`/news/${_id}`,{ approval: 'approved' })
+                    
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data.modifiedCount > 0) {
                             Swal.fire({
                                 title: "Approved",
                                 text: "Approved by Admin",
@@ -74,13 +104,27 @@ const NewsApprove = () => {
                 //     text: "Your Article has been deleted.",
                 //     icon: "success"
                 //   });
-                fetch(`http://localhost:5000/news/${_id}`, {
-                    method: 'DELETE'
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        console.log(data);
-                        if (data.deletedCount > 0) {
+                // fetch(`http://localhost:5000/news/${_id}`, {
+                //     method: 'DELETE'
+                // })
+                //     .then(res => res.json())
+                //     .then(data => {
+                //         console.log(data);
+                //         if (data.deletedCount > 0) {
+                //             Swal.fire({
+                //                 title: "Decline!",
+                //                 text: "This News has been deleted.",
+                //                 icon: "success"
+                //             })
+                //             const remaining = News.filter(NewNews => NewNews._id !== _id);
+                //             setNews(remaining);
+                //         }
+                //     })
+                axiosSecure.delete(`/news/${_id}`)
+                    
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data.deletedCount > 0) {
                             Swal.fire({
                                 title: "Decline!",
                                 text: "This News has been deleted.",
@@ -90,6 +134,7 @@ const NewsApprove = () => {
                             setNews(remaining);
                         }
                     })
+
 
             }
         });
@@ -105,7 +150,7 @@ const NewsApprove = () => {
                 <div className="col-md-12">
                     <div className=" table-responsive">
                         <table className="table caption-top table-striped table-primary table-bordered border-secondary table-hover bg-shadow">
-                        
+
                             <caption className='fs-2 fw-bold'>Forums</caption>
                             <thead className="table-dark">
                                 <tr>

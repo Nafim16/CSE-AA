@@ -5,12 +5,15 @@ import { db } from '../../../FIrebase/firebase.config';
 import { AuthContext } from '../../../Context/UserContext';
 import Swal from 'sweetalert2';
 import JoditEditor from 'jodit-react';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const Admin = () => {
 
     const { user } = useContext(AuthContext);
     const time = new Date();
     const editor = useRef(null);
+
+    const axiosSecure = useAxiosSecure();
 
     const [post, setPost] = useState('');
     const handlePostSubmit = async (event) => {
@@ -40,17 +43,18 @@ const Admin = () => {
 
 
 
-        fetch('http://localhost:5000/news', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(newspost)
-        })
-            .then(res => res.json()
-                .then(data => {
-                    console.log(data);
-                    if (data.insertedId) {
+        // fetch('http://localhost:5000/news', {
+        //     method: 'POST',
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     body: JSON.stringify(newspost)
+        // })
+        //     .then(res => res.json())
+        axiosSecure.post('/news', newspost)
+                .then(res => {
+                    console.log(res);
+                    if (res.data.insertedId) {
                         Swal.fire({
                             title: 'Success!',
                             text: 'Post created Successfully, Wait for the Admins to Approve it',
@@ -59,7 +63,7 @@ const Admin = () => {
                         })
                         setPost('');
                     }
-                }))
+                })
 
     };
 

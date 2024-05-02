@@ -128,13 +128,14 @@ const News = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 // Delete the news
-                fetch(`http://localhost:5000/news/${_id}`, {
-                    method: 'DELETE'
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        console.log(data);
-                        if (data.deletedCount > 0) {
+                // fetch(`http://localhost:5000/news/${_id}`, {
+                //     method: 'DELETE'
+                // })
+                //     .then(res => res.json())
+                axiosSecure.delete(`/news/${_id}`)
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data.deletedCount > 0) {
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Your News has been deleted.",
