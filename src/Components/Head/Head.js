@@ -21,14 +21,14 @@ const Head = () => {
             .catch(error => console.error(error))
     }
 
-    const [userData, setUserData] = useState([]);
-    useEffect(() => {
-        fetch('http://localhost:5000/user')
-            .then(res => res.json())
-            .then(data => setUserData(data))
+    // const [userData, setUserData] = useState([]);
+    // useEffect(() => {
+    //     fetch('http://localhost:5000/user')
+    //         .then(res => res.json())
+    //         .then(data => setUserData(data))
 
-    }, [])
-    // const userData = useUser();
+    // }, [])
+    const userData = useUser();
 
 
     return (

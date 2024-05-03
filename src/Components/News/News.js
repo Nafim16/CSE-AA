@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
 import send from '../img/send.svg';
 import axios from 'axios';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import useUser from '../../hooks/useUser';
 
 const News = () => {
 
@@ -39,17 +40,18 @@ const News = () => {
 
     }, [axiosSecure])
 
-    const [userData, setUserData] = useState([]);
-    useEffect(() => {
-        fetch('http://localhost:5000/user') //{credentials:'include'} if not using axios
-            .then(res => res.json())
-            .then(data => setUserData(data))
-        // axios.get('http://localhost:5000/user',{withCredentials:true})
-        // .then(res=>{
-        //     setUserData(res.data);
-        // })
+    // const [userData, setUserData] = useState([]);
+    // useEffect(() => {
+    //     fetch('http://localhost:5000/user') //{credentials:'include'} if not using axios
+    //         .then(res => res.json())
+    //         .then(data => setUserData(data))
+    //     // axios.get('http://localhost:5000/user',{withCredentials:true})
+    //     // .then(res=>{
+    //     //     setUserData(res.data);
+    //     // })
 
-    }, [])
+    // }, [])
+    const userData = useUser();
 
     //for auto fetching
     // useEffect(() => {

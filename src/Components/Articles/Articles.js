@@ -9,6 +9,7 @@ import { Link, useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Context/UserContext';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import useUser from '../../hooks/useUser';
 
 
 const Articles = () => {
@@ -29,13 +30,14 @@ const Articles = () => {
 
 
 
-    const [userData, setUserData] = useState([]);
-    useEffect(() => {
-        fetch('http://localhost:5000/user')
-            .then(res => res.json())
-            .then(data => setUserData(data))
+    // const [userData, setUserData] = useState([]);
+    // useEffect(() => {
+    //     fetch('http://localhost:5000/user')
+    //         .then(res => res.json())
+    //         .then(data => setUserData(data))
 
-    }, [])
+    // }, [])
+    const userData = useUser();
 
 
     const handleDelete = _id => {

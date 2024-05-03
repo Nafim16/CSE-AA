@@ -23,13 +23,13 @@ const ApplyJob = () => {
 
     const { user } = useContext(AuthContext);
 
-    const [users, setUser] = useState([]);
-    useEffect(() => {
-        fetch('http://localhost:5000/user')
-            .then(res => res.json())
-            .then(data => setUser(data))
-    }, []);
-    // const users = useUser();
+    // const [users, setUser] = useState([]);
+    // useEffect(() => {
+    //     fetch('http://localhost:5000/user')
+    //         .then(res => res.json())
+    //         .then(data => setUser(data))
+    // }, []);
+    const users = useUser();
 
     const [applies, setApply] = useState([]);
     useEffect(() => {

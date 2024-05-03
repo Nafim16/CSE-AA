@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { AuthContext } from '../../Context/UserContext';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import useUser from '../../hooks/useUser';
 
 const Event = () => {
 
@@ -20,13 +21,15 @@ const Event = () => {
     }, [axiosSecure]);
 
     const { user } = useContext(AuthContext);
-    const [userData, setUserData] = useState([]);
-    useEffect(() => {
-        fetch('http://localhost:5000/user')
-            .then(res => res.json())
-            .then(data => setUserData(data))
+    // const [userData, setUserData] = useState([]);
+    // useEffect(() => {
+    //     fetch('http://localhost:5000/user')
+    //         .then(res => res.json())
+    //         .then(data => setUserData(data))
 
-    }, [])
+    // }, [])
+
+    const userData = useUser();
 
 
     const handleDelete = _id => {

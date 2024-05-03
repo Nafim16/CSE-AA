@@ -14,14 +14,14 @@ const Profile = () => {
 
     const { user } = useContext(AuthContext);
 
-    const currentUser = useLoaderData();
-    // const axiosSecure = useAxiosSecure();
-    // const [currentUser, setUser] = useState();
-    // const { id } = useParams();
-    // useEffect(() => {
-    //     axiosSecure.get('/user')
-    //         .then(res => setUser(res.data))
-    // }, [axiosSecure])
+    // const currentUser = useLoaderData();
+    const axiosSecure = useAxiosSecure();
+    const [currentUser, setUser] = useState([]);
+    const { id } = useParams();
+    useEffect(() => {
+        axiosSecure.get('/user')
+            .then(res => setUser(res.data))
+    }, [axiosSecure])
 
     const handleUpdate = (_id) => {
         console.log(_id);

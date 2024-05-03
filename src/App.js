@@ -109,7 +109,7 @@ function App() {
     {
       path: "/profile",
       element: <PrivateRoute> <Profile /> </PrivateRoute>,
-      loader: () => fetch('http://localhost:5000/user')
+      // loader: () => fetch('http://localhost:5000/user')
     },
     {
       path: '/ProfileUpdate/:id',

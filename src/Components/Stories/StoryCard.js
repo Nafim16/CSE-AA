@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import './Stories.css' // Import your CSS file for additional styling
 import { AuthContext } from '../../Context/UserContext';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import useUser from '../../hooks/useUser';
 
 const StoryCard = ({ story, setStories, stories }) => {
   const { _id, title, photo, details } = story;
@@ -11,13 +12,14 @@ const StoryCard = ({ story, setStories, stories }) => {
   const axiosSecure = useAxiosSecure();
 
   const { user } = useContext(AuthContext);
-  const [userData, setUserData] = useState([]);
-  useEffect(() => {
-    fetch('http://localhost:5000/user')
-      .then(res => res.json())
-      .then(data => setUserData(data))
+  // const [userData, setUserData] = useState([]);
+  // useEffect(() => {
+  //   fetch('http://localhost:5000/user')
+  //     .then(res => res.json())
+  //     .then(data => setUserData(data))
 
-  }, [])
+  // }, [])
+  const userData = useUser();
 
   const handleDelete = _id => {
     Swal.fire({

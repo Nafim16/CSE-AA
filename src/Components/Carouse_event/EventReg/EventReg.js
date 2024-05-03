@@ -8,6 +8,7 @@ import Footer from '../../Footer/Footer';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../../Context/UserContext';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import useUser from '../../../hooks/useUser';
 
 
 const EventReg = () => {
@@ -15,12 +16,13 @@ const EventReg = () => {
     const { user } = useContext(AuthContext);
     const axiosSecure = useAxiosSecure();
 
-    const [users, setUser] = useState([]);
-    useEffect(() => {
-        fetch('http://localhost:5000/user')
-            .then(res => res.json())
-            .then(data => setUser(data))
-    }, []);
+    // const [users, setUser] = useState([]);
+    // useEffect(() => {
+    //     fetch('http://localhost:5000/user')
+    //         .then(res => res.json())
+    //         .then(data => setUser(data))
+    // }, []);
+    const users = useUser();
 
 
     const [reg, setReg] = useState([]);

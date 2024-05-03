@@ -4,7 +4,7 @@ import useAxiosSecure from './useAxiosSecure';
 const useUser = () => {
 
     const axiosSecure = useAxiosSecure();
-    const [user, setUser] = useState();
+    const [user, setUser] = useState([]);
 
     useEffect(() => {
         axiosSecure.get('/user')

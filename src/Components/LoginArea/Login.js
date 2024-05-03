@@ -8,6 +8,7 @@ import logo3 from '../img/logo3.svg';
 import { useKeenSlider } from "keen-slider/react"
 import { AuthContext } from '../../Context/UserContext';
 import homeAnimation1 from '../img/ProfileAnimation1.gif';
+import useUser from '../../hooks/useUser';
 
 const carousel = (slider) => {
     const z = 300
@@ -32,12 +33,13 @@ const Login = () => {
     const registerClicked = () => {
         navigate("/registration");
     };
-    const [currentUser, setCurrentuser] = useState([]);
-    useEffect(() => {
-        fetch('http://localhost:5000/user')
-            .then(res => res.json())
-            .then(data => setCurrentuser(data))
-    }, []);
+    // const [currentUser, setCurrentuser] = useState([]);
+    // useEffect(() => {
+    //     fetch('http://localhost:5000/user')
+    //         .then(res => res.json())
+    //         .then(data => setCurrentuser(data))
+    // }, []);
+    const currentUser = useUser();
 
     const { user } = useContext(AuthContext);
 

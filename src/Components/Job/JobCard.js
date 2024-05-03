@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { AuthContext } from '../../Context/UserContext';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import useUser from '../../hooks/useUser';
 
 
 const JobCard = ({ job, jobs, setJobs }) => {
@@ -12,13 +13,14 @@ const JobCard = ({ job, jobs, setJobs }) => {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
 
-  const [userData, setUserData] = useState([]);
-  useEffect(() => {
-    fetch('http://localhost:5000/user')
-      .then(res => res.json())
-      .then(data => setUserData(data))
+  // const [userData, setUserData] = useState([]);
+  // useEffect(() => {
+  //   fetch('http://localhost:5000/user')
+  //     .then(res => res.json())
+  //     .then(data => setUserData(data))
 
-  }, [])
+  // }, [])
+  const userData = useUser();
 
   const { _id, name, title, description, location, position, uid } = job;
 
