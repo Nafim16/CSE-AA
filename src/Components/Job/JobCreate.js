@@ -3,9 +3,11 @@ import './Job.css';
 import Swal from 'sweetalert2';
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../Context/UserContext';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const JobCreate = () => {
 
+    const axiosSecure = useAxiosSecure();
 
     const { user } = useContext(AuthContext);
 
@@ -39,17 +41,18 @@ const JobCreate = () => {
 
         // Sending data to the server
 
-        fetch('http://localhost:5000/job', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(newJob)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data.insertedId) {
+        // fetch('http://localhost:5000/job', {
+        //     method: 'POST',
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     body: JSON.stringify(newJob)
+        // })
+        //     .then(res => res.json())
+        axiosSecure.post('/job', newJob)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.insertedId) {
                     Swal.fire({
                         title: 'Success!',
                         text: 'New Job Added!',

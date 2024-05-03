@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import Head from '../Head/Head';
 import Footer from '../Footer/Footer';
@@ -8,10 +8,21 @@ import StoriesCreate from './StoriesCreate';
 import { useLoaderData } from 'react-router-dom';
 import StoryCard from './StoryCard';
 import { AuthContext } from '../../Context/UserContext';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const Stories = () => {
-    const loadedStories = useLoaderData();
-    const [stories, setStories] = useState(loadedStories);
+    // const loadedStories = useLoaderData();
+    // const [stories, setStories] = useState(loadedStories);
+
+    const axiosSecure = useAxiosSecure();
+
+    const [stories, setStories] = useState([]);
+    useEffect(() => {
+        // fetch('http://localhost:5000/story')
+        //     .then(res => res.json())
+        axiosSecure.get('/story')
+            .then(res => setStories(res.data))
+    }, [axiosSecure]);
 
     const { user } = useContext(AuthContext);
 

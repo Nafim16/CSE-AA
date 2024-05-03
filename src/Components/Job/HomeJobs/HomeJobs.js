@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from 'react';
 
-
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import { Autoplay } from 'swiper/modules';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const HomeJobs = () => {
 
+    const axiosSecure = useAxiosSecure();
     const [job, setJob] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/job')
-            .then(res => res.json())
-            .then(data => setJob(data))
-    }, []);
+        // fetch('http://localhost:5000/job')
+        //     .then(res => res.json())
+        axiosSecure.get('/job')
+            .then(res => setJob(res.data))
+    }, [axiosSecure]);
 
 
 

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useParams } from 'react-router-dom';
 
 
 import './EventReg.css';
@@ -7,11 +7,13 @@ import Head from '../../Head/Head';
 import Footer from '../../Footer/Footer';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../../Context/UserContext';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 
 const EventReg = () => {
 
     const { user } = useContext(AuthContext);
+    const axiosSecure = useAxiosSecure();
 
     const [users, setUser] = useState([]);
     useEffect(() => {
@@ -23,12 +25,23 @@ const EventReg = () => {
 
     const [reg, setReg] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/reg')
-            .then(res => res.json())
-            .then(data => setReg(data))
-    }, [])
+        // fetch('http://localhost:5000/reg')
+        //     .then(res => res.json())
+        axiosSecure.get('/reg')
+            .then(res => setReg(res.data))
+    }, [axiosSecure])
 
-    const events = useLoaderData();
+    // const events = useLoaderData();
+    const [events, setEvents] = useState([]);
+    const { id } = useParams();
+    useEffect(() => {
+        // fetch('http://localhost:5000/reg')
+        //     .then(res => res.json())
+        axiosSecure.get(`/event/${id}`)
+            .then(res => setEvents(res.data))
+    }, [axiosSecure, id])
+
+
 
     const EventRegSubmit = (event, eventsId) => {
         event.preventDefault();
@@ -55,17 +68,18 @@ const EventReg = () => {
         form.reset();
 
 
-        fetch(`http://localhost:5000/reg`, {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(newEventReg)
-        })
-            .then(res => res.json()
-                .then(data => {
-                    console.log(data);
-                    if (data.insertedId) {
+        // fetch(`http://localhost:5000/reg`, {
+        //     method: 'POST',
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     body: JSON.stringify(newEventReg)
+        // })
+        //     .then(res => res.json())
+        axiosSecure.post('/reg', newEventReg)
+                .then(res => {
+                    console.log(res.data);
+                    if (res.data.insertedId) {
                         Swal.fire({
                             title: 'Success!',
                             text: 'Registration Successfully Done',
@@ -74,7 +88,7 @@ const EventReg = () => {
                         })
 
                     }
-                }))
+                })
 
     }
 
@@ -183,8 +197,8 @@ const EventReg = () => {
                                         <span>Details</span>
                                         <div className="">
                                             <input type="text" placeholder="Enter a Name" className="evt-input_field" name='name' />
-                                            <input type="number" placeholder="Enter a Student ID" className="evt-input_field" name='studentId'/>
-                                            <input type="email" placeholder="Enter a Email" className="evt-input_field" name='email'/>
+                                            <input type="number" placeholder="Enter a Student ID" className="evt-input_field" name='studentId' />
+                                            <input type="email" placeholder="Enter a Email" className="evt-input_field" name='email' />
                                         </div>
                                     </div>
                                     <hr className="evt-hr" />
@@ -196,7 +210,7 @@ const EventReg = () => {
                                     <hr className="evt-hr" />
                                     <div className="evt-promo">
                                         <span>Transaction ID</span>
-                                        <input type="text" placeholder="Enter a Promo Code" className="evt-input_field" name="transactionID"/>
+                                        <input type="text" placeholder="Enter a Promo Code" className="evt-input_field" name="transactionID" />
                                     </div>
                                     <hr className="evt-hr" />
                                 </div>

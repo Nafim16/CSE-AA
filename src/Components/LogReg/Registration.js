@@ -7,6 +7,7 @@ import { sendEmailVerification, updateProfile } from 'firebase/auth';
 import { db } from '../../FIrebase/firebase.config';
 import { collection, doc, setDoc } from 'firebase/firestore';
 import logo6 from '../img/logo6.svg';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 // import { collection, doc, getFirestore, setDoc } from 'firebase/firestore';
 
 // import app from '../../FIrebase/firestore.config';
@@ -33,6 +34,7 @@ const Registration = () => {
     const [phoneError, setPhoneError] = useState('');
     const [fillError, setFillError] = useState('');
 
+    const axiosSecure = useAxiosSecure();
 
     const location = useLocation();
 
@@ -127,14 +129,15 @@ const Registration = () => {
                     uid: loggedUser.uid,
                 };
 
-                fetch('http://localhost:5000/user', {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json',
-                    },
-                    body: JSON.stringify(userDataWithUID),
-                })
-                    .then(res => res.json())
+                // fetch('http://localhost:5000/user', {
+                //     method: 'POST',
+                //     headers: {
+                //         'content-type': 'application/json',
+                //     },
+                //     body: JSON.stringify(userDataWithUID),
+                // })
+                //     .then(res => res.json())
+                axiosSecure.post('/user',userDataWithUID)
                     .then(data => {
                         console.log(data);
                     });

@@ -1,13 +1,25 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
 import Head from '../../Head/Head';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../../Context/UserContext';
 import './applyjob.css';
 import Footer from '../../Footer/Footer';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import useUser from '../../../hooks/useUser';
 
 const ApplyJob = () => {
-    const jobs = useLoaderData();
+    // const jobs = useLoaderData();
+    const axiosSecure = useAxiosSecure();
+
+    const [jobs, setJobs] = useState([]);
+    const { id } = useParams();
+    useEffect(() => {
+        // fetch('http://localhost:5000/user')
+        //     .then(res => res.json())
+        axiosSecure.get(`/job/${id}`)
+            .then(res => setJobs(res.data))
+    }, [axiosSecure, id]);
 
     const { user } = useContext(AuthContext);
 
@@ -17,13 +29,15 @@ const ApplyJob = () => {
             .then(res => res.json())
             .then(data => setUser(data))
     }, []);
+    // const users = useUser();
 
     const [applies, setApply] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/apply')
-            .then(res => res.json())
-            .then(data => setApply(data))
-    }, [])
+        // fetch('http://localhost:5000/apply')
+        //     .then(res => res.json())
+        axiosSecure.get('/apply')
+            .then(res => setApply(res.data))
+    }, [axiosSecure])
 
 
     const navigate = useNavigate();
@@ -62,17 +76,18 @@ const ApplyJob = () => {
             return;
         }
 
-        fetch('http://localhost:5000/apply', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(newApply)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data.insertedId) {
+        // fetch('http://localhost:5000/apply', {
+        //     method: 'POST',
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     body: JSON.stringify(newApply)
+        // })
+        //     .then(res => res.json())
+        axiosSecure.post('/apply', newApply)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.insertedId) {
                     Swal.fire({
                         title: 'Applied!',
                         text: 'Applied Successfully',
@@ -93,7 +108,7 @@ const ApplyJob = () => {
                             {jobs.title}({jobs.position})
                         </div>
                         <div className='text-start text-dark'>
-                            <p className='fw-bold'>Details:</p> 
+                            <p className='fw-bold'>Details:</p>
                             {jobs.description}
                         </div>
                         <div className='d-flex justify-content-center mt-3'>

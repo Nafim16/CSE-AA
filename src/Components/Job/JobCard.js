@@ -4,11 +4,13 @@ import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { AuthContext } from '../../Context/UserContext';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 
 const JobCard = ({ job, jobs, setJobs }) => {
 
   const { user } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
 
   const [userData, setUserData] = useState([]);
   useEffect(() => {
@@ -32,15 +34,16 @@ const JobCard = ({ job, jobs, setJobs }) => {
       if (result.isConfirmed) {
 
 
-        fetch(`http://localhost:5000/job/${_id}`, {
-          method: "DELETE",
+        // fetch(`http://localhost:5000/job/${_id}`, {
+        //   method: "DELETE",
 
-        })
-          .then(res => res.json())
-          .then(data => {
-            console.log(data)
+        // })
+        //   .then(res => res.json())
+        axiosSecure.delete(`job/${_id}`)
+          .then(res => {
+            console.log(res.data)
 
-            if (data.deletedCount > 0) {
+            if (res.data.deletedCount > 0) {
 
               Swal.fire({
                 title: "Deleted!",

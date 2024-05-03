@@ -1,15 +1,24 @@
-import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useLoaderData, useParams } from 'react-router-dom';
 import Head from '../Head/Head';
 import Footer from '../Footer/Footer';
 import covevent from '../img/covevent.svg';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const UpdateEvent = () => {
 
     // Use destructuring to get the 'event' object from useLoaderData()
-    const events = useLoaderData();
-
+    // const events = useLoaderData();
+    const axiosSecure = useAxiosSecure();
+    const { id } = useParams();
+    const [events, setEvents] = useState([]);
+    useEffect(() => {
+        // fetch('http://localhost:5000/event')
+        //     .then((res) => res.json())
+        axiosSecure.get(`/event/${id}`)
+            .then((res) => setEvents(res.data));
+    }, [axiosSecure, id]);
 
 
     const handleUpdateEvent = event => {
@@ -30,17 +39,18 @@ const UpdateEvent = () => {
 
         // Send Data to the Server
 
-        fetch(`http://localhost:5000/event/${events._id}`, {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(updatedEvent),
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data.modifiedCount > 0) {
+        // fetch(`http://localhost:5000/event/${events._id}`, {
+        //     method: 'PUT',
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     body: JSON.stringify(updatedEvent),
+        // })
+        //     .then(res => res.json())
+        axiosSecure.put(`/event/${events._id}`, updatedEvent)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.modifiedCount > 0) {
                     Swal.fire({
                         title: 'UPDATED!',
                         text: 'Event Updated Successfully',
@@ -85,7 +95,7 @@ const UpdateEvent = () => {
                                 </div>
 
                                 <div className="form-floating mb-3">
-                                    <input type="text" className="form-control" id="floatingTextareaDisabled" name="photoUrl" placeholder='Photo URl' defaultValue={events.photoUrl}  />
+                                    <input type="text" className="form-control" id="floatingTextareaDisabled" name="photoUrl" placeholder='Photo URl' defaultValue={events.photoUrl} />
                                     <label htmlFor="floatingTextareaDisabled">Photo URl</label>
                                 </div>
 

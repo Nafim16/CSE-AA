@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './User.css';
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+
 const ChangeRole = () => {
 
-    const user = useLoaderData();
+    // const user = useLoaderData();
+    // const user = useUser();
+    const axiosSecure = useAxiosSecure();
+    const [user, setUser] = useState([]);
+    const { id } = useParams();
+    useEffect(() => {
+        axiosSecure.get(`/user/${id}`)
+            .then(res => setUser(res.data))
+    }, [axiosSecure, id])
 
     const page = useNavigate();
     const handleUpdate = () => {
@@ -25,17 +35,18 @@ const ChangeRole = () => {
 
         const updateuser = { name, batch, city, gender, phone, role, blood };
 
-        fetch(`http://localhost:5000/user/${user._id}`, {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(updateuser)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data.modifiedCount > 0) {
+        // fetch(`http://localhost:5000/user/${user._id}`, {
+        //     method: 'PUT',
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     body: JSON.stringify(updateuser)
+        // })
+        //     .then(res => res.json())
+        axiosSecure.put(`/user/${user._id}`, updateuser)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.modifiedCount > 0) {
                     Swal.fire({
                         title: 'UPDATED!',
                         text: 'user Updated Successfully',
@@ -56,7 +67,7 @@ const ChangeRole = () => {
                             <input type="text" name="name" defaultValue={user.name} readOnly className="form-control custom-color" />
                             <p className="card-text">Role: {user.role}</p>
                         </h3>
-                        
+
                         <div className="input-group mb-3">
                             <span className="input-group-text custom-b-t" id="batch-addon">Batch:</span>
                             <input type="text" name="batch" defaultValue={user.batch} readOnly className="form-control custom-b-t" aria-describedby="batch-addon" />

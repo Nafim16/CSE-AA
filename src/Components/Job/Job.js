@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import Head from '../Head/Head';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,14 +10,24 @@ import JobCreate from './JobCreate';
 import { useLoaderData } from 'react-router-dom';
 import JobCard from './JobCard';
 import { AuthContext } from '../../Context/UserContext';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 
 const Job = () => {
 
 
     const { user } = useContext(AuthContext);
-    const loadedJobs = useLoaderData();
-    const [jobs, setJobs] = useState(loadedJobs);
+    // const loadedJobs = useLoaderData();
+    // const [jobs, setJobs] = useState(loadedJobs);
+
+    const axiosSecure = useAxiosSecure();
+    const [jobs, setJobs] = useState([]);
+    useEffect(() => {
+        // fetch('http://localhost:5000/job')
+        //     .then(res => res.json())
+        axiosSecure.get('/job')
+            .then(res => setJobs(res.data))
+    }, [axiosSecure]);
 
     // const{_id,name,title,location,description,position}=job;
     // const handleDelete = _id =>{

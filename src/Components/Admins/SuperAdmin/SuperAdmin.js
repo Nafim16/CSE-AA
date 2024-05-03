@@ -10,15 +10,22 @@ import JobApprove from './Approval/JobApprove';
 import ArticleApprove from './Approval/ArticleApprove';
 import TotalCounts from './TotalCounts';
 import EventApprove from './Approval/EventApprove';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const SuperAdmin = () => {
 
 
 
     const { user } = useContext(AuthContext);
-    const userData = useLoaderData();
-
-
+    // const userData = useLoaderData();
+    const [userData, setUser] = useState([]);
+    const axiosSecure = useAxiosSecure();
+    useEffect(() => {
+        // fetch('http://localhost:5000/user')
+        //     .then(res => res.json())
+        axiosSecure.get('/user')
+            .then(res => setUser(res.data))
+    }, [axiosSecure]);
 
 
 

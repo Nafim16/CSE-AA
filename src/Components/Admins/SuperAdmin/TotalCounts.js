@@ -21,15 +21,17 @@ const TotalCounts = () => {
     }, [axiosSecure]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/event')
-            .then(res => res.json())
-            .then(data => setEvents(data))
-    }, []);
+        // fetch('http://localhost:5000/event')
+        //     .then(res => res.json())
+        axiosSecure.get('/event')
+            .then(res => setEvents(res.data))
+    }, [axiosSecure]);
     useEffect(() => {
-        fetch('http://localhost:5000/job')
-            .then(res => res.json())
-            .then(data => setJob(data))
-    }, []);
+        // fetch('http://localhost:5000/job')
+        //     .then(res => res.json())
+        axiosSecure.get('/job')
+            .then(res => setJob(res.data))
+    }, [axiosSecure]);
     useEffect(() => {
         // fetch('http://localhost:5000/news')
         //     .then(res => res.json())
@@ -43,10 +45,11 @@ const TotalCounts = () => {
             .then(data => setStories(data))
     }, []);
     useEffect(() => {
-        fetch('http://localhost:5000/user')
-            .then(res => res.json())
-            .then(data => setUser(data))
-    }, []);
+        // fetch('http://localhost:5000/user')
+        //     .then(res => res.json())
+        axiosSecure.get('/user')
+            .then(res => setUser(res.data))
+    }, [axiosSecure]);
 
     const data = [
         { name: 'Registered User', value: user.length },

@@ -1,10 +1,18 @@
-import React from 'react';
-import { Link, useLoaderData, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLoaderData, useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const ProfileUpdate = () => {
 
-    const currentUser = useLoaderData();
+    // const currentUser = useLoaderData();
+    const axiosSecure = useAxiosSecure();
+    const [currentUser, setUser] = useState([]);
+    const { id } = useParams();
+    useEffect(() => {
+        axiosSecure.get(`/user/${id}`)
+            .then(res => setUser(res.data))
+    }, [axiosSecure, id])
 
     const page = useNavigate();
     const handleUpdate = () => {
@@ -25,17 +33,18 @@ const ProfileUpdate = () => {
         const update = { name, batch, phone, gender, blood, city, role };
 
 
-        fetch(`http://localhost:5000/user/${currentUser._id}`, {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(update)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data.modifiedCount > 0) {
+        // fetch(`http://localhost:5000/user/${currentUser._id}`, {
+        //     method: 'PUT',
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     body: JSON.stringify(update)
+        // })
+        //     .then(res => res.json())
+        axiosSecure.put(`/user/${currentUser._id}`, update)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.modifiedCount > 0) {
                     Swal.fire({
                         title: 'UPDATED!',
                         text: 'user Updated Successfully',

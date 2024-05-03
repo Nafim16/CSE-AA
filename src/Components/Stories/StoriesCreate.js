@@ -3,10 +3,13 @@ import React, { useContext, useState } from 'react';
 import Swal from 'sweetalert2';
 import story from '../img/profilecard.svg';
 import { AuthContext } from '../../Context/UserContext';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const StoriesCreate = () => {
 
-    const [fillError, setFillError] = useState('');;
+    const axiosSecure = useAxiosSecure();
+
+    const [fillError, setFillError] = useState('');
 
     const { user } = useContext(AuthContext);
     const time = new Date();
@@ -20,7 +23,7 @@ const StoriesCreate = () => {
         const uid = user.uid;
         const createdAt = time.toLocaleString();
 
-        const newStory = { photo, title, details, uid,createdAt }
+        const newStory = { photo, title, details, uid, createdAt }
 
         if (title.trim() === '') {
             setFillError('Please fill up all the fields.');
@@ -28,15 +31,16 @@ const StoriesCreate = () => {
         }
         console.log(newStory);
 
-        fetch('http://localhost:5000/story', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(newStory)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data.insertedId) {
+        // fetch('http://localhost:5000/story', {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify(newStory)
+        // })
+        //     .then(res => res.json())
+        axiosSecure.post('/story', newStory)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.insertedId) {
                     Swal.fire({
                         title: 'Success!',
                         text: 'New Story Added!',

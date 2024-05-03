@@ -5,14 +5,19 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { AuthContext } from '../../Context/UserContext';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const Event = () => {
+
+    const axiosSecure = useAxiosSecure();
+
     const [events, setEvents] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/event')
-            .then((res) => res.json())
-            .then((data) => setEvents(data));
-    }, []);
+        // fetch('http://localhost:5000/event')
+        //     .then((res) => res.json())
+        axiosSecure.get('/event')
+            .then((res) => setEvents(res.data));
+    }, [axiosSecure]);
 
     const { user } = useContext(AuthContext);
     const [userData, setUserData] = useState([]);
@@ -36,13 +41,14 @@ const Event = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/event/${_id}`, {
-                    method: 'DELETE'
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        console.log(data);
-                        if (data.deletedCount > 0) {
+                // fetch(`http://localhost:5000/event/${_id}`, {
+                //     method: 'DELETE'
+                // })
+                //     .then(res => res.json())
+                axiosSecure.delete(`/event/${_id}`)
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data.deletedCount > 0) {
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Your event has been deleted.",

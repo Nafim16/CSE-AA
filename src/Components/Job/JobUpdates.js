@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from '../Head/Head';
 import Swal from 'sweetalert2';
 import jobs from '../img/jobs.svg';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFire, faFireFlameCurved } from '@fortawesome/free-solid-svg-icons';
 import './Job.css'
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const JobUpdates = () => {
-    const job = useLoaderData();
+    // const job = useLoaderData();
+
+    const axiosSecure = useAxiosSecure();
+    const [job, setJobs] = useState([]);
+    const { id } = useParams();
+    useEffect(() => {
+        // fetch('http://localhost:5000/job')
+        //     .then(res => res.json())
+        axiosSecure.get(`/job/${id}`)
+            .then(res => setJobs(res.data))
+    }, [axiosSecure, id]);
+
+
     const { _id, name, title, description, location, position } = job;
 
 
@@ -29,18 +42,19 @@ const JobUpdates = () => {
 
         //Sending data to the sever
 
-        fetch(`http://localhost:5000/job/${_id}`, {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(updatedJob)
+        // fetch(`http://localhost:5000/job/${_id}`, {
+        //     method: 'PUT',
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     body: JSON.stringify(updatedJob)
 
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data.modifiedCount > 0) {
+        // })
+        //     .then(res => res.json())
+        axiosSecure.put(`/job/${_id}`,updatedJob)
+            .then(res=> {
+                console.log(res.data);
+                if (res.data.modifiedCount > 0) {
                     Swal.fire({
                         title: 'Success!',
                         text: 'Updated!',

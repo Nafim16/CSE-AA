@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 
 const EventApprove = () => {
+
+    const axiosSecure = useAxiosSecure();
+
     const [Events, setEvents] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/event')
-            .then(res => res.json())
-            .then(data => setEvents(data))
-    }, [])
+        // fetch('http://localhost:5000/event')
+        //     .then(res => res.json())
+        axiosSecure.get('/event')
+            .then(res => setEvents(res.data))
+    }, [axiosSecure])
 
     const handleApprove = _id => {
         console.log(_id);
@@ -27,17 +32,18 @@ const EventApprove = () => {
                 //     text: "Your file has been deleted.",
                 //     icon: "success"
                 //   });
-                fetch(`http://localhost:5000/event/${_id}`, {
-                    method: 'PATCH',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify({ approval: 'approved' })
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        console.log(data);
-                        if (data.modifiedCount > 0) {
+                // fetch(`http://localhost:5000/event/${_id}`, {
+                //     method: 'PATCH',
+                //     headers: {
+                //         'content-type': 'application/json'
+                //     },
+                //     body: JSON.stringify({ approval: 'approved' })
+                // })
+                //     .then(res => res.json())
+                axiosSecure.patch(`/event/${_id}`, { approval: 'approved' })
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data.modifiedCount > 0) {
                             Swal.fire({
                                 title: "Approved",
                                 text: "Approved by Admin",
@@ -73,13 +79,14 @@ const EventApprove = () => {
                 //     text: "Your Article has been deleted.",
                 //     icon: "success"
                 //   });
-                fetch(`http://localhost:5000/event/${_id}`, {
-                    method: 'DELETE'
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        console.log(data);
-                        if (data.deletedCount > 0) {
+                // fetch(`http://localhost:5000/event/${_id}`, {
+                //     method: 'DELETE'
+                // })
+                //     .then(res => res.json())
+                axiosSecure.delete(`/event/${_id}`)
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data.deletedCount > 0) {
                             Swal.fire({
                                 title: "Decline!",
                                 text: "This News has been deleted.",

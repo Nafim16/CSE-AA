@@ -5,8 +5,9 @@ import { AuthContext } from '../../Context/UserContext';
 import info from '../img/info.svg'
 import { db } from '../../FIrebase/firebase.config';
 import { doc, getDoc } from 'firebase/firestore';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData, useParams } from 'react-router-dom';
 import profilecard from '../img/profilecard.svg';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 
 const Profile = () => {
@@ -14,6 +15,13 @@ const Profile = () => {
     const { user } = useContext(AuthContext);
 
     const currentUser = useLoaderData();
+    // const axiosSecure = useAxiosSecure();
+    // const [currentUser, setUser] = useState();
+    // const { id } = useParams();
+    // useEffect(() => {
+    //     axiosSecure.get('/user')
+    //         .then(res => setUser(res.data))
+    // }, [axiosSecure])
 
     const handleUpdate = (_id) => {
         console.log(_id);

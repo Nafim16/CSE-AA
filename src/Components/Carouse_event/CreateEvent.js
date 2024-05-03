@@ -4,9 +4,12 @@ import Footer from '../Footer/Footer';
 import covevent from '../img/covevent.svg';
 import Swal from 'sweetalert2'
 import { AuthContext } from '../../Context/UserContext';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 
 const CreateEvent = () => {
+
+    const axiosSecure = useAxiosSecure();
 
     const time = new Date();
     const { user } = useContext(AuthContext);
@@ -32,17 +35,18 @@ const CreateEvent = () => {
 
         // Send Data to the Server
 
-        fetch('http://localhost:5000/event', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(newEvent)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data.insertedId) {
+        // fetch('http://localhost:5000/event', {
+        //     method: 'POST',
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     body: JSON.stringify(newEvent)
+        // })
+        //     .then(res => res.json())
+        axiosSecure.post('/event', newEvent)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.insertedId) {
                     Swal.fire({
                         title: 'Success',
                         text: 'Event Added Successfully',

@@ -6,6 +6,7 @@ import { AuthContext } from '../../Context/UserContext';
 import { db } from '../../FIrebase/firebase.config';
 import { doc, getDoc } from 'firebase/firestore';
 import logo6 from '../img/logo6.svg';
+import useUser from '../../hooks/useUser';
 
 const Head = () => {
 
@@ -27,6 +28,7 @@ const Head = () => {
             .then(data => setUserData(data))
 
     }, [])
+    // const userData = useUser();
 
 
     return (

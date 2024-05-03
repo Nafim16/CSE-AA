@@ -3,9 +3,12 @@ import story from '../img/story.svg';
 import Swal from 'sweetalert2';
 import './Stories.css' // Import your CSS file for additional styling
 import { AuthContext } from '../../Context/UserContext';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const StoryCard = ({ story, setStories, stories }) => {
   const { _id, title, photo, details } = story;
+
+  const axiosSecure = useAxiosSecure();
 
   const { user } = useContext(AuthContext);
   const [userData, setUserData] = useState([]);
@@ -28,15 +31,16 @@ const StoryCard = ({ story, setStories, stories }) => {
       if (result.isConfirmed) {
 
 
-        fetch(`http://localhost:5000/story/${_id}`, {
-          method: "DELETE",
+        // fetch(`http://localhost:5000/story/${_id}`, {
+        //   method: "DELETE",
 
-        })
-          .then(res => res.json())
-          .then(data => {
-            console.log(data);
+        // })
+        //   .then(res => res.json())
+        axiosSecure.delete(`/story/${_id}`)
+          .then(res => {
+            console.log(res.data);
 
-            if (data.deletedCount > 0) {
+            if (res.data.deletedCount > 0) {
 
               Swal.fire({
                 title: "Deleted!",

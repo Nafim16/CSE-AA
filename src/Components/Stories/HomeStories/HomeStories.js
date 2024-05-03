@@ -17,15 +17,19 @@ import { Autoplay } from 'swiper/modules';
 
 // import required modules
 import { EffectCoverflow, Pagination } from 'swiper/modules';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const HomeStories = () => {
 
+    const axiosSecure = useAxiosSecure();
+
     const [stories, setStories] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/story')
-            .then(res => res.json())
-            .then(data => setStories(data))
-    }, []);
+        // fetch('http://localhost:5000/story')
+        //     .then(res => res.json())
+        axiosSecure.get('/story')
+            .then(res => setStories(res.data))
+    }, [axiosSecure]);
 
 
 
