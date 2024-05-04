@@ -1,3 +1,4 @@
+// 
 import React, { useContext } from 'react';
 import { AuthContext } from '../Context/UserContext';
 import { Navigate, useLocation } from 'react-router-dom';
@@ -18,11 +19,15 @@ const PrivateRoute = ({ children }) => {
         );
     }
 
-    if (user) {
-        return children;
+    if (!user) {
+        return <Navigate to="/login" state={{ from: location }} replace={true}></Navigate>;
     }
 
-    return <Navigate to="/login" state={{from: location}} replace={true}></Navigate>;
-}; 
+    if (!user.emailVerified) {
+        return <Navigate to="/mailVerify" state={{ from: location }} replace={true}></Navigate>;
+    }
+
+    return children;
+};
 
 export default PrivateRoute;

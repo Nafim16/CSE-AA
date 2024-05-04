@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { AuthContext } from '../../Context/UserContext';
 import JoditEditor from 'jodit-react';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import PrivateRoute from '../../routers/PrivateRoute';
 
 const ArticleCreate = () => {
 
@@ -66,52 +67,54 @@ const ArticleCreate = () => {
 
 
     return (
-        <div className='mt-5 pt-5'>
-            <div className="row">
+        <PrivateRoute>
+            <div className='mt-5 pt-5'>
+                <div className="row">
 
-                <div className="col-md-6">
-                    <img src={articleimg} alt="" className='img-fluid' />
-                </div>
-                <div className="col-md-6">
-                    {/* 30% width column */}
-                    <div className='left-part'>
-                        <form onSubmit={handleAddArticle}>
-
-
-                            <h5 className='form-h5'>Create Articles</h5>
-
-
-                            <div className="form-floating title">
-                                <input className="form-control" type="text" name="title" />
-                                <label className='upperCaseHeader' htmlFor="floatingTextarea">Title</label>
-
-                            </div>
-
-                            <div className="mb-4">
-                                <label>Description</label>
-                                <JoditEditor
-                                    ref={editor}
-                                    value={details}
-                                    onChange={setDetails}
-                                />
-                            </div>
-                            <div className="form-floating ">
-                                <input className="form-control" type="text" name="photoUrl" />
-                                <label className='upperCaseHeader' htmlFor="floatingTextarea">Photo URL</label>
-
-                            </div>
-
-                            <div>
-                                <button className='stories-btn' type='submit'>Create</button>
-                            </div>
-                        </form>
+                    <div className="col-md-6">
+                        <img src={articleimg} alt="" className='img-fluid' />
                     </div>
+                    <div className="col-md-6">
+                        {/* 30% width column */}
+                        <div className='left-part'>
+                            <form onSubmit={handleAddArticle}>
+
+
+                                <h5 className='form-h5'>Create Articles</h5>
+
+
+                                <div className="form-floating title">
+                                    <input className="form-control" type="text" name="title" />
+                                    <label className='upperCaseHeader' htmlFor="floatingTextarea">Title</label>
+
+                                </div>
+
+                                <div className="mb-4">
+                                    <label>Description</label>
+                                    <JoditEditor
+                                        ref={editor}
+                                        value={details}
+                                        onChange={setDetails}
+                                    />
+                                </div>
+                                <div className="form-floating ">
+                                    <input className="form-control" type="text" name="photoUrl" />
+                                    <label className='upperCaseHeader' htmlFor="floatingTextarea">Photo URL</label>
+
+                                </div>
+
+                                <div>
+                                    <button className='stories-btn' type='submit'>Create</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
                 </div>
+
 
             </div>
-
-
-        </div>
+        </PrivateRoute>
     );
 };
 

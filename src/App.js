@@ -27,13 +27,15 @@ import EventReg from './Components/Carouse_event/EventReg/EventReg';
 import ArticleRead from './Components/Articles/ReadMore/ArticleRead';
 import ApplyJob from './Components/Job/ApplyJob/ApplyJob';
 
+import VerifiedMail from './Components/EmailVerification/VerifiedMail';
+
 
 
 
 
 function App() {
 
-  
+
 
   const router = createBrowserRouter([
     {
@@ -149,6 +151,10 @@ function App() {
       path: "/jobapply/:id",
       element: <PrivateRoute><ApplyJob></ApplyJob></PrivateRoute>,
       // loader: ({ params }) => fetch(`http://localhost:5000/job/${params.id}`)
+    },
+    {
+      path: "/mailVerify",
+      element: <VerifiedMail />,
     },
   ])
 

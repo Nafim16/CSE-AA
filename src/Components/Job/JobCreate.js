@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../Context/UserContext';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import PrivateRoute from '../../routers/PrivateRoute';
 
 const JobCreate = () => {
 
@@ -78,42 +79,44 @@ const JobCreate = () => {
 
 
     return (
-        <div>
-            <div className='row'>
-                <div className='col-md-6'><img src={jobs} alt="" className='img-fluid' /></div>
-                <div className='col-md-6'>
-                    <div>
-                        <h4> Create Job Post </h4>
-                    </div>
-                    <div className='formfield d-flex justify-content-center'>
-                        <form onSubmit={handleAddJob}>
-                            <div className="form-floating mb-3">
-                                <input type="text" name="name" className="form-control" placeholder='Company' id="floatingInputDisabled" />
-                                <label htmlFor="floatingInputDisabled">Company</label>
-                            </div>
-                            <div className="form-floating mb-3">
-                                <input name="title" className="form-control" id="floatingTextareaDisabled" placeholder='Title' />
-                                <label htmlFor="floatingTextareaDisabled">Job Title</label>
-                            </div>
-                            <div className="form-floating mb-3">
-                                <input name="position" className="form-control" id="floatingTextarea2Disabled" placeholder='Position' />
-                                <label htmlFor="floatingTextarea2Disabled">Position</label>
-                            </div>
-                            <div className="form-floating mb-3">
-                                <input name="location" className="form-control" id="floatingTextarea2Disabled" placeholder='Location' />
-                                <label htmlFor="floatingTextarea2Disabled">Job Location</label>
-                            </div>
-                            <div className="form-floating mb-3">
-                                <input type="text" name="description" className="form-control" id="floatingTextarea2Disabled" placeholder='Description' />
-                                <label htmlFor="floatingTextarea2Disabled">Job Description</label>
-                            </div>
-                            <p className='text-danger'><small>{fillError}</small></p>
-                            <button className="btn btn-primary " type="submit">Post </button>
-                        </form>
+        <PrivateRoute>
+            <div>
+                <div className='row'>
+                    <div className='col-md-6'><img src={jobs} alt="" className='img-fluid' /></div>
+                    <div className='col-md-6'>
+                        <div>
+                            <h4> Create Job Post </h4>
+                        </div>
+                        <div className='formfield d-flex justify-content-center'>
+                            <form onSubmit={handleAddJob}>
+                                <div className="form-floating mb-3">
+                                    <input type="text" name="name" className="form-control" placeholder='Company' id="floatingInputDisabled" />
+                                    <label htmlFor="floatingInputDisabled">Company</label>
+                                </div>
+                                <div className="form-floating mb-3">
+                                    <input name="title" className="form-control" id="floatingTextareaDisabled" placeholder='Title' />
+                                    <label htmlFor="floatingTextareaDisabled">Job Title</label>
+                                </div>
+                                <div className="form-floating mb-3">
+                                    <input name="position" className="form-control" id="floatingTextarea2Disabled" placeholder='Position' />
+                                    <label htmlFor="floatingTextarea2Disabled">Position</label>
+                                </div>
+                                <div className="form-floating mb-3">
+                                    <input name="location" className="form-control" id="floatingTextarea2Disabled" placeholder='Location' />
+                                    <label htmlFor="floatingTextarea2Disabled">Job Location</label>
+                                </div>
+                                <div className="form-floating mb-3">
+                                    <input type="text" name="description" className="form-control" id="floatingTextarea2Disabled" placeholder='Description' />
+                                    <label htmlFor="floatingTextarea2Disabled">Job Description</label>
+                                </div>
+                                <p className='text-danger'><small>{fillError}</small></p>
+                                <button className="btn btn-primary " type="submit">Post </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </PrivateRoute>
     );
 };
 

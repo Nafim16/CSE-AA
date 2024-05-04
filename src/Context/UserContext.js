@@ -40,13 +40,17 @@ const UserContext = ({ children }) => {
         setLoading(true);
         return sendPasswordResetEmail(auth, email);
     }
+    // const resendVerificationEmail = (email) => {
+    //     setLoading(true);
+    //     return sendEmailVerification(auth,email);
+    // }
+
 
 
 
     const logOut = () => {
         return signOut(auth);
     }
-
 
     //observe auth state change
     useEffect(() => {
@@ -64,15 +68,14 @@ const UserContext = ({ children }) => {
                     .then(res => {
                         console.log('token response', res.data);
                     })
-
             }
             else {
                 axios.post('http://localhost:5000/logout', loggedUser, {
                     withCredentials: true
                 })
-                .then(res=>{
-                    console.log(res.data);
-                })
+                    .then(res => {
+                        console.log(res.data);
+                    })
             }
         })
 
@@ -93,6 +96,7 @@ const UserContext = ({ children }) => {
         signInWithGoogle,
         signInWithGithub,
         resetEmail,
+        // resendVerificationEmail,
     }
 
     return (
