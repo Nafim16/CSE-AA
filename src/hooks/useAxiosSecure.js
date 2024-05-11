@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const axiosSecure = axios.create({
-    baseURL: 'https://cse-aa-server.onrender.com',
+    baseURL: 'https://cse-aa-server.vercel.app',
     withCredentials: true
 })
 
@@ -19,7 +19,7 @@ const useAxiosSecure = () => {
             return res;
         }, error => {
             console.log('error  tracked in the interceptor', error.response);
-            if (error.response.status === 401 || error.response.status === 403) {
+            if (error.response && (error.response.status === 401 || error.response.status === 403)) {
                 console.log('logout the user');
                 logOut()
                 .then(()=>{
