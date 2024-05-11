@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../Context/UserContext';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
-import PrivateRoute from '../../routers/PrivateRoute';
+
 
 const JobCreate = () => {
 
@@ -79,7 +79,7 @@ const JobCreate = () => {
 
 
     return (
-        <PrivateRoute>
+       
             <div>
                 <div className='row'>
                     <div className='col-md-6'><img src={jobs} alt="" className='img-fluid' /></div>
@@ -116,7 +116,7 @@ const JobCreate = () => {
                     </div>
                 </div>
             </div>
-        </PrivateRoute>
+        
     );
 };
 

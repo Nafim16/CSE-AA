@@ -26,7 +26,7 @@ const Registration = () => {
     };
 
 
-    const { user, createUser, signInWithGoogle, signInWithGithub } = useContext(AuthContext);
+    const { user, createUser, signInWithGoogle, signInWithGithub, logOut } = useContext(AuthContext);
 
     // console.log(createUser);
     const [passerror, setpassError] = useState('');
@@ -201,7 +201,8 @@ const Registration = () => {
         sendEmailVerification(user)
             .then(result => {
                 console.log(result);
-                alert('Please verify your email address');
+                alert('Please verify your email address and login again');
+                logOut();
             })
             .catch(error => {
                 console.log(error);

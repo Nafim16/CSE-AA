@@ -5,7 +5,6 @@ import Swal from 'sweetalert2';
 import { AuthContext } from '../../Context/UserContext';
 import JoditEditor from 'jodit-react';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
-import PrivateRoute from '../../routers/PrivateRoute';
 
 const ArticleCreate = () => {
 
@@ -67,7 +66,7 @@ const ArticleCreate = () => {
 
 
     return (
-        <PrivateRoute>
+        
             <div className='mt-5 pt-5'>
                 <div className="row">
 
@@ -78,11 +77,7 @@ const ArticleCreate = () => {
                         {/* 30% width column */}
                         <div className='left-part'>
                             <form onSubmit={handleAddArticle}>
-
-
                                 <h5 className='form-h5'>Create Articles</h5>
-
-
                                 <div className="form-floating title">
                                     <input className="form-control" type="text" name="title" />
                                     <label className='upperCaseHeader' htmlFor="floatingTextarea">Title</label>
@@ -109,12 +104,8 @@ const ArticleCreate = () => {
                             </form>
                         </div>
                     </div>
-
                 </div>
-
-
             </div>
-        </PrivateRoute>
     );
 };
 

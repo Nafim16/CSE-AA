@@ -5,6 +5,7 @@ import Head from '../Head/Head';
 import { AuthContext } from '../../Context/UserContext';
 import logo6 from '../img/logo6.svg';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 
 const Login = () => {
@@ -24,7 +25,7 @@ const Login = () => {
     const from = location.state?.from?.pathname || '/';
 
 
-    const { signIn, signInWithGoogle, signInWithGithub, resetEmail } = useContext(AuthContext);
+    const { signIn, signInWithGoogle, signInWithGithub, resetEmail, logOut } = useContext(AuthContext);
 
 
     const [error, setError] = useState('');
@@ -44,7 +45,25 @@ const Login = () => {
                 console.log(loggedUser);
                 const user = { email };
                 if (!loggedUser.emailVerified) {
-                    alert('Please verify your email address');
+                    alert('Please verify your email address and login again');
+                    logOut();
+                }
+                else{
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: "top-end",
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                          toast.onmouseenter = Swal.stopTimer;
+                          toast.onmouseleave = Swal.resumeTimer;
+                        }
+                      });
+                      Toast.fire({
+                        icon: "success",
+                        title: "Signed in successfully"
+                      });
                 }
                 form.reset();
                 navigate(from, { replace: true });
@@ -58,7 +77,6 @@ const Login = () => {
                 //             navigate(from, { replace: true });
                 //         }
                 //     })
-
             })
             .catch(error => {
                 console.log(error);
