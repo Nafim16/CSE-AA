@@ -62,7 +62,7 @@ const UserContext = ({ children }) => {
             setLoading(false);
             //if user exist then issue a token
             if (currentUser) {
-                axios.post('http://localhost:5000/jwt', loggedUser, {
+                axios.post('https://cse-aa-server.onrender.com/jwt', loggedUser, {
                     withCredentials: true
                 })
                     .then(res => {
@@ -70,7 +70,7 @@ const UserContext = ({ children }) => {
                     })
             }
             else {
-                axios.post('http://localhost:5000/logout', loggedUser, {
+                axios.post('https://cse-aa-server.onrender.com/logout', loggedUser, {
                     withCredentials: true
                 })
                     .then(res => {
