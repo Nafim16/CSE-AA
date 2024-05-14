@@ -2,7 +2,6 @@ import React, { createContext, useEffect, useState } from 'react';
 import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth"
 import { app } from '../FIrebase/firebase.config';
 import axios from 'axios';
-import useAxiosPublic from '../hooks/useAxiosPublic';
 
 
 export const AuthContext = createContext();
@@ -11,13 +10,10 @@ const auth = getAuth(app);
 const googleAuthProvider = new GoogleAuthProvider();
 const githubAuthProvider = new GithubAuthProvider();
 
-
-
 const UserContext = ({ children }) => {
 
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    const axiosPub = useAxiosPublic();
 
     const createUser = (email, password) => {
         setLoading(true);
@@ -66,19 +62,17 @@ const UserContext = ({ children }) => {
             setLoading(false);
             //if user exist then issue a token
             if (currentUser) {
-                // axios.post('https://cse-aa-server.onrender.com/jwt', loggedUser, {
-                //     withCredentials: true
-                // })
-                axiosPub.post('/jwt', loggedUser)
+                axios.post('https://cse-aa-server-2.onrender.com/jwt', loggedUser, {
+                    withCredentials: true
+                })
                     .then(res => {
                         console.log('token response', res.data);
                     })
             }
             else {
-                // axios.post('https://cse-aa-server.onrender.com/logout', loggedUser, {
-                //     withCredentials: true
-                // })
-                axiosPub.post('/logout', loggedUser)
+                axios.post('https://cse-aa-server-2.onrender.com/logout', loggedUser, {
+                    withCredentials: true
+                })
                     .then(res => {
                         console.log(res.data);
                     })

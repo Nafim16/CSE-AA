@@ -3,7 +3,7 @@ import React from 'react';
 
 
 const axiosPublic = axios.create({
-    baseURL: 'https://cse-aa-server.onrender.com',
+    baseURL: 'http://localhost:5000',
 })
 const useAxiosPublic = () => {
     return axiosPublic;
