@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const axiosSecure = axios.create({
-    baseURL: 'https://cse-aa-server-2.onrender.com',
+    baseURL: 'https://cse-aa-server.onrender.com',
     withCredentials: true
 })
 
