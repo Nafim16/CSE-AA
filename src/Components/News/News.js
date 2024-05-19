@@ -189,7 +189,7 @@ const News = () => {
         //     body: JSON.stringify(newComment)
         // })
         //     .then(res => res.json())
-        axiosSecure.post('/comments')
+        axiosSecure.post('/comments', newComment)
                 .then(res => {
                     console.log(res.data);
                     if (res.data.insertedId) {
