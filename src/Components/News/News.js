@@ -145,12 +145,13 @@ const News = () => {
                             });
 
                             // Delete the associated comments
-                            fetch(`http://localhost:5000/comments/${_id}`, {
-                                method: 'DELETE'
-                            })
-                                .then(res => res.json())
-                                .then(commentData => {
-                                    console.log(commentData);
+                            // fetch(`http://localhost:5000/comments/${_id}`, {
+                            //     method: 'DELETE'
+                            // })
+                            //     .then(res => res.json())
+                            axiosSecure.delete(`/comments/${_id}`)
+                                .then(res => {
+                                    console.log(res.data);
                                     // Handle the response as needed
                                 });
 
@@ -180,17 +181,18 @@ const News = () => {
         form.reset();
 
 
-        fetch(`http://localhost:5000/comments`, {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(newComment)
-        })
-            .then(res => res.json()
-                .then(data => {
-                    console.log(data);
-                    if (data.insertedId) {
+        // fetch(`http://localhost:5000/comments`, {
+        //     method: 'POST',
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     body: JSON.stringify(newComment)
+        // })
+        //     .then(res => res.json())
+        axiosSecure.post('/comments')
+                .then(res => {
+                    console.log(res.data);
+                    if (res.data.insertedId) {
                         Swal.fire({
                             title: 'Success!',
                             text: 'Post created Successfully, Wait for the Admins to Approve it',
@@ -199,7 +201,7 @@ const News = () => {
                         })
 
                     }
-                }))
+                })
     }
 
 
@@ -216,8 +218,9 @@ const News = () => {
     useEffect(() => {
         const fetchComments = async () => {
             try {
-                const response = await fetch('http://localhost:5000/comments');
-                const data = await response.json();
+                // const response = await fetch('http://localhost:5000/comments');
+                const response = await axiosSecure.get('/comments');
+                const data = await response.data;
                 setComments(data);
             } catch (error) {
                 console.error('Error fetching comments:', error);
@@ -232,7 +235,7 @@ const News = () => {
 
         // Clean up interval on component unmount
         return () => clearInterval(intervalId);
-    }, []);
+    }, [axiosSecure]);
 
     const deleteComment = _id => {
         console.log(_id);
@@ -251,13 +254,14 @@ const News = () => {
                 //     text: "Your Article has been deleted.",
                 //     icon: "success"
                 //   });
-                fetch(`http://localhost:5000/comments/${_id}`, {
-                    method: 'DELETE'
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        console.log(data);
-                        if (data.deletedCount > 0) {
+                // fetch(`http://localhost:5000/comments/${_id}`, {
+                //     method: 'DELETE'
+                // })
+                //     .then(res => res.json())
+                axiosSecure.delete(`/comments/${_id}`)
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data.deletedCount > 0) {
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Your Comment has been deleted.",
