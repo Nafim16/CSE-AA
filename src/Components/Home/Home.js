@@ -40,15 +40,15 @@ const Home = () => {
             {/* <Fade direction='right' cascade damping={2}>
                 <Whyjoinus></Whyjoinus>
             </Fade> */}
-            <Whyjoinus></Whyjoinus>
-
-
-            <HomeStories></HomeStories>
 
 
 
+            <div className='bg-contact'>
+                <Whyjoinus></Whyjoinus>
+                <HomeStories></HomeStories>
 
-            <HomeJobs></HomeJobs>
+                <HomeJobs></HomeJobs>
+            </div>
 
 
 
