@@ -18,6 +18,7 @@ import { Autoplay } from 'swiper/modules';
 // import required modules
 import { EffectCoverflow, Pagination } from 'swiper/modules';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { Bounce, Fade } from 'react-awesome-reveal';
 
 const HomeStories = () => {
 
@@ -35,7 +36,12 @@ const HomeStories = () => {
 
     return (
         <div>
-            <h1 className='fw-bold mt-5 mb-4'>Stories</h1>
+            <Bounce>
+                <Fade direction='down'>
+                    <h1 className='fw-bold mt-5 mb-4'>Stories</h1>
+                </Fade>
+            </Bounce>
+
 
             <div>
                 <Swiper
@@ -64,7 +70,9 @@ const HomeStories = () => {
                     {stories.map(story => (
                         <SwiperSlide key={story._id} className='stories-slide-content' style={{ width: '500px', height: '550px' }}>
                             <img src={story.photo} className='img-fluid stories-slide-image' />
-                            <h2>{story.title}</h2>
+                            <Bounce>
+                                <h2>{story.title}</h2>
+                            </Bounce>
                         </SwiperSlide>
 
                     ))}

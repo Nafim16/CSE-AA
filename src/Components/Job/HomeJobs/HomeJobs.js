@@ -7,6 +7,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import { Autoplay } from 'swiper/modules';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { Bounce, Fade } from 'react-awesome-reveal';
 
 const HomeJobs = () => {
 
@@ -41,7 +42,12 @@ const HomeJobs = () => {
 
     return (
         <div className='mt-3'>
-            <h1 className='fw-bold mt-5 mb-4'>Latest Jobs</h1>
+            <Bounce>
+                <Fade direction='down'>
+                    <h1 className='fw-bold mt-5 mb-4'>Latest Jobs</h1>
+                </Fade>
+            </Bounce>
+
             <Swiper
                 slidesPerView={slidesPerView}
                 spaceBetween={30}
@@ -64,18 +70,20 @@ const HomeJobs = () => {
                                 {job.approval === 'WaitingForApprove' ? (
                                     <></> // If the job is waiting for approval, render nothing
                                 ) : (
-                                    <div className='btn-light'>
-                                        <div className="card text-white h-100 bg mb-3 p-3 shadow" style={{ height: '300px', overflow: 'hidden' }}>
-                                            <div className="card-header text-success">
-                                                <h3><b>{job.name}</b></h3>
-                                                <h6>{job.title}</h6>
-                                            </div>
-                                            <div className="card-body">
-                                                <p className='text-black '><b>Location : <br />{job.location}</b></p>
-                                                <p className="card-text text-black" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{job.description}</p>
+                                    <Bounce>
+                                        <div className='btn-light'>
+                                            <div className="card text-white h-100 bg mb-3 p-3 shadow" style={{ height: '300px', overflow: 'hidden' }}>
+                                                <div className="card-header text-success">
+                                                    <h3><b>{job.name}</b></h3>
+                                                    <h6>{job.title}</h6>
+                                                </div>
+                                                <div className="card-body">
+                                                    <p className='text-black '><b>Location : <br />{job.location}</b></p>
+                                                    <p className="card-text text-black" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{job.description}</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </Bounce>
                                 )}
                             </SwiperSlide>
                         )}

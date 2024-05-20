@@ -9,6 +9,8 @@ import { useKeenSlider } from "keen-slider/react"
 import { AuthContext } from '../../Context/UserContext';
 import homeAnimation1 from '../img/ProfileAnimation1.gif';
 import useUser from '../../hooks/useUser';
+import { Fade } from 'react-awesome-reveal';
+
 
 const carousel = (slider) => {
     const z = 300
@@ -61,7 +63,9 @@ const Login = () => {
                     <div className='col-md-4 justify-content-center'>
                         <div className='mb-4 text-center mt-5 p-5'>
                             <div className='animated-text'>
-                                <h3 className='log-text'>Join the CSE Alumni Association, Leading University to reconnect with your <span className='text-span'></span></h3>
+                                <Fade direction='right'>
+                                    <h3 className='log-text'>Join the CSE Alumni Association, Leading University to reconnect with your <span className='text-span'></span></h3>
+                                </Fade>
                             </div>
                         </div>
                         {/* <form>
@@ -83,23 +87,27 @@ const Login = () => {
                         </form> */}
                     </div>
                     <div className="col-md-8">
-                        <img src={reading} alt="" className='img-fluid justify-content-end mt-3 p-3' />
+                        <Fade direction='left'>
+                            <img src={reading} alt="" className='img-fluid justify-content-end mt-3 p-3' />
+                        </Fade>
                     </div>
 
 
                     <div className='row'>
                         <div className='col-md-6 d-flex align-items-center justify-content-center' >
-                            <div className="wrapper-x homeStories1">
-                                <div className="scene">
-                                    <div className="carousel keen-slider" ref={sliderRef}>
-                                        <div className="carousel__cell number-slide1 "><img src={sohidminar3} className='img7 img-fluid' alt='...' /></div>
-                                        <div className="carousel__cell number-slide2"><img src={leading} className='img7 img-fluid' alt='...' /></div>
-                                        <div className="carousel__cell number-slide3"><img src={sohidminar3} className='img7 img-fluid' alt='...' /></div>
-                                        <div className="carousel__cell number-slide4"><img src={leading} className='img7 img-fluid' alt='...' /></div>
-                                        {/* <div className="carousel__cell number-slide5">5</div> */}
+                            <Fade direction='down'>
+                                <div className="wrapper-x homeStories1">
+                                    <div className="scene">
+                                        <div className="carousel keen-slider" ref={sliderRef}>
+                                            <div className="carousel__cell number-slide1 "><img src={sohidminar3} className='img7 img-fluid' alt='...' /></div>
+                                            <div className="carousel__cell number-slide2"><img src={leading} className='img7 img-fluid' alt='...' /></div>
+                                            <div className="carousel__cell number-slide3"><img src={sohidminar3} className='img7 img-fluid' alt='...' /></div>
+                                            <div className="carousel__cell number-slide4"><img src={leading} className='img7 img-fluid' alt='...' /></div>
+                                            {/* <div className="carousel__cell number-slide5">5</div> */}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </Fade>
                         </div>
                         <div className='col-md-6 d-flex align-items-center justify-content-center'  >
                             {/* <button class="shadow-btn login-btn">

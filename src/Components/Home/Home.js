@@ -23,33 +23,33 @@ const Home = () => {
         <div>
 
             <Head></Head>
-            <Fade direction='down' cascade damping={1}>
-                <Login></Login>
-            </Fade>
 
-            <Fade direction='right' cascade damping={2}>
-                <Event></Event>
-            </Fade>
+            <Login></Login>
 
 
-            <Fade direction='left' cascade damping={2}>
-                <HomeArticle></HomeArticle>
-            </Fade>
+
+            <Event></Event>
 
 
-            <Fade direction='right' cascade damping={2}>
+
+
+            <HomeArticle></HomeArticle>
+
+
+
+            {/* <Fade direction='right' cascade damping={2}>
                 <Whyjoinus></Whyjoinus>
-            </Fade>
+            </Fade> */}
+            <Whyjoinus></Whyjoinus>
 
 
-            <Fade direction='left' cascade damping={2}>
-                <HomeStories></HomeStories>
-            </Fade>
+            <HomeStories></HomeStories>
 
 
-            <Fade direction='right' cascade damping={2}>
-                <HomeJobs></HomeJobs>
-            </Fade>
+
+
+            <HomeJobs></HomeJobs>
+
 
 
             <Footer></Footer>

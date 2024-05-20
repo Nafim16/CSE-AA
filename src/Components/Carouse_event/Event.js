@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { AuthContext } from '../../Context/UserContext';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import useUser from '../../hooks/useUser';
+import { Bounce, Fade } from 'react-awesome-reveal';
 
 const Event = () => {
 
@@ -88,7 +89,10 @@ const Event = () => {
         <div className='event'>
             <div className='w-100 mx-auto pt-5'>
                 <div id='carouselExampleCaptions' className='carousel slide' data-bs-ride='carousel'>
-                    <h1 className='fw-bold'>Events</h1>
+                    <Bounce>
+                        <Fade direction='down'><h1 className='fw-bold'>Events</h1></Fade>
+                    </Bounce>
+                    <Fade>
                     <div className='carousel-inner evt-carousel'>
                         {pairedEvents.map((pair, index) => (
                             <div key={index} className={`carousel-item ${index === 0 ? 'active' : ''}`} data-bs-interval='5000'>
@@ -100,7 +104,9 @@ const Event = () => {
                                                     <img src={event.photoUrl} className='img1 ' alt='...' />
                                                 </div>
                                                 <div className='content transition'>
+                                                    <Bounce>
                                                     <h3><b>{event.title}</b></h3>
+                                                    </Bounce>
                                                     <p className="description">{event.description}</p>
 
                                                     {/* <p>{event.description}</p> */}
@@ -142,6 +148,7 @@ const Event = () => {
                             </div>
                         ))}
                     </div>
+                    </Fade>
 
                     <button className='carousel-control-prev c-b' type='button' data-bs-target='#carouselExampleCaptions' data-bs-slide='prev'>
                         <span className='carousel-control-prev-icon' aria-hidden='true'></span>
